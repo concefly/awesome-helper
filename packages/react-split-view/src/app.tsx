@@ -1,12 +1,38 @@
 import React from 'react';
-import cx from 'classnames';
+import { Context } from './component/provider';
+import { IContext, IContainerPanel } from './interface';
+import keyBy from 'lodash/keyBy';
+import { Panel } from './component/panel';
 
 export interface Props {
-  className?: string;
+  root: string;
+  panels: IContainerPanel[];
+  contentMap: {
+    [id: string]: any;
+  };
 }
 
-export const App = ({ className, ...props }: Props) => (
-  <div className={cx('App', className)} {...props}>
-    app
-  </div>
-);
+export class App extends React.PureComponent<Props> {
+  getCtxValue(): IContext {
+    const { panels, contentMap } = this.props;
+
+    const panelMap = keyBy(panels, 'id');
+
+    return {
+      panels,
+      panelMap,
+      contentMap,
+    };
+  }
+
+  render() {
+    const { root } = this.props;
+    const ctx = this.getCtxValue();
+
+    return (
+      <Context.Provider value={ctx}>
+        <Panel {...ctx.panelMap[root]} />
+      </Context.Provider>
+    );
+  }
+}

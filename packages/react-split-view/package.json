@@ -2,20 +2,23 @@
   "name": "react-split-view",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist",
     "dev": "parcel demo/index.html",
+    "dev-layout": "parcel demo/layout.html",
     "build": "npm run clean && tsc -p tsconfig.build.json --outDir dist"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/classnames": "^2.2.7",
+    "@types/lodash": "^4.14.126",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "antd": "^3.18.1",
+    "less": "^3.9.0",
     "parcel-bundler": "^1.12.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -25,6 +28,7 @@
     "antd": "*"
   },
   "dependencies": {
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.11"
   }
 }
