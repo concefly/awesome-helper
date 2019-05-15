@@ -18,7 +18,6 @@ export type IPanelSpan = IPanelSpanMap['flex'] | IPanelSpanMap['float'];
 export type IBasePanel = {
   id: string;
   parentId?: string;
-  order?: number;
 };
 
 export type IContainerPanel = IBasePanel & {
@@ -39,19 +38,22 @@ export type IContext = {
   contentMap: {
     [id: string]: any;
   };
+
+  getParent: (id: string) => IPanelLike;
+  getKids: (id: string) => IPanelLike[];
+
+  getSiblings: (id: string) => IPanelLike[];
+  getAllSiblings: (id: string) => IPanelLike[];
+  getSiblingIndex: (id: string) => number;
+
+  getContent: (id: string) => any;
+
+  setPanel: (id: string, p: IPanelLike) => void;
 };
 
-/** panel 组件 props */
-export type IPanelProps = IContainerPanel & {
-  /** 父 panel 配置（hoc 提供） */
-  parent?: IContainerPanel;
+export type IPanelProps = {
+  data: IContainerPanel;
 
-  /** 兄弟 panel 配置（hoc 提供） */
-  sibling?: IContainerPanel[];
-
-  /** 子 panel 配置（hoc 提供） */
-  kids?: IContainerPanel[];
-
-  /** content（hoc 提供） */
-  content?: any;
+  /** hoc 提供 */
+  ctx?: IContext;
 };

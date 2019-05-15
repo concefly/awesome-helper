@@ -1,33 +1,36 @@
 import React from 'react';
-import { IContainerPanel } from '../../interface';
+import { IPanelProps, IContext } from '../../interface';
 import { Context } from '../provider';
 import { isFlexSpan } from '../../util';
 import cx from 'classnames';
+import { Resizable } from 'react-resizable';
+import throttle from 'lodash/throttle';
 
 /** 处理布局 */
 export function withLayout<C extends any>(Comp: C): C {
-  const NewComp = (p: IContainerPanel) => (
+  const NewComp = (p: IPanelProps) => (
     <Context.Consumer>
       {ctx => {
-        const parent = ctx.panelMap[p.parentId];
+        const { data } = p;
+        const parent = ctx.panelMap[data.parentId];
 
-        let cls = cx('P-panel', `P-panel-${p.contentDirection}`);
+        let cls = cx('P-panel', `P-panel-${data.contentDirection}`);
         let style: React.CSSProperties = {};
 
-        if (isFlexSpan(p.span)) {
-          const shouldGrow = !p.span.spanPx;
+        if (isFlexSpan(data.span)) {
+          const shouldGrow = !data.span.spanPx;
 
           cls = cx(cls, {
             'P-panel-grow': shouldGrow,
           });
 
-          if (parent && p.span.spanPx) {
+          if (parent && data.span.spanPx) {
             switch (parent.contentDirection) {
               case 'h':
-                style.width = p.span.spanPx;
+                style.width = data.span.spanPx;
                 break;
               case 'v':
-                style.height = p.span.spanPx;
+                style.height = data.span.spanPx;
                 break;
               default:
                 break;
@@ -35,7 +38,7 @@ export function withLayout<C extends any>(Comp: C): C {
           }
         }
         return (
-          <div className={cls} style={style} data-p-id={p.id}>
+          <div className={cls} style={style} data-p-id={data.id}>
             <Comp {...p} />
           </div>
         );
@@ -46,13 +49,11 @@ export function withLayout<C extends any>(Comp: C): C {
   return NewComp as any;
 }
 
-/** 注入 parent */
-export function withParent<C extends any>(Comp: C): C {
-  const NewComp = (p: IContainerPanel) => (
+export function withContext<C extends any>(Comp: C): C {
+  const NewComp = (p: IPanelProps) => (
     <Context.Consumer>
       {ctx => {
-        const parent = ctx.panelMap[p.parentId];
-        return <Comp {...p} parent={parent} />;
+        return <Comp {...p} ctx={ctx} />;
       }}
     </Context.Consumer>
   );
@@ -60,46 +61,69 @@ export function withParent<C extends any>(Comp: C): C {
   return NewComp as any;
 }
 
-/** 注入 sibling */
-export function withSibling<C extends any>(Comp: C): C {
-  const NewComp = (p: IContainerPanel) => (
-    <Context.Consumer>
-      {ctx => {
-        const sibling = ctx.panels.filter(
-          child => child.parentId === p.parentId && child.id !== p.id
+export function withResize<C extends any>(Comp: C): C {
+  require('react-resizable/css/styles.css');
+
+  const NewComp = class extends React.PureComponent<IPanelProps> {
+    state = {
+      width: null,
+      height: null,
+    };
+
+    handleResize = throttle(
+      (ctx: IContext, spanPx: number) => {
+        const { data } = this.props;
+        const { id } = data;
+
+        ctx.setPanel(id, {
+          ...data,
+          span: {
+            ...data.span,
+            spanPx,
+          } as any,
+        });
+      },
+      100,
+      { leading: true }
+    );
+
+    render() {
+      const { data } = this.props;
+      const { span, parentId } = data;
+
+      // 有 spanPx 才可 resize
+      if (isFlexSpan(span) && span.spanPx) {
+        return (
+          <Context.Consumer>
+            {ctx => {
+              const parent = ctx.panelMap[parentId];
+
+              return (
+                <Resizable
+                  width={parent.contentDirection === 'h' ? span.spanPx : 0}
+                  height={parent.contentDirection === 'v' ? span.spanPx : 0}
+                  axis={parent.contentDirection === 'h' ? 'x' : 'y'}
+                  resizeHandles={['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']}
+                  onResize={(_, _data) =>
+                    this.handleResize(
+                      ctx,
+                      parent.contentDirection === 'h' ? _data.size.width : _data.size.height
+                    )
+                  }
+                >
+                  <div>
+                    <Comp {...this.props} />
+                  </div>
+                </Resizable>
+              );
+            }}
+          </Context.Consumer>
         );
-        return <Comp {...p} sibling={sibling} />;
-      }}
-    </Context.Consumer>
-  );
+      }
 
-  return NewComp as any;
-}
-
-/** 注入 kids */
-export function withKids<C extends any>(Comp: C): C {
-  const NewComp = (p: IContainerPanel) => (
-    <Context.Consumer>
-      {ctx => {
-        const kids = ctx.panels.filter(child => child.parentId === p.id);
-        return <Comp {...p} kids={kids} />;
-      }}
-    </Context.Consumer>
-  );
-
-  return NewComp as any;
-}
-
-export function withContent<C extends any>(Comp: C): C {
-  const NewComp = (p: IContainerPanel) => (
-    <Context.Consumer>
-      {ctx => {
-        const content = ctx.contentMap[p.id] || <i>{p.id}</i>;
-
-        return <Comp {...p} content={content} />;
-      }}
-    </Context.Consumer>
-  );
+      return <Comp {...this.props} />;
+    }
+  };
 
   return NewComp as any;
 }

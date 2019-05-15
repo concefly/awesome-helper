@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import App from '../src';
 import { IPanelLike } from '../src/interface';
 
-const panels: IPanelLike[] = [
+const panels: IPanelLike[] = JSON.parse(window.localStorage.getItem('_layout')) || [
   {
     id: 'root',
     span: { type: 'flex' } as any,
@@ -28,17 +28,17 @@ const panels: IPanelLike[] = [
     contentDirection: 'h',
   },
 
-  // 第二层
+  // // 第二层
   {
     id: 'left-top',
     parentId: 'left',
-    span: { type: 'flex' } as any,
+    span: { type: 'flex', spanPx: 200 } as any,
     contentDirection: 'v',
   },
   {
     id: 'left-middle',
     parentId: 'left',
-    span: { type: 'flex', spanPx: 200 } as any,
+    span: { type: 'flex' } as any,
     contentDirection: 'v',
   },
   {
@@ -60,6 +60,10 @@ ReactDom.render(
         // ['left-top']: 'left-top',
       }
     }
+    style={{ height: 600 }}
+    onChange={data => {
+      window.localStorage.setItem('_layout', JSON.stringify(data));
+    }}
   />,
   document.getElementById('root')
 );

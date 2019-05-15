@@ -1,28 +1,31 @@
 import React from 'react';
 import { IPanelProps } from '../../interface';
 import flowRight from 'lodash/flowRight';
-import { withLayout, withSibling, withParent, withKids, withContent } from './hoc';
+import { withLayout, withResize, withContext } from './hoc';
 
-type Props = IPanelProps;
-
-export class PanelBase extends React.PureComponent<Props> {
+export class PanelBase extends React.PureComponent<IPanelProps> {
   render() {
-    const { id, kids, content } = this.props;
+    const {
+      data: { id },
+      ctx,
+    } = this.props;
 
-    console.log('@@@', 'this.props ->', this.props);
+    const kids = ctx.getKids(id);
+    const content = ctx.getContent(id);
+
+    // console.log('@@@', 'this.props ->', this.props);
 
     if (kids.length) {
-      return kids.map(kid => <Panel key={kid.id} {...kid} />);
+      return kids.map(kid => <Panel key={kid.id} data={kid} />);
     } else {
       return <div data-p-id={id}>{content}</div>;
     }
   }
 }
 
-export const Panel: React.ClassicComponentClass<Props> = flowRight([
+export const Panel: React.ClassicComponentClass<IPanelProps> = flowRight([
+  // 以下顺序不要随便调整
+  withContext,
+  withResize,
   withLayout,
-  withSibling,
-  withParent,
-  withKids,
-  withContent,
 ])(PanelBase);
