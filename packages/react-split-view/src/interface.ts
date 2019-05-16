@@ -46,6 +46,12 @@ export type IContext = {
   getAllSiblings: (id: string) => IPanelLike[];
   getSiblingIndex: (id: string) => number;
 
+  getFlowDirection: (id: string) => IDisplayDirection;
+  /** 排第一 */
+  isFlowStart: (id: string) => boolean;
+  /** 排末尾 */
+  isFlowEnd: (id: string) => boolean;
+
   getContent: (id: string) => any;
 
   setPanel: (id: string, p: IPanelLike) => void;

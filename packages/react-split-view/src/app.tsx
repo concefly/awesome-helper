@@ -2,6 +2,7 @@ import React from 'react';
 import { Context } from './component/provider';
 import { IContext, IContainerPanel, IPanelLike } from './interface';
 import keyBy from 'lodash/keyBy';
+import get from 'lodash/get';
 import { Panel } from './component/panel';
 
 export interface Props {
@@ -47,6 +48,10 @@ export class App extends React.PureComponent<Props, State> {
     const getSiblings = (id: string) => getAllSiblings(id).filter(child => child.id !== id);
     const getSiblingIndex = (id: string) => getAllSiblings(id).findIndex(si => si.id === id);
 
+    const getFlowDirection = (id: string) => get(getParent(id), 'contentDirection', 'v');
+    const isFlowStart = (id: string) => getSiblingIndex(id) === 0;
+    const isFlowEnd = (id: string) => getSiblingIndex(id) === getAllSiblings(id).length - 1;
+
     const getContent = (id: string) => contentMap[id] || <i>{id}</i>;
 
     const setPanel = (id: string, newPanel: IPanelLike) => {
@@ -69,6 +74,9 @@ export class App extends React.PureComponent<Props, State> {
       getSiblings,
       getSiblingIndex,
       getContent,
+      getFlowDirection,
+      isFlowStart,
+      isFlowEnd,
       setPanel,
     };
   }

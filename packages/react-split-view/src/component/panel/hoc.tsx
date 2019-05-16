@@ -90,25 +90,38 @@ export function withResize<C extends any>(Comp: C): C {
 
     render() {
       const { data } = this.props;
-      const { span, parentId } = data;
+      const { id, span } = data;
 
       // 有 spanPx 才可 resize
       if (isFlexSpan(span) && span.spanPx) {
         return (
           <Context.Consumer>
             {ctx => {
-              const parent = ctx.panelMap[parentId];
+              const flowDirection = ctx.getFlowDirection(id);
+              const isFlowStart = ctx.isFlowStart(id);
+              const isFlowEnd = ctx.isFlowEnd(id);
+
+              const width = flowDirection === 'h' ? span.spanPx : 0;
+              const height = flowDirection === 'v' ? span.spanPx : 0;
+              const axis = flowDirection === 'h' ? 'x' : 'y';
+
+              const resizeHandles = cx({
+                s: flowDirection === 'v' && !isFlowEnd,
+                n: flowDirection === 'v' && !isFlowStart,
+                e: flowDirection === 'h' && !isFlowEnd,
+                w: flowDirection === 'h' && !isFlowStart,
+              }).split(' ');
 
               return (
                 <Resizable
-                  width={parent.contentDirection === 'h' ? span.spanPx : 0}
-                  height={parent.contentDirection === 'v' ? span.spanPx : 0}
-                  axis={parent.contentDirection === 'h' ? 'x' : 'y'}
-                  resizeHandles={['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']}
+                  width={width}
+                  height={height}
+                  axis={axis}
+                  resizeHandles={resizeHandles}
                   onResize={(_, _data) =>
                     this.handleResize(
                       ctx,
-                      parent.contentDirection === 'h' ? _data.size.width : _data.size.height
+                      flowDirection === 'h' ? _data.size.width : _data.size.height
                     )
                   }
                 >
