@@ -5,6 +5,7 @@ import { isFlexSpan } from '../../util';
 import cx from 'classnames';
 import { Resizable } from 'react-resizable';
 import throttle from 'lodash/throttle';
+import { CLS_PREFIX } from '../../constant';
 
 /** 处理布局 */
 export function withLayout<C extends any>(Comp: C): C {
@@ -14,14 +15,14 @@ export function withLayout<C extends any>(Comp: C): C {
         const { data } = p;
         const parent = ctx.panelMap[data.parentId];
 
-        let cls = cx('P-panel', `P-panel-${data.contentDirection}`);
+        let cls = cx(`${CLS_PREFIX}-panel`, `${CLS_PREFIX}-panel-${data.contentDirection}`);
         let style: React.CSSProperties = {};
 
         if (isFlexSpan(data.span)) {
           const shouldGrow = !data.span.spanPx;
 
           cls = cx(cls, {
-            'P-panel-grow': shouldGrow,
+            [`${CLS_PREFIX}-panel-grow`]: shouldGrow,
           });
 
           if (parent && data.span.spanPx) {
