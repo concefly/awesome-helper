@@ -53,17 +53,13 @@ ReactDom.render(
   <App
     panels={panels}
     root='root'
-    contentMap={
-      {
-        // right: 'right',
-        // center: 'center',
-        // ['left-top']: 'left-top',
-      }
-    }
     style={{ height: 600 }}
     onChange={data => {
       window.localStorage.setItem('_layout', JSON.stringify(data));
     }}
-  />,
+  >
+    <div key='center'>AAA</div>
+    <div key='right'>BBB</div>
+  </App>,
   document.getElementById('root')
 );

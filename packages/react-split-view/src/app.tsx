@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { Context } from './component/provider';
 import { IContext, IContainerPanel, IPanelLike } from './interface';
 import keyBy from 'lodash/keyBy';
@@ -8,24 +8,17 @@ import { Panel } from './component/panel';
 export interface Props {
   root: string;
   panels: IContainerPanel[];
-  contentMap: {
-    [id: string]: any;
-  };
   onChange?: (panels: IContainerPanel[]) => void;
   style?: React.CSSProperties;
 }
 
 export interface State {
   panels: IContainerPanel[];
-  contentMap: {
-    [id: string]: any;
-  };
 }
 
 export class App extends React.PureComponent<Props, State> {
   state: State = {
     panels: this.props.panels,
-    contentMap: this.props.contentMap,
   };
 
   handleChange = (panels: IContainerPanel[]) => {
@@ -35,7 +28,12 @@ export class App extends React.PureComponent<Props, State> {
   };
 
   getCtxValue(): IContext {
-    const { panels, contentMap } = this.state;
+    const { panels } = this.state;
+
+    const contentMap: IContext['contentMap'] = {};
+    React.Children.forEach(this.props.children, child => {
+      contentMap[(child as any).key] = child;
+    });
 
     const panelMap = keyBy(panels, 'id');
 
