@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import App from '../src';
 import { IPanelLike } from '../src/interface';
 
-const panels: IPanelLike[] = JSON.parse(window.localStorage.getItem('_layout')) || [
+const panels: IPanelLike[] = [
   {
     id: 'root',
     span: { type: 'flex' } as any,

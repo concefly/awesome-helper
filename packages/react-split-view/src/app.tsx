@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import { Context } from './component/provider';
 import { IContext, IContainerPanel, IPanelLike } from './interface';
 import keyBy from 'lodash/keyBy';
