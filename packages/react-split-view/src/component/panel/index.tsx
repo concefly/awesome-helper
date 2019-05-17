@@ -70,10 +70,10 @@ export class PanelBase extends React.PureComponent<IPanelProps> {
       if (parent && data.span.spanPx) {
         switch (parent.contentDirection) {
           case 'h':
-            style.width = data.span.spanPx;
+            style.width = data.span.collapsed ? 0 : data.span.spanPx;
             break;
           case 'v':
-            style.height = data.span.spanPx;
+            style.height = data.span.collapsed ? 0 : data.span.spanPx;
             break;
           default:
             break;

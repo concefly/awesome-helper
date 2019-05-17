@@ -28,7 +28,7 @@ const panels: IPanelLike[] = [
     contentDirection: 'h',
   },
 
-  // // 第二层
+  // 第二层
   {
     id: 'left-top',
     parentId: 'left',
@@ -55,6 +55,7 @@ ReactDom.render(
     root='root'
     style={{ height: 600 }}
     onChange={data => {
+      console.log('@@@', 'data ->', data);
       window.localStorage.setItem('_layout', JSON.stringify(data));
     }}
   >

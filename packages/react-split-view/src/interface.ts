@@ -4,6 +4,9 @@ export type IPanelSpanMap = {
   flex: {
     type: 'flex';
     spanPx?: number;
+
+    /** 是否收起 */
+    collapsed?: boolean;
   };
   float: {
     type: 'float';
