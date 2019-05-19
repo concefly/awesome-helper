@@ -3,6 +3,8 @@ import ReactDom from 'react-dom';
 import App from '../src';
 import { IPanelLike } from '../src/interface';
 
+import '../src/style';
+
 const panels: IPanelLike[] = [
   {
     id: 'root',

@@ -1,14 +1,20 @@
 {
-  "name": "react-split-view",
+  "name": "react-sv",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist",
-    "dev": "parcel demo/index.html",
+    "dev": "rm -rf .demo-serve && parcel demo/index.html -d .demo-serve",
     "dev-layout": "parcel demo/layout.html",
-    "build": "npm run clean && tsc -p tsconfig.build.json --outDir dist"
+    "build:js": "tsc -p tsconfig.build.json --outDir dist",
+    "build:css": "cp src/style/*.less dist/style",
+    "build": "npm run clean && npm run build:js && npm run build:css",
+    "prepublishOnly": "npm run build"
   },
   "author": "",
   "license": "ISC",

@@ -8,8 +8,6 @@ import throttle from 'lodash/throttle';
 import { CLS_PREFIX } from '../../constant';
 import { isFlexSpan } from '../../util';
 
-import 'react-resizable/css/styles.css';
-
 export class PanelBase extends React.PureComponent<IPanelProps> {
   handleResize = throttle(
     (ctx: IContext, spanPx: number) => {
@@ -96,10 +94,11 @@ export class PanelBase extends React.PureComponent<IPanelProps> {
       </div>
     );
 
-    if (isFlexSpan(data.span) && data.span.spanPx) {
+    const isFlowStart = ctx.isFlowStart(data.id);
+    const isFlowEnd = ctx.isFlowEnd(data.id);
+
+    if (isFlexSpan(data.span) && data.span.spanPx && !(isFlowStart && isFlowEnd)) {
       const flowDirection = ctx.getFlowDirection(data.id);
-      const isFlowStart = ctx.isFlowStart(data.id);
-      const isFlowEnd = ctx.isFlowEnd(data.id);
 
       const width = flowDirection === 'h' && data.span.spanPx;
       const height = flowDirection === 'v' && data.span.spanPx;
