@@ -1,30 +1,71 @@
 import React from 'react';
-import { IPanelProps, IContext } from '../../interface';
+import { IPanelProps } from '../../interface';
 import flowRight from 'lodash/flowRight';
 import { withContext } from './hoc';
 import cx from 'classnames';
-import { Resizable } from 'react-resizable';
+import { Resizable, ResizeCallbackData } from 'react-resizable';
 import throttle from 'lodash/throttle';
 import { CLS_PREFIX } from '../../constant';
 import { isFlexSpan } from '../../util';
 
-export class PanelBase extends React.PureComponent<IPanelProps> {
+type IResizeHandleFlag = 's' | 'w' | 'e' | 'n' | 'sw' | 'nw' | 'se' | 'ne';
+
+/** ResizeCallbackData 补全 */
+interface ResizeCallbackDataX extends ResizeCallbackData {
+  handle?: IResizeHandleFlag;
+}
+
+interface State {
+  resizeBoxSpan: number;
+  resizeData: ResizeCallbackDataX;
+  isResizing: boolean;
+}
+
+export class PanelBase extends React.PureComponent<IPanelProps, State> {
+  state: State = {
+    resizeBoxSpan: null,
+    resizeData: null,
+    isResizing: false,
+  };
+
+  handleResizeStart = (resizeData: ResizeCallbackDataX) => {
+    this.setState({ resizeData, isResizing: true });
+  };
+
+  /** resize 过程中 */
   handleResize = throttle(
-    (ctx: IContext, spanPx: number) => {
-      const { data } = this.props;
+    (resizeData: ResizeCallbackDataX) => {
+      const { data, ctx } = this.props;
       const { id } = data;
 
-      ctx.setPanel(id, {
-        ...data,
-        span: {
-          ...data.span,
-          spanPx,
-        } as any,
-      });
+      const flowDirection = ctx.getFlowDirection(id);
+      const resizeBoxSpan = flowDirection === 'h' ? resizeData.size.width : resizeData.size.height;
+
+      this.setState({ resizeBoxSpan, resizeData });
     },
-    100,
-    { leading: true }
+    20,
+    {
+      leading: true,
+    }
   );
+
+  /** resize 结束 */
+  handleResizeStop = (resizeData: ResizeCallbackDataX) => {
+    const { data, ctx } = this.props;
+    const { id } = data;
+
+    this.setState({ resizeData, isResizing: false });
+
+    const spanPx = this.state.resizeBoxSpan;
+
+    ctx.setPanel(id, {
+      ...data,
+      span: {
+        ...data.span,
+        spanPx,
+      } as any,
+    });
+  };
 
   renderContent() {
     const {
@@ -42,10 +83,41 @@ export class PanelBase extends React.PureComponent<IPanelProps> {
     }
   }
 
+  /** resize 时指引的 box */
+  renderResizingBox() {
+    const { data, ctx } = this.props;
+    const { resizeBoxSpan, resizeData } = this.state;
+
+    const flowDirection = ctx.getFlowDirection(data.id);
+
+    let style: React.CSSProperties = {
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      width: flowDirection === 'h' && resizeBoxSpan,
+      height: flowDirection === 'v' && resizeBoxSpan,
+    };
+
+    if (resizeData) {
+      const { handle } = resizeData;
+
+      if (handle.includes('w')) style.left = null;
+      if (handle.includes('e')) style.right = null;
+      if (handle.includes('n')) style.top = null;
+      if (handle.includes('s')) style.bottom = null;
+    }
+
+    return <div className={`${CLS_PREFIX}-panel-resizeBox`} style={style} />;
+  }
+
   getWrapperCls() {
     const { data } = this.props;
+    const { isResizing } = this.state;
 
-    let cls = cx(`${CLS_PREFIX}-panel`, `${CLS_PREFIX}-panel-${data.contentDirection}`);
+    let cls = cx(`${CLS_PREFIX}-panel`, `${CLS_PREFIX}-panel-${data.contentDirection}`, {
+      [`${CLS_PREFIX}-panel-resizing`]: isResizing,
+    });
 
     if (isFlexSpan(data.span)) {
       const shouldGrow = !data.span.spanPx;
@@ -91,6 +163,7 @@ export class PanelBase extends React.PureComponent<IPanelProps> {
     const contentNode = (
       <div className={cls} style={style} data-p-id={data.id}>
         {this.renderContent()}
+        {this.renderResizingBox()}
       </div>
     );
 
@@ -119,9 +192,9 @@ export class PanelBase extends React.PureComponent<IPanelProps> {
           height={height || 0}
           axis={axis}
           resizeHandles={resizeHandles}
-          onResize={(_, _data) =>
-            this.handleResize(ctx, flowDirection === 'h' ? _data.size.width : _data.size.height)
-          }
+          onResize={(_, _data) => this.handleResize(_data)}
+          onResizeStart={(_, _data) => this.handleResizeStart(_data)}
+          onResizeStop={(_, _data) => this.handleResizeStop(_data)}
         >
           {contentNode}
         </Resizable>

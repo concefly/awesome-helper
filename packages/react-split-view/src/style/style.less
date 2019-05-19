@@ -6,17 +6,35 @@
   height: 100%;
   box-sizing: border-box;
   border: 1px dashed #ccc;
-  overflow: hidden;
-}
 
-.@{prefix}-panel-grow {
-  flex: 1;
-}
+  transition-property: width, height;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 
-.@{prefix}-panel-h {
-  flex-direction: row;
-}
+  &-grow {
+    flex: 1;
+  }
 
-.@{prefix}-panel-v {
-  flex-direction: column;
+  &-h {
+    flex-direction: row;
+  }
+
+  &-v {
+    flex-direction: column;
+  }
+
+  &-resizeBox {
+    display: none;
+    position: absolute;
+    box-sizing: border-box;
+    border: 1px solid #000;
+    pointer-events: none;
+  }
+
+  // 正在 resize
+  &-resizing {
+    .@{prefix}-panel-resizeBox {
+      display: block;
+    }
+  }
 }
