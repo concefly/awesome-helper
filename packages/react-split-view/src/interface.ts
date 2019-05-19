@@ -55,9 +55,13 @@ export type IContext = {
   /** 排末尾 */
   isFlowEnd: (id: string) => boolean;
 
+  getPanelRuntimeMeta: (id: string) => IPanelRuntimeMeta;
+
   getContent: (id: string) => any;
 
   setPanel: (id: string, p: IPanelLike) => void;
+
+  setPanelRuntimeMeta: (id: string, meta: IPanelRuntimeMeta) => void;
 };
 
 export type IPanelProps = {
@@ -65,4 +69,8 @@ export type IPanelProps = {
 
   /** hoc 提供 */
   ctx?: IContext;
+};
+
+export type IPanelRuntimeMeta = {
+  rect: ClientRect;
 };

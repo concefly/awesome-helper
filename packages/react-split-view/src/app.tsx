@@ -1,6 +1,6 @@
 import React from 'react';
 import { Context } from './component/provider';
-import { IContext, IContainerPanel, IPanelLike } from './interface';
+import { IContext, IContainerPanel, IPanelLike, IPanelRuntimeMeta } from './interface';
 import keyBy from 'lodash/keyBy';
 import get from 'lodash/get';
 import { Panel } from './component/panel';
@@ -20,6 +20,10 @@ export class App extends React.PureComponent<Props, State> {
   state: State = {
     panels: this.props.panels,
   };
+
+  panelRuntimeMetaMap: {
+    [id: string]: IPanelRuntimeMeta;
+  } = {};
 
   handleChange = (panels: IContainerPanel[]) => {
     const { onChange } = this.props;
@@ -50,6 +54,8 @@ export class App extends React.PureComponent<Props, State> {
     const isFlowStart = (id: string) => getSiblingIndex(id) === 0;
     const isFlowEnd = (id: string) => getSiblingIndex(id) === getAllSiblings(id).length - 1;
 
+    const getPanelRuntimeMeta = (id: string) => this.panelRuntimeMetaMap[id];
+
     const getContent = (id: string) => contentMap[id] || <i>{id}</i>;
 
     const setPanel = (id: string, newPanel: IPanelLike) => {
@@ -60,6 +66,10 @@ export class App extends React.PureComponent<Props, State> {
       });
 
       this.handleChange(newPanels);
+    };
+
+    const setPanelRuntimeMeta = (id: string, meta: IPanelRuntimeMeta) => {
+      this.panelRuntimeMetaMap[id] = meta;
     };
 
     return {
@@ -76,6 +86,8 @@ export class App extends React.PureComponent<Props, State> {
       isFlowStart,
       isFlowEnd,
       setPanel,
+      getPanelRuntimeMeta,
+      setPanelRuntimeMeta,
     };
   }
 

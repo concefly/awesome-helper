@@ -17,3 +17,9 @@ export function isContainerPanel(
 
   return hasChild;
 }
+
+export function makeDomProps(panel: IPanelLike) {
+  return {
+    ['data-p-id']: panel.id,
+  };
+}

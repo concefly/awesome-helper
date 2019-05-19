@@ -1,12 +1,13 @@
 import React from 'react';
 import { IPanelProps } from '../../interface';
 import flowRight from 'lodash/flowRight';
+import sum from 'lodash/sum';
 import { withContext } from './hoc';
 import cx from 'classnames';
 import { Resizable, ResizeCallbackData } from 'react-resizable';
 import throttle from 'lodash/throttle';
 import { CLS_PREFIX } from '../../constant';
-import { isFlexSpan } from '../../util';
+import { isFlexSpan, makeDomProps } from '../../util';
 
 type IResizeHandleFlag = 's' | 'w' | 'e' | 'n' | 'sw' | 'nw' | 'se' | 'ne';
 
@@ -28,6 +29,25 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     isResizing: false,
   };
 
+  panelDivRef = React.createRef<HTMLDivElement>();
+
+  componentDidMount() {
+    this.syncPanelRuntimeMeta();
+  }
+
+  componentDidUpdate() {
+    this.syncPanelRuntimeMeta();
+  }
+
+  syncPanelRuntimeMeta = () => {
+    const { ctx, data } = this.props;
+
+    ctx.setPanelRuntimeMeta(data.id, {
+      ...ctx.getPanelRuntimeMeta(data.id),
+      rect: this.panelDivRef.current.getBoundingClientRect(),
+    });
+  };
+
   handleResizeStart = (resizeData: ResizeCallbackDataX) => {
     this.setState({ resizeData, isResizing: true });
   };
@@ -40,6 +60,22 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
       const flowDirection = ctx.getFlowDirection(id);
       const resizeBoxSpan = flowDirection === 'h' ? resizeData.size.width : resizeData.size.height;
+
+      const siblings = ctx.getSiblings(id);
+
+      const { rect: parentRect } = ctx.getPanelRuntimeMeta(data.parentId);
+
+      const parentSpan = flowDirection === 'h' ? parentRect.width : parentRect.height;
+
+      const currentTotalSpan = sum([
+        ...siblings.map(s => {
+          if (isFlexSpan(s.span)) return s.span.spanPx;
+          return 0;
+        }),
+        resizeBoxSpan,
+      ]);
+
+      if (currentTotalSpan > parentSpan) return;
 
       this.setState({ resizeBoxSpan, resizeData });
     },
@@ -56,33 +92,30 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
     this.setState({ resizeData, isResizing: false });
 
-    const spanPx = this.state.resizeBoxSpan;
+    const { resizeBoxSpan } = this.state;
 
     // 在 resize 开始的一瞬间，resizeBoxSpan 是空的，不用 setPanel
-    if (!spanPx) return;
+    if (!resizeBoxSpan) return;
 
     ctx.setPanel(id, {
       ...data,
       span: {
         ...data.span,
-        spanPx,
+        spanPx: resizeBoxSpan,
       } as any,
     });
   };
 
   renderContent() {
-    const {
-      data: { id },
-      ctx,
-    } = this.props;
+    const { data, ctx } = this.props;
 
-    const kids = ctx.getKids(id);
-    const content = ctx.getContent(id);
+    const kids = ctx.getKids(data.id);
+    const content = ctx.getContent(data.id);
 
     if (kids.length) {
       return kids.map(kid => <Panel key={kid.id} data={kid} />);
     } else {
-      return <div data-p-id={id}>{content}</div>;
+      return content;
     }
   }
 
@@ -165,7 +198,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     const style = this.getWrapperStyle();
 
     const contentNode = (
-      <div className={cls} style={style} data-p-id={data.id}>
+      <div {...makeDomProps(data)} className={cls} style={style} ref={this.panelDivRef}>
         {this.renderContent()}
         {this.renderResizingBox()}
       </div>
