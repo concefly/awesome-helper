@@ -58,6 +58,9 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
     const spanPx = this.state.resizeBoxSpan;
 
+    // 在 resize 开始的一瞬间，resizeBoxSpan 是空的，不用 setPanel
+    if (!spanPx) return;
+
     ctx.setPanel(id, {
       ...data,
       span: {
@@ -99,7 +102,8 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       height: flowDirection === 'v' && resizeBoxSpan,
     };
 
-    if (resizeData) {
+    // 在 resize 开始的一瞬间，resizeBoxSpan 是空的，不能删除 top left 等定位属性
+    if (resizeData && resizeBoxSpan) {
       const { handle } = resizeData;
 
       if (handle.includes('w')) style.left = null;
