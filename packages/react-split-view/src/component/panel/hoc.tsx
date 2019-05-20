@@ -14,3 +14,18 @@ export function withContext<C extends any>(Comp: C): C {
 
   return NewComp as any;
 }
+
+/** 注入 data */
+export function withData<C extends any>(Comp: C): C {
+  const NewComp = (p: IPanelProps) => (
+    <Context.Consumer>
+      {ctx => {
+        const data = ctx.getPanel(p.id);
+
+        return <Comp {...p} data={data} />;
+      }}
+    </Context.Consumer>
+  );
+
+  return NewComp as any;
+}

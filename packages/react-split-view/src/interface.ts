@@ -34,13 +34,7 @@ export type IContainerPanel = IBasePanel & {
 export type IPanelLike = IContainerPanel;
 
 export type IContext = {
-  panels: IPanelLike[];
-  panelMap: {
-    [id: string]: IPanelLike;
-  };
-  contentMap: {
-    [id: string]: any;
-  };
+  getPanel: (id: string) => IPanelLike;
 
   getParent: (id: string) => IPanelLike;
   getKids: (id: string) => IPanelLike[];
@@ -59,15 +53,23 @@ export type IContext = {
 
   getContent: (id: string) => any;
 
+  getStyle: (id: string) => { resizingBox?: React.CSSProperties };
+
   setPanel: (id: string, p: IPanelLike) => void;
 
   setPanelRuntimeMeta: (id: string, meta: IPanelRuntimeMeta) => void;
 };
 
+/**
+ * Panel props
+ *
+ * 大部分 Props 都从 ctx 上取即可
+ */
 export type IPanelProps = {
-  data: IContainerPanel;
+  id: string;
 
   /** hoc 提供 */
+  data?: IContainerPanel;
   ctx?: IContext;
 };
 

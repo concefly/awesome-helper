@@ -7,18 +7,26 @@ import { Panel } from './component/panel';
 
 export interface Props {
   root: string;
-  panels: IContainerPanel[];
-  onChange?: (panels: IContainerPanel[]) => void;
+  defaultValue?: IContainerPanel[];
+  onChange?: (value: IContainerPanel[]) => void;
   style?: React.CSSProperties;
+  resizingBoxStyle?: React.CSSProperties;
 }
 
 export interface State {
-  panels: IContainerPanel[];
+  value: IContainerPanel[];
 }
 
 export class App extends React.PureComponent<Props, State> {
+  static defaultProps: Props = {
+    root: 'root',
+    resizingBoxStyle: {
+      zIndex: 99999999,
+    },
+  };
+
   state: State = {
-    panels: this.props.panels,
+    value: this.props.defaultValue,
   };
 
   panelRuntimeMetaMap: {
@@ -32,14 +40,17 @@ export class App extends React.PureComponent<Props, State> {
   };
 
   getCtxValue(): IContext {
-    const { panels } = this.state;
+    const { resizingBoxStyle } = this.props;
+    const { value: panels } = this.state;
 
-    const contentMap: IContext['contentMap'] = {};
+    const contentMap = {};
     React.Children.forEach(this.props.children, child => {
       contentMap[(child as any).key] = child;
     });
 
     const panelMap = keyBy(panels, 'id');
+
+    const getPanel = (id: string) => panelMap[id];
 
     const getParent = (id: string) => panelMap[panelMap[id].parentId];
     const getKids = (id: string) => panels.filter(child => child.parentId === id);
@@ -62,7 +73,7 @@ export class App extends React.PureComponent<Props, State> {
       const newPanels = panels.map(_p => (_p.id === id ? newPanel : _p));
 
       this.setState({
-        panels: newPanels,
+        value: newPanels,
       });
 
       this.handleChange(newPanels);
@@ -72,10 +83,15 @@ export class App extends React.PureComponent<Props, State> {
       this.panelRuntimeMetaMap[id] = meta;
     };
 
+    const getStyle = (id: string) => {
+      void id;
+      return {
+        resizingBox: resizingBoxStyle,
+      };
+    };
+
     return {
-      panels,
-      contentMap,
-      panelMap,
+      getPanel,
       getParent,
       getKids,
       getAllSiblings,
@@ -88,6 +104,7 @@ export class App extends React.PureComponent<Props, State> {
       setPanel,
       getPanelRuntimeMeta,
       setPanelRuntimeMeta,
+      getStyle,
     };
   }
 
@@ -98,7 +115,7 @@ export class App extends React.PureComponent<Props, State> {
     return (
       <div style={style}>
         <Context.Provider value={ctx}>
-          <Panel data={ctx.panelMap[root]} />
+          <Panel id={root} />
         </Context.Provider>
       </div>
     );

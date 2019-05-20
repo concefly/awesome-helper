@@ -1,6 +1,6 @@
 {
   "name": "react-sv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist/*",
     "dev": "rm -rf .demo-serve && parcel demo/index.html -d .demo-serve",
     "dev-layout": "parcel demo/layout.html",
     "build:js": "tsc -p tsconfig.build.json --outDir dist",

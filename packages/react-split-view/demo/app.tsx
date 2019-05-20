@@ -53,7 +53,7 @@ const panels: IPanelLike[] = [
 
 ReactDom.render(
   <App
-    panels={panels}
+    defaultValue={panels}
     root='root'
     style={{ height: 300 }}
     onChange={data => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { IPanelProps } from '../../interface';
 import flowRight from 'lodash/flowRight';
 import sum from 'lodash/sum';
-import { withContext } from './hoc';
+import { withContext, withData } from './hoc';
 import cx from 'classnames';
 import { Resizable, ResizeCallbackData } from 'react-resizable';
 import throttle from 'lodash/throttle';
@@ -17,14 +17,14 @@ interface ResizeCallbackDataX extends ResizeCallbackData {
 }
 
 interface State {
-  resizeBoxSpan: number;
+  resizingBoxSpan: number;
   resizeData: ResizeCallbackDataX;
   isResizing: boolean;
 }
 
 export class PanelBase extends React.PureComponent<IPanelProps, State> {
   state: State = {
-    resizeBoxSpan: null,
+    resizingBoxSpan: null,
     resizeData: null,
     isResizing: false,
   };
@@ -59,7 +59,8 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       const { id } = data;
 
       const flowDirection = ctx.getFlowDirection(id);
-      const resizeBoxSpan = flowDirection === 'h' ? resizeData.size.width : resizeData.size.height;
+      const resizingBoxSpan =
+        flowDirection === 'h' ? resizeData.size.width : resizeData.size.height;
 
       const siblings = ctx.getSiblings(id);
 
@@ -72,12 +73,12 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
           if (isFlexSpan(s.span)) return s.span.spanPx;
           return 0;
         }),
-        resizeBoxSpan,
+        resizingBoxSpan,
       ]);
 
       if (currentTotalSpan > parentSpan) return;
 
-      this.setState({ resizeBoxSpan, resizeData });
+      this.setState({ resizingBoxSpan, resizeData });
     },
     20,
     {
@@ -92,16 +93,16 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
     this.setState({ resizeData, isResizing: false });
 
-    const { resizeBoxSpan } = this.state;
+    const { resizingBoxSpan } = this.state;
 
-    // 在 resize 开始的一瞬间，resizeBoxSpan 是空的，不用 setPanel
-    if (!resizeBoxSpan) return;
+    // 在 resize 开始的一瞬间，resizingBoxSpan 是空的，不用 setPanel
+    if (!resizingBoxSpan) return;
 
     ctx.setPanel(id, {
       ...data,
       span: {
         ...data.span,
-        spanPx: resizeBoxSpan,
+        spanPx: resizingBoxSpan,
       } as any,
     });
   };
@@ -113,7 +114,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     const content = ctx.getContent(data.id);
 
     if (kids.length) {
-      return kids.map(kid => <Panel key={kid.id} data={kid} />);
+      return kids.map(kid => <Panel key={kid.id} id={kid.id} />);
     } else {
       return content;
     }
@@ -122,7 +123,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
   /** resize 时指引的 box */
   renderResizingBox() {
     const { data, ctx } = this.props;
-    const { resizeBoxSpan, resizeData } = this.state;
+    const { resizingBoxSpan, resizeData } = this.state;
 
     const flowDirection = ctx.getFlowDirection(data.id);
 
@@ -131,12 +132,13 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       bottom: 0,
       left: 0,
       right: 0,
-      width: flowDirection === 'h' && resizeBoxSpan,
-      height: flowDirection === 'v' && resizeBoxSpan,
+      width: flowDirection === 'h' && resizingBoxSpan,
+      height: flowDirection === 'v' && resizingBoxSpan,
+      ...ctx.getStyle(data.id).resizingBox,
     };
 
-    // 在 resize 开始的一瞬间，resizeBoxSpan 是空的，不能删除 top left 等定位属性
-    if (resizeData && resizeBoxSpan) {
+    // 在 resize 开始的一瞬间，resizingBoxSpan 是空的，不能删除 top left 等定位属性
+    if (resizeData && resizingBoxSpan) {
       const { handle } = resizeData;
 
       if (handle.includes('w')) style.left = null;
@@ -145,7 +147,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       if (handle.includes('s')) style.bottom = null;
     }
 
-    return <div className={`${CLS_PREFIX}-panel-resizeBox`} style={style} />;
+    return <div className={`${CLS_PREFIX}-panel-resizingBox`} style={style} />;
   }
 
   getWrapperCls() {
@@ -242,4 +244,6 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
   }
 }
 
-export const Panel: React.ClassicComponentClass<IPanelProps> = flowRight([withContext])(PanelBase);
+export const Panel: React.ClassicComponentClass<IPanelProps> = flowRight([withData, withContext])(
+  PanelBase
+);
