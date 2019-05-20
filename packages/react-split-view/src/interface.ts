@@ -5,8 +5,8 @@ export type IPanelSpanMap = {
     type: 'flex';
     spanPx?: number;
 
-    /** 是否收起 */
-    collapsed?: boolean;
+    /** 禁用 resize */
+    disableResize?: boolean;
   };
   float: {
     type: 'float';
@@ -24,6 +24,9 @@ export type IBasePanel = {
 };
 
 export type IContainerPanel = IBasePanel & {
+  // 允许用户自定义挂一些数据
+  [prop: string]: any;
+
   /** **当前面板** 摆放 */
   span: IPanelSpan;
 

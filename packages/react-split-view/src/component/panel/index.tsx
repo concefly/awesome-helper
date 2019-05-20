@@ -2,6 +2,7 @@ import React from 'react';
 import { IPanelProps } from '../../interface';
 import flowRight from 'lodash/flowRight';
 import sum from 'lodash/sum';
+import isNumber from 'lodash/isNumber';
 import { withContext, withData } from './hoc';
 import cx from 'classnames';
 import { Resizable, ResizeCallbackData } from 'react-resizable';
@@ -163,7 +164,8 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     });
 
     if (isFlexSpan(data.span)) {
-      const shouldGrow = !data.span.spanPx;
+      // spanPx 是数字的话，不 grow
+      const shouldGrow = !isNumber(data.span.spanPx) && !data.span.spanPx;
 
       cls = cx(cls, { [`${CLS_PREFIX}-panel-grow`]: shouldGrow });
     }
@@ -180,13 +182,13 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     };
 
     if (isFlexSpan(data.span)) {
-      if (parent && data.span.spanPx) {
+      if (parent) {
         switch (parent.contentDirection) {
           case 'h':
-            style.width = data.span.collapsed ? 0 : data.span.spanPx;
+            style.width = data.span.spanPx;
             break;
           case 'v':
-            style.height = data.span.collapsed ? 0 : data.span.spanPx;
+            style.height = data.span.spanPx;
             break;
           default:
             break;
