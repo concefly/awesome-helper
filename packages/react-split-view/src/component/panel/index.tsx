@@ -215,7 +215,13 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     const isFlowStart = ctx.isFlowStart(data.id);
     const isFlowEnd = ctx.isFlowEnd(data.id);
 
-    if (isFlexSpan(data.span) && data.span.spanPx && !(isFlowStart && isFlowEnd)) {
+    // 需要 resize 的条件
+    if (
+      isFlexSpan(data.span) &&
+      data.span.spanPx &&
+      !data.span.disableResize &&
+      !(isFlowStart && isFlowEnd)
+    ) {
       const flowDirection = ctx.getFlowDirection(data.id);
 
       const width = flowDirection === 'h' && data.span.spanPx;
