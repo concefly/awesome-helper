@@ -41,12 +41,15 @@ export class App extends React.PureComponent<Props, State> {
   };
 
   getCtxValue(): IContext {
-    const { resizingBoxStyle, panelStyle } = this.props;
+    const { resizingBoxStyle, panelStyle, children } = this.props;
     const { value: panels } = this.state;
 
     const contentMap = {};
-    React.Children.forEach(this.props.children, child => {
-      contentMap[(child as any).key] = child;
+    const childrenList = Array.isArray(children) ? children : [children];
+
+    childrenList.forEach((child: any) => {
+      const key = child.key;
+      contentMap[key] = child;
     });
 
     const panelMap = keyBy(panels, 'id');

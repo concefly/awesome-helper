@@ -116,7 +116,11 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       return kids.map(kid => <Panel key={kid.id} id={kid.id} />);
     } else {
       const content = ctx.getContent(data.id);
-      return <div className={`${CLS_PREFIX}-panel-content`}>{content}</div>;
+      return (
+        <div className={`${CLS_PREFIX}-panel-content`}>
+          {typeof content === 'function' ? content({ data, ctx }) : content}
+        </div>
+      );
     }
   }
 

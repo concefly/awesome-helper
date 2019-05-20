@@ -60,6 +60,9 @@ ReactDom.render(
       window.localStorage.setItem('_layout', JSON.stringify(data));
     }}
   >
+    {Object.assign(() => 'LEFT-TOP', {
+      key: 'left-top',
+    })}
     <div key='center' style={{ width: '100vw' }}>
       AAA
     </div>
