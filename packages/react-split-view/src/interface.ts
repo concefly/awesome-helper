@@ -53,7 +53,7 @@ export type IContext = {
 
   getContent: (id: string) => any;
 
-  getStyle: (id: string) => { resizingBox?: React.CSSProperties };
+  getStyle: (id: string) => { resizingBox?: React.CSSProperties; panel?: React.CSSProperties };
 
   setPanel: (id: string, p: IPanelLike) => void;
 

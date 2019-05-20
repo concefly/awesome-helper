@@ -46,7 +46,7 @@ const panels: IPanelLike[] = [
   {
     id: 'left-bottom',
     parentId: 'left',
-    span: { type: 'flex', spanPx: 100  } as any,
+    span: { type: 'flex', spanPx: 100 } as any,
     contentDirection: 'v',
   },
 ];
@@ -54,15 +54,18 @@ const panels: IPanelLike[] = [
 ReactDom.render(
   <App
     defaultValue={panels}
-    root='root'
-    style={{ height: 300 }}
+    style={{ height: 300, width: '80vw' }}
     onChange={data => {
       console.log('@@@', 'data ->', data);
       window.localStorage.setItem('_layout', JSON.stringify(data));
     }}
   >
-    <div key='center'>AAA</div>
-    <div key='right'>BBB</div>
+    <div key='center' style={{ width: '100vw' }}>
+      AAA
+    </div>
+    <div key='right' style={{ height: '400px' }}>
+      BBB
+    </div>
   </App>,
   document.getElementById('root')
 );

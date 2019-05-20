@@ -10,6 +10,7 @@ export interface Props {
   defaultValue?: IContainerPanel[];
   onChange?: (value: IContainerPanel[]) => void;
   style?: React.CSSProperties;
+  panelStyle?: React.CSSProperties;
   resizingBoxStyle?: React.CSSProperties;
 }
 
@@ -40,7 +41,7 @@ export class App extends React.PureComponent<Props, State> {
   };
 
   getCtxValue(): IContext {
-    const { resizingBoxStyle } = this.props;
+    const { resizingBoxStyle, panelStyle } = this.props;
     const { value: panels } = this.state;
 
     const contentMap = {};
@@ -87,6 +88,7 @@ export class App extends React.PureComponent<Props, State> {
       void id;
       return {
         resizingBox: resizingBoxStyle,
+        panel: panelStyle,
       };
     };
 

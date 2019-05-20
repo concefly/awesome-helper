@@ -111,12 +111,12 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     const { data, ctx } = this.props;
 
     const kids = ctx.getKids(data.id);
-    const content = ctx.getContent(data.id);
 
     if (kids.length) {
       return kids.map(kid => <Panel key={kid.id} id={kid.id} />);
     } else {
-      return content;
+      const content = ctx.getContent(data.id);
+      return <div className={`${CLS_PREFIX}-panel-content`}>{content}</div>;
     }
   }
 
@@ -161,9 +161,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     if (isFlexSpan(data.span)) {
       const shouldGrow = !data.span.spanPx;
 
-      cls = cx(cls, {
-        [`${CLS_PREFIX}-panel-grow`]: shouldGrow,
-      });
+      cls = cx(cls, { [`${CLS_PREFIX}-panel-grow`]: shouldGrow });
     }
 
     return cls;
@@ -173,7 +171,9 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     const { data, ctx } = this.props;
     const parent = ctx.getParent(data.id);
 
-    let style: React.CSSProperties = {};
+    let style: React.CSSProperties = {
+      ...ctx.getStyle(data.id).panel,
+    };
 
     if (isFlexSpan(data.span)) {
       if (parent && data.span.spanPx) {
