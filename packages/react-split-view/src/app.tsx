@@ -8,6 +8,7 @@ import { Panel } from './component/panel';
 export interface Props {
   root: string;
   defaultValue?: IContainerPanel[];
+  value?: IContainerPanel[];
   onChange?: (value: IContainerPanel[]) => void;
   style?: React.CSSProperties;
   panelStyle?: React.CSSProperties;
@@ -26,8 +27,12 @@ export class App extends React.PureComponent<Props, State> {
     },
   };
 
+  static getDerivedStateFromProps(np: Props, state: State) {
+    return { value: 'value' in np ? np.value : state.value } as State;
+  }
+
   state: State = {
-    value: this.props.defaultValue,
+    value: this.props.value || this.props.defaultValue,
   };
 
   panelRuntimeMetaMap: {
