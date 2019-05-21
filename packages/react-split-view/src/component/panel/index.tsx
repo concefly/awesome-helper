@@ -155,10 +155,12 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     return <div className={`${CLS_PREFIX}-panel-resizingBox`} style={style} />;
   }
 
-  getWrapperCls() {
-    const { data } = this.props;
+  wrapContent(child: React.ReactNode) {
+    const { data, ctx } = this.props;
     const { isResizing } = this.state;
+    const parent = ctx.getParent(data.id);
 
+    // 计算 cls
     let cls = cx(`${CLS_PREFIX}-panel`, `${CLS_PREFIX}-panel-${data.contentDirection}`, {
       [`${CLS_PREFIX}-panel-resizing`]: isResizing,
     });
@@ -170,13 +172,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       cls = cx(cls, { [`${CLS_PREFIX}-panel-grow`]: shouldGrow });
     }
 
-    return cls;
-  }
-
-  getWrapperStyle() {
-    const { data, ctx } = this.props;
-    const parent = ctx.getParent(data.id);
-
+    // 计算 style
     let style: React.CSSProperties = {
       ...ctx.getStyle(data.id).panel,
     };
@@ -196,20 +192,21 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       }
     }
 
-    return style;
+    return (
+      <div {...makeDomProps(data)} className={cls} style={style} ref={this.panelDivRef}>
+        {child}
+      </div>
+    );
   }
 
   render() {
     const { data, ctx } = this.props;
 
-    const cls = this.getWrapperCls();
-    const style = this.getWrapperStyle();
-
-    const contentNode = (
-      <div {...makeDomProps(data)} className={cls} style={style} ref={this.panelDivRef}>
+    const contentNode = this.wrapContent(
+      <>
         {this.renderContent()}
         {this.renderResizingBox()}
-      </div>
+      </>
     );
 
     const isFlowStart = ctx.isFlowStart(data.id);
