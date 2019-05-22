@@ -32,6 +32,8 @@ export type IContainerPanel = IBasePanel & {
 
   /** 内容水平或垂直显示 */
   contentDirection: IDisplayDirection;
+
+  hideIfEmpty?: boolean;
 };
 
 export type IPanelLike = IContainerPanel;

@@ -55,6 +55,7 @@ const panels: IPanelLike[] = [
     parentId: 'left',
     span: { type: 'flex', spanPx: 100 },
     contentDirection: 'v',
+    hideIfEmpty: true,
   },
 
   // center-2

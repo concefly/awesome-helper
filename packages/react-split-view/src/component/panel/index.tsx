@@ -73,6 +73,9 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
       const currentTotalSpan = sum([
         ...siblings.map(s => {
+          // 兄弟节点没有内容，并且设置了 hideIfEmpty -> 不用计算占位 span
+          if (s.hideIfEmpty && !ctx.getContent(s.id)) return 0;
+
           if (isFlexSpan(s.span)) return s.span.spanPx;
           return 0;
         }),
@@ -119,6 +122,8 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       return kids.map(kid => <Panel key={kid.id} id={kid.id} />);
     } else {
       const content = ctx.getContent(data.id);
+
+      if (!content) return null;
 
       return (
         <div className={`${CLS_PREFIX}-panel-content`}>
@@ -205,9 +210,13 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
   render() {
     const { data, ctx } = this.props;
 
+    const contentNode = this.renderContent();
+
+    if (data.hideIfEmpty && !contentNode) return null;
+
     const panelNode = this.wrapContent(
       <>
-        {this.renderContent()}
+        {contentNode}
         {this.renderResizingBox()}
       </>
     );
