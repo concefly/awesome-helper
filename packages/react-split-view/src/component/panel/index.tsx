@@ -43,6 +43,8 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
   syncPanelRuntimeMeta = () => {
     const { ctx, data } = this.props;
 
+    if (!this.panelDivRef.current) return;
+
     ctx.setPanelRuntimeMeta(data.id, {
       ...ctx.getPanelRuntimeMeta(data.id),
       rect: this.panelDivRef.current.getBoundingClientRect(),
@@ -117,6 +119,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       return kids.map(kid => <Panel key={kid.id} id={kid.id} />);
     } else {
       const content = ctx.getContent(data.id);
+
       return (
         <div className={`${CLS_PREFIX}-panel-content`}>
           {typeof content === 'function' ? content({ data, ctx }) : content}
@@ -202,7 +205,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
   render() {
     const { data, ctx } = this.props;
 
-    const contentNode = this.wrapContent(
+    const panelNode = this.wrapContent(
       <>
         {this.renderContent()}
         {this.renderResizingBox()}
@@ -244,12 +247,12 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
           onResizeStart={(_, _data) => this.handleResizeStart(_data)}
           onResizeStop={(_, _data) => this.handleResizeStop(_data)}
         >
-          {contentNode}
+          {panelNode}
         </Resizable>
       );
     }
 
-    return contentNode;
+    return panelNode;
   }
 }
 

@@ -1,21 +1,13 @@
 import React from 'react';
 import { Context } from './component/provider';
-import { IContext, IContainerPanel, IPanelLike, IPanelRuntimeMeta } from './interface';
+import { IContext, IContainerPanel, IPanelLike, IPanelRuntimeMeta, IAppProps } from './interface';
 import keyBy from 'lodash/keyBy';
 import get from 'lodash/get';
 import { Panel } from './component/panel';
 
-export interface Props {
-  root: string;
-  defaultValue?: IContainerPanel[];
-  value?: IContainerPanel[];
-  onChange?: (value: IContainerPanel[]) => void;
-  style?: React.CSSProperties;
-  panelStyle?: React.CSSProperties;
-  resizingBoxStyle?: React.CSSProperties;
-}
+export type Props = IAppProps;
 
-export interface State {
+interface State {
   value: IContainerPanel[];
 }
 
@@ -53,7 +45,7 @@ export class App extends React.PureComponent<Props, State> {
     const childrenList = Array.isArray(children) ? children : [children];
 
     childrenList.forEach((child: any) => {
-      const key = child.key;
+      const key = child.key || get(child, 'props.id') || null;
       contentMap[key] = child;
     });
 
@@ -76,7 +68,7 @@ export class App extends React.PureComponent<Props, State> {
 
     const getPanelRuntimeMeta = (id: string) => this.panelRuntimeMetaMap[id];
 
-    const getContent = (id: string) => contentMap[id] || <i>{id}</i>;
+    const getContent = (id: string) => contentMap[id];
 
     const setPanel = (id: string, newPanel: IPanelLike) => {
       const newPanels = panels.map(_p => (_p.id === id ? newPanel : _p));
@@ -100,6 +92,8 @@ export class App extends React.PureComponent<Props, State> {
       };
     };
 
+    const getAppProps = () => ({ ...this.props });
+
     return {
       getPanel,
       getParent,
@@ -115,6 +109,7 @@ export class App extends React.PureComponent<Props, State> {
       getPanelRuntimeMeta,
       setPanelRuntimeMeta,
       getStyle,
+      getAppProps,
     };
   }
 

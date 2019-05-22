@@ -57,6 +57,7 @@ export type IContext = {
   getContent: (id: string) => any;
 
   getStyle: (id: string) => { resizingBox?: React.CSSProperties; panel?: React.CSSProperties };
+  getAppProps: () => IAppProps;
 
   setPanel: (id: string, p: IPanelLike) => void;
 
@@ -79,3 +80,18 @@ export type IPanelProps = {
 export type IPanelRuntimeMeta = {
   rect: ClientRect;
 };
+
+export type IContentProps = {
+  id: string;
+  render: (opt: { ctx: IContext; data: IPanelLike }) => any;
+};
+
+export interface IAppProps {
+  root: string;
+  defaultValue?: IContainerPanel[];
+  value?: IContainerPanel[];
+  onChange?: (value: IContainerPanel[]) => void;
+  style?: React.CSSProperties;
+  panelStyle?: React.CSSProperties;
+  resizingBoxStyle?: React.CSSProperties;
+}

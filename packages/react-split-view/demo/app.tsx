@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from '../src';
+import App, { Content } from '../src';
 import { IPanelLike } from '../src/interface';
 
 import '../src/style';
@@ -65,6 +65,12 @@ const panels: IPanelLike[] = [
     contentDirection: 'v',
   },
   {
+    id: 'center-2-middle',
+    parentId: 'center-2',
+    span: { type: 'flex' },
+    contentDirection: 'v',
+  },
+  {
     id: 'center-2-bottom',
     parentId: 'center-2',
     span: { type: 'flex' },
@@ -84,9 +90,10 @@ ReactDom.render(
     {Object.assign(() => 'LEFT-TOP', {
       key: 'left-top',
     })}
-    <div key='center' style={{ width: '100vw' }}>
-      AAA
-    </div>
+    <Content
+      id='center'
+      render={({ data }) => <div style={{ width: '100vw' }}>Content render: {data.id}</div>}
+    />
     <div key='right' style={{ height: '400px' }}>
       BBB
     </div>
