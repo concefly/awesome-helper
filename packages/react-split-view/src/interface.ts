@@ -43,6 +43,7 @@ export type IContext = {
 
   getParent: (id: string) => IPanelLike;
   getKids: (id: string) => IPanelLike[];
+  getAllKids: (id: string) => IPanelLike[];
 
   getSiblings: (id: string) => IPanelLike[];
   getAllSiblings: (id: string) => IPanelLike[];
@@ -53,6 +54,8 @@ export type IContext = {
   isFlowStart: (id: string) => boolean;
   /** 排末尾 */
   isFlowEnd: (id: string) => boolean;
+
+  isPanelEmpty: (id: string) => boolean;
 
   getPanelRuntimeMeta: (id: string) => IPanelRuntimeMeta;
 

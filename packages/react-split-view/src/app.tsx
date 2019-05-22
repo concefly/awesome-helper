@@ -58,6 +58,22 @@ export class App extends React.PureComponent<Props, State> {
     const getParent = (id: string) => panelMap[panelMap[id].parentId];
     const getKids = (id: string) => panels.filter(child => child.parentId === id);
 
+    const getAllKids = (id: string) => {
+      const walk = (currentId: string, stash: IPanelLike[]) => {
+        const kids = getKids(currentId);
+
+        kids.forEach(kid => {
+          stash.push(kid);
+          walk(kid.id, stash);
+        });
+      };
+
+      const allKids: IPanelLike[] = [];
+      walk(id, allKids);
+
+      return allKids;
+    };
+
     const getAllSiblings = (id: string) =>
       panels.filter(child => child.parentId === panelMap[id].parentId);
 
@@ -67,6 +83,11 @@ export class App extends React.PureComponent<Props, State> {
     const getFlowDirection = (id: string) => get(getParent(id), 'contentDirection', 'v');
     const isFlowStart = (id: string) => getSiblingIndex(id) === 0;
     const isFlowEnd = (id: string) => getSiblingIndex(id) === getAllSiblings(id).length - 1;
+
+    const isPanelEmpty = (id: string) => {
+      const allKids = getAllKids(id);
+      return allKids.every(kid => !getContent(kid.id));
+    };
 
     const getPanelRuntimeMeta = (id: string) => this.panelRuntimeMetaMap[id];
 
@@ -100,6 +121,7 @@ export class App extends React.PureComponent<Props, State> {
       getPanel,
       getParent,
       getKids,
+      getAllKids,
       getAllSiblings,
       getSiblings,
       getSiblingIndex,
@@ -107,6 +129,7 @@ export class App extends React.PureComponent<Props, State> {
       getFlowDirection,
       isFlowStart,
       isFlowEnd,
+      isPanelEmpty,
       setPanel,
       getPanelRuntimeMeta,
       setPanelRuntimeMeta,

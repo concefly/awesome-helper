@@ -80,28 +80,66 @@ const panels: IPanelLike[] = [
 ];
 
 ReactDom.render(
-  <App
-    defaultValue={panels}
-    style={{ height: 300, width: '80vw' }}
-    panelStyle={{
-      border: '1px dashed #ccc',
-    }}
-    onChange={data => {
-      console.log('@@@', 'data ->', data);
-      window.localStorage.setItem('_layout', JSON.stringify(data));
-    }}
-  >
-    {Object.assign(() => 'LEFT-TOP', {
-      key: 'left-top',
-    })}
-    <Content
-      id='center'
-      render={({ data }) => <div style={{ width: '100vw' }}>Content render: {data.id}</div>}
-    />
-    <div key='right' style={{ height: '400px' }}>
-      BBB
+  <div>
+    <App
+      defaultValue={panels}
+      style={{ height: 200, width: '80vw' }}
+      panelStyle={{
+        border: '1px dashed #ccc',
+      }}
+      onChange={data => {
+        console.log('@@@', 'data ->', data);
+        window.localStorage.setItem('_layout', JSON.stringify(data));
+      }}
+    >
+      {Object.assign(() => 'LEFT-TOP', {
+        key: 'left-top',
+      })}
+      <Content
+        id='center'
+        render={({ data }) => <div style={{ width: '100vw' }}>Content render: {data.id}</div>}
+      />
+      <div key='right' style={{ height: '400px' }}>
+        BBB
+      </div>
+      <div key='center-2-top'>disableResize = true</div>
+    </App>
+
+    <h1>hideIfEmpty(所有面板都要隐藏)</h1>
+    <div>
+      <App
+        value={[
+          {
+            id: 'root',
+            span: { type: 'flex' },
+            contentDirection: 'h' as any,
+            hideIfEmpty: true,
+          },
+          {
+            id: 'a',
+            parentId: 'root',
+            span: { type: 'flex' },
+            contentDirection: 'h' as any,
+          },
+          {
+            id: 'b',
+            parentId: 'root',
+            span: { type: 'flex' },
+            contentDirection: 'h' as any,
+          },
+          {
+            id: 'c',
+            parentId: 'b',
+            span: { type: 'flex' },
+            contentDirection: 'h' as any,
+          },
+        ]}
+        style={{ height: 40, width: 400, border: '1px solid #000' }}
+        panelStyle={{
+          border: '1px dashed #ccc',
+        }}
+      />
     </div>
-    <div key='center-2-top'>disableResize = true</div>
-  </App>,
+  </div>,
   document.getElementById('root')
 );
