@@ -86,7 +86,7 @@ export class App extends React.PureComponent<Props, State> {
 
     const isPanelEmpty = (id: string) => {
       const allKids = getAllKids(id);
-      return allKids.every(kid => !getContent(kid.id));
+      return allKids.every(kid => !getContent(kid.id)) && !getContent(id);
     };
 
     const getPanelRuntimeMeta = (id: string) => this.panelRuntimeMetaMap[id];
