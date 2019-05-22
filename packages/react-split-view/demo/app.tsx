@@ -83,6 +83,9 @@ ReactDom.render(
   <App
     defaultValue={panels}
     style={{ height: 300, width: '80vw' }}
+    panelStyle={{
+      border: '1px dashed #ccc',
+    }}
     onChange={data => {
       console.log('@@@', 'data ->', data);
       window.localStorage.setItem('_layout', JSON.stringify(data));

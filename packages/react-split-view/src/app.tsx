@@ -45,6 +45,8 @@ export class App extends React.PureComponent<Props, State> {
     const childrenList = Array.isArray(children) ? children : [children];
 
     childrenList.forEach((child: any) => {
+      if (!child) return;
+
       const key = child.key || get(child, 'props.id') || null;
       contentMap[key] = child;
     });

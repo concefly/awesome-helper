@@ -116,21 +116,21 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
   renderContent() {
     const { data, ctx } = this.props;
 
-    const kids = ctx.getKids(data.id);
-
-    if (kids.length) {
-      return kids.map(kid => <Panel key={kid.id} id={kid.id} />);
-    } else {
-      const content = ctx.getContent(data.id);
-
-      if (!content) return null;
-
+    const content = ctx.getContent(data.id);
+    if (content) {
       return (
         <div className={`${CLS_PREFIX}-panel-content`}>
           {typeof content === 'function' ? content({ data, ctx }) : content}
         </div>
       );
     }
+
+    const kids = ctx.getKids(data.id);
+    if (kids.length) {
+      return kids.map(kid => <Panel key={kid.id} id={kid.id} />);
+    }
+
+    return null;
   }
 
   /** resize 时指引的 box */
