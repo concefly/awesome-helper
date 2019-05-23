@@ -1,5 +1,5 @@
 import React from 'react';
-import { IPanelProps } from '../../interface';
+import { IPanelProps, IResizeHandleFlag } from '../../interface';
 import flowRight from 'lodash/flowRight';
 import sum from 'lodash/sum';
 import isNumber from 'lodash/isNumber';
@@ -9,8 +9,6 @@ import { Resizable, ResizeCallbackData } from 'react-resizable';
 import throttle from 'lodash/throttle';
 import { CLS_PREFIX } from '../../constant';
 import { isFlexSpan, makeDomProps } from '../../util';
-
-type IResizeHandleFlag = 's' | 'w' | 'e' | 'n' | 'sw' | 'nw' | 'se' | 'ne';
 
 /** ResizeCallbackData 补全 */
 interface ResizeCallbackDataX extends ResizeCallbackData {
@@ -242,6 +240,8 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
         w: flowDirection === 'h' && !isFlowStart,
       }).split(' ');
 
+      const { resizeHandleBar } = ctx.getAppProps();
+
       return (
         <Resizable
           // workaround: ts error
@@ -250,6 +250,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
           height={height || 0}
           axis={axis}
           resizeHandles={resizeHandles}
+          handle={resizeHandleBar}
           onResize={(_, _data) => this.handleResize(_data)}
           onResizeStart={(_, _data) => this.handleResizeStart(_data)}
           onResizeStop={(_, _data) => this.handleResizeStop(_data)}

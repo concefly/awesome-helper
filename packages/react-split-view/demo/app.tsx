@@ -105,41 +105,101 @@ ReactDom.render(
       <div key='center-2-top'>disableResize = true</div>
     </App>
 
-    <h1>hideIfEmpty(所有面板都要隐藏)</h1>
-    <div>
-      <App
-        value={[
-          {
-            id: 'root',
-            span: { type: 'flex' },
-            contentDirection: 'h' as any,
-            hideIfEmpty: true,
-          },
-          {
-            id: 'a',
-            parentId: 'root',
-            span: { type: 'flex' },
-            contentDirection: 'h' as any,
-          },
-          {
-            id: 'b',
-            parentId: 'root',
-            span: { type: 'flex' },
-            contentDirection: 'h' as any,
-          },
-          {
-            id: 'c',
-            parentId: 'b',
-            span: { type: 'flex' },
-            contentDirection: 'h' as any,
-          },
-        ]}
-        style={{ height: 40, width: 400, border: '1px solid #000' }}
-        panelStyle={{
-          border: '1px dashed #ccc',
-        }}
-      />
-    </div>
+    <section title='hideIfEmpty(所有面板都要隐藏)'>
+      <h1>hideIfEmpty(所有面板都要隐藏)</h1>
+      <div>
+        <App
+          value={[
+            {
+              id: 'root',
+              span: { type: 'flex' },
+              contentDirection: 'h' as any,
+              hideIfEmpty: true,
+            },
+            {
+              id: 'a',
+              parentId: 'root',
+              span: { type: 'flex' },
+              contentDirection: 'h' as any,
+            },
+            {
+              id: 'b',
+              parentId: 'root',
+              span: { type: 'flex' },
+              contentDirection: 'h' as any,
+            },
+            {
+              id: 'c',
+              parentId: 'b',
+              span: { type: 'flex' },
+              contentDirection: 'h' as any,
+            },
+          ]}
+          style={{ height: 40, width: 400, border: '1px solid #000' }}
+          panelStyle={{
+            border: '1px dashed #ccc',
+          }}
+        />
+      </div>
+    </section>
+
+    <section title='自定义 resize handler'>
+      <h1>自定义 resize handler</h1>
+      <div>
+        <App
+          defaultValue={[
+            {
+              id: 'root',
+              span: { type: 'flex' },
+              contentDirection: 'h' as any,
+            },
+            {
+              id: 'a',
+              parentId: 'root',
+              span: { type: 'flex', spanPx: 100 },
+              contentDirection: 'h' as any,
+            },
+            {
+              id: 'b',
+              parentId: 'root',
+              span: { type: 'flex' },
+              contentDirection: 'h' as any,
+            },
+            {
+              id: 'c',
+              parentId: 'root',
+              span: { type: 'flex', spanPx: 100 },
+              contentDirection: 'h' as any,
+            },
+          ]}
+          style={{ height: 40, width: 400, border: '1px solid #000' }}
+          panelStyle={{
+            border: '1px dashed #ccc',
+          }}
+          resizeHandleBar={flag => (
+            <span
+              style={{
+                position: 'absolute',
+                ...(flag === 'e' && {
+                  top: 0,
+                  bottom: 0,
+                  right: 0,
+                  width: 10,
+                  cursor: 'ew-resize',
+                }),
+                ...(flag === 'w' && {
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  width: 10,
+                  cursor: 'ew-resize',
+                }),
+              }}
+            />
+          )}
+        />
+      </div>
+    </section>
   </div>,
   document.getElementById('root')
 );

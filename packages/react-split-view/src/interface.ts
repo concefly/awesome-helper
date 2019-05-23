@@ -1,5 +1,7 @@
 export type IDisplayDirection = 'h' | 'v';
 
+export type IResizeHandleFlag = 's' | 'w' | 'e' | 'n' | 'sw' | 'nw' | 'se' | 'ne';
+
 export type IPanelSpanMap = {
   flex: {
     type: 'flex';
@@ -96,6 +98,7 @@ export interface IAppProps {
   defaultValue?: IContainerPanel[];
   value?: IContainerPanel[];
   onChange?: (value: IContainerPanel[]) => void;
+  resizeHandleBar?: (flag: IResizeHandleFlag) => any;
   style?: React.CSSProperties;
   panelStyle?: React.CSSProperties;
   resizingBoxStyle?: React.CSSProperties;
