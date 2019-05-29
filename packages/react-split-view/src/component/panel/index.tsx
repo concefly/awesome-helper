@@ -185,12 +185,14 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
     if (isFlexSpan(data.span)) {
       if (parent) {
+        const collapsePx = data.collapse ? ctx.getAppProps().collapsePx : null;
+
         switch (parent.contentDirection) {
           case 'h':
-            style.width = data.span.spanPx;
+            style.width = collapsePx || data.span.spanPx;
             break;
           case 'v':
-            style.height = data.span.spanPx;
+            style.height = collapsePx || data.span.spanPx;
             break;
           default:
             break;

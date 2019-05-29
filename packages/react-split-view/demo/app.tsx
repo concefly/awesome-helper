@@ -226,6 +226,49 @@ ReactDom.render(
         />
       </div>
     </section>
+
+    <section title='折叠模块'>
+      <h1>折叠模块</h1>
+      <div>
+        <App
+          defaultValue={[
+            {
+              id: 'root',
+              span: { type: 'flex' },
+              contentDirection: 'h' as any,
+            },
+            {
+              id: 'a',
+              parentId: 'root',
+              span: { type: 'flex', spanPx: 100 },
+              contentDirection: 'h' as any,
+              collapse: true,
+            },
+          ]}
+          collapsePx={20}
+          style={{ height: 40, width: 400, border: '1px solid #000' }}
+          panelStyle={{
+            border: '1px dashed #ccc',
+          }}
+        >
+          <Content
+            id='a'
+            render={({ ctx, data }) => (
+              <button
+                onClick={() => {
+                  ctx.setPanel(data.id, {
+                    ...data,
+                    collapse: !data.collapse,
+                  });
+                }}
+              >
+                a
+              </button>
+            )}
+          />
+        </App>
+      </div>
+    </section>
   </div>,
   document.getElementById('root')
 );

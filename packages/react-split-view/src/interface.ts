@@ -39,6 +39,9 @@ export type IContainerPanel = IBasePanel & {
 
   /** 隐藏此节点 */
   hide?: boolean;
+
+  /** 折叠此节点 */
+  collapse?: boolean;
 };
 
 export type IPanelLike = IContainerPanel;
@@ -100,6 +103,7 @@ export interface IAppProps {
   root: string;
   defaultValue?: IContainerPanel[];
   value?: IContainerPanel[];
+  collapsePx?: number;
   onChange?: (value: IContainerPanel[]) => void;
   resizeHandleBar?: (flag: IResizeHandleFlag) => any;
   style?: React.CSSProperties;
