@@ -208,6 +208,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
   render() {
     const { data, ctx } = this.props;
 
+    if (data.hide) return null;
     if (data.hideIfEmpty && ctx.isPanelEmpty(data.id)) return null;
 
     const panelNode = this.wrapContent(

@@ -200,6 +200,32 @@ ReactDom.render(
         />
       </div>
     </section>
+
+    <section title='隐藏模块'>
+      <h1>隐藏模块</h1>
+      <div>
+        <App
+          defaultValue={[
+            {
+              id: 'root',
+              span: { type: 'flex' },
+              contentDirection: 'h' as any,
+            },
+            {
+              id: 'a',
+              parentId: 'root',
+              span: { type: 'flex', spanPx: 100 },
+              contentDirection: 'h' as any,
+              hide: true,
+            },
+          ]}
+          style={{ height: 40, width: 400, border: '1px solid #000' }}
+          panelStyle={{
+            border: '1px dashed #ccc',
+          }}
+        />
+      </div>
+    </section>
   </div>,
   document.getElementById('root')
 );

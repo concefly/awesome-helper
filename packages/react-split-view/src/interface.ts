@@ -36,6 +36,9 @@ export type IContainerPanel = IBasePanel & {
   contentDirection: IDisplayDirection;
 
   hideIfEmpty?: boolean;
+
+  /** 隐藏此节点 */
+  hide?: boolean;
 };
 
 export type IPanelLike = IContainerPanel;
