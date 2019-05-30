@@ -108,5 +108,6 @@ export interface IAppProps {
   resizeHandleBar?: (flag: IResizeHandleFlag) => any;
   style?: React.CSSProperties;
   panelStyle?: React.CSSProperties;
+  panelContentStyle?: React.CSSProperties;
   resizingBoxStyle?: React.CSSProperties;
 }

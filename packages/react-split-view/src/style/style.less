@@ -8,10 +8,6 @@
   height: 100%;
   box-sizing: border-box;
 
-  transition-property: width, height;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-
   &-grow {
     flex: 1;
   }
@@ -46,6 +42,13 @@
     > .@{prefix}-panel-resizingBox {
       display: block;
       pointer-events: initial;
+    }
+  }
+
+  // 折叠
+  &-collapse {
+    > .@{prefix}-panel-content {
+      overflow: hidden;
     }
   }
 }

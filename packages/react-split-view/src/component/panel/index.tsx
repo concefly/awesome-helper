@@ -116,8 +116,10 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
     const content = ctx.getContent(data.id);
     if (content) {
+      const contentStyle = ctx.getAppProps().panelContentStyle;
+
       return (
-        <div className={`${CLS_PREFIX}-panel-content`}>
+        <div className={`${CLS_PREFIX}-panel-content`} style={contentStyle}>
           {typeof content === 'function' ? content({ data, ctx }) : content}
         </div>
       );
@@ -173,9 +175,13 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
     if (isFlexSpan(data.span)) {
       // spanPx 是数字的话，不 grow
-      const shouldGrow = !isNumber(data.span.spanPx) && !data.span.spanPx;
+      const shouldGrow = !(isNumber(data.span.spanPx) || data.span.spanPx || data.collapse);
 
       cls = cx(cls, { [`${CLS_PREFIX}-panel-grow`]: shouldGrow });
+    }
+
+    if (data.collapse) {
+      cls = cx(cls, { [`${CLS_PREFIX}-panel-collapse`]: data.collapse });
     }
 
     // 计算 style
