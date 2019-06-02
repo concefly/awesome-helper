@@ -5,10 +5,7 @@ export type IResizeHandleFlag = 's' | 'w' | 'e' | 'n' | 'sw' | 'nw' | 'se' | 'ne
 export type IPanelSpanMap = {
   flex: {
     type: 'flex';
-    spanPx?: number;
-
-    /** 禁用 resize */
-    disableResize?: boolean;
+    spanPx: number;
   };
   float: {
     type: 'float';
@@ -39,6 +36,9 @@ export type IContainerPanel = IBasePanel & {
 
   /** 隐藏此节点 */
   hide?: boolean;
+
+  /** 禁用 resize */
+  disableResize?: boolean;
 
   /** 折叠此节点 */
   collapse?: boolean;
