@@ -231,6 +231,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
     // 需要 resize 的条件
     if (
+      !data.collapse &&
       isFlexSpan(data.span) &&
       data.span.spanPx &&
       !data.span.disableResize &&

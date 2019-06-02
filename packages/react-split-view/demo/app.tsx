@@ -240,7 +240,7 @@ ReactDom.render(
             {
               id: 'a',
               parentId: 'root',
-              span: { type: 'flex' },
+              span: { type: 'flex', spanPx: 100 },
               contentDirection: 'h' as any,
               collapse: true,
             },
