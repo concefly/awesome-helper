@@ -8,7 +8,7 @@ import '../src/style';
 const panels: IPanelLike[] = [
   {
     id: 'root',
-    span: { type: 'flex' },
+    span: { type: 'flex' as 'flex' },
     contentDirection: 'h' as any,
   },
   // #1
@@ -21,13 +21,13 @@ const panels: IPanelLike[] = [
   {
     id: 'center',
     parentId: 'root',
-    span: { type: 'flex' },
+    span: { type: 'flex' as 'flex' },
     contentDirection: 'v',
   },
   {
     id: 'center-2',
     parentId: 'root',
-    span: { type: 'flex' },
+    span: { type: 'flex' as 'flex' },
     contentDirection: 'v',
   },
   {
@@ -47,7 +47,7 @@ const panels: IPanelLike[] = [
   {
     id: 'left-middle',
     parentId: 'left',
-    span: { type: 'flex' },
+    span: { type: 'flex' as 'flex' },
     contentDirection: 'v',
   },
   {
@@ -68,13 +68,13 @@ const panels: IPanelLike[] = [
   {
     id: 'center-2-middle',
     parentId: 'center-2',
-    span: { type: 'flex' },
+    span: { type: 'flex' as 'flex' },
     contentDirection: 'v',
   },
   {
     id: 'center-2-bottom',
     parentId: 'center-2',
-    span: { type: 'flex' },
+    span: { type: 'flex' as 'flex' },
     contentDirection: 'v',
   },
 ];
@@ -112,26 +112,26 @@ ReactDom.render(
           value={[
             {
               id: 'root',
-              span: { type: 'flex' },
+              span: { type: 'flex' as 'flex' },
               contentDirection: 'h' as any,
               hideIfEmpty: true,
             },
             {
               id: 'a',
               parentId: 'root',
-              span: { type: 'flex' },
+              span: { type: 'flex' as 'flex' },
               contentDirection: 'h' as any,
             },
             {
               id: 'b',
               parentId: 'root',
-              span: { type: 'flex' },
+              span: { type: 'flex' as 'flex' },
               contentDirection: 'h' as any,
             },
             {
               id: 'c',
               parentId: 'b',
-              span: { type: 'flex' },
+              span: { type: 'flex' as 'flex' },
               contentDirection: 'h' as any,
             },
           ]}
@@ -150,7 +150,7 @@ ReactDom.render(
           defaultValue={[
             {
               id: 'root',
-              span: { type: 'flex' },
+              span: { type: 'flex' as 'flex' },
               contentDirection: 'h' as any,
             },
             {
@@ -162,7 +162,7 @@ ReactDom.render(
             {
               id: 'b',
               parentId: 'root',
-              span: { type: 'flex' },
+              span: { type: 'flex' as 'flex' },
               contentDirection: 'h' as any,
             },
             {
@@ -208,7 +208,7 @@ ReactDom.render(
           defaultValue={[
             {
               id: 'root',
-              span: { type: 'flex' },
+              span: { type: 'flex' as 'flex' },
               contentDirection: 'h' as any,
             },
             {
@@ -234,44 +234,41 @@ ReactDom.render(
           defaultValue={[
             {
               id: 'root',
-              span: { type: 'flex' },
-              contentDirection: 'h' as any,
+              span: { type: 'flex' as 'flex', spanPx: 400 },
+              contentDirection: 'v' as any,
             },
-            {
-              id: 'a',
+            ...['a', 'b', 'c'].map(id => ({
+              id,
               parentId: 'root',
-              span: { type: 'flex', spanPx: 100 },
+              span: { type: 'flex' as 'flex', spanPx: 100 },
               contentDirection: 'h' as any,
               collapse: true,
-            },
-            {
-              id: 'b',
-              parentId: 'root',
-              span: { type: 'flex' },
-              contentDirection: 'h' as any,
-            },
+            })),
           ]}
           collapsePx={20}
-          style={{ height: 40, width: 400, border: '1px solid #000' }}
+          style={{ height: 400, width: 400, border: '1px solid #000' }}
           panelStyle={{
             border: '1px dashed #ccc',
           }}
         >
-          <Content
-            id='a'
-            render={({ ctx, data }) => (
-              <button
-                onClick={() => {
-                  ctx.setPanel(data.id, {
-                    ...data,
-                    collapse: !data.collapse,
-                  });
-                }}
-              >
-                a
-              </button>
-            )}
-          />
+          {['a', 'b', 'c'].map(id => (
+            <Content
+              key={id}
+              id={id}
+              render={({ ctx, data }) => (
+                <button
+                  onClick={() => {
+                    ctx.setPanel(data.id, {
+                      ...data,
+                      collapse: !data.collapse,
+                    });
+                  }}
+                >
+                  {id}(collapsed = {data.collapse + ''})
+                </button>
+              )}
+            />
+          ))}
         </App>
       </div>
     </section>

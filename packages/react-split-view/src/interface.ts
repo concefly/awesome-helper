@@ -5,7 +5,7 @@ export type IResizeHandleFlag = 's' | 'w' | 'e' | 'n' | 'sw' | 'nw' | 'se' | 'ne
 export type IPanelSpanMap = {
   flex: {
     type: 'flex';
-    spanPx: number;
+    spanPx?: number;
   };
   float: {
     type: 'float';
