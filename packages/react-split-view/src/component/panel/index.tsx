@@ -19,6 +19,9 @@ interface State {
   resizingBoxSpan: number;
   resizeData: ResizeCallbackDataX;
   isResizing: boolean;
+
+  /** 渲染后隐藏 */
+  renderHide: boolean;
 }
 
 export class PanelBase extends React.PureComponent<IPanelProps, State> {
@@ -26,16 +29,20 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     resizingBoxSpan: null,
     resizeData: null,
     isResizing: false,
+    renderHide: false,
   };
 
   panelDivRef = React.createRef<HTMLDivElement>();
+  contentWrapperRef = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
     this.syncPanelRuntimeMeta();
+    this.updateRenderHide();
   }
 
   componentDidUpdate() {
     this.syncPanelRuntimeMeta();
+    this.updateRenderHide();
   }
 
   syncPanelRuntimeMeta = () => {
@@ -47,6 +54,12 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       ...ctx.getPanelRuntimeMeta(data.id),
       rect: this.panelDivRef.current.getBoundingClientRect(),
     });
+  };
+
+  updateRenderHide = () => {
+    if (this.contentWrapperRef.current && this.props.data.hideIfRenderEmpty) {
+      this.setState({ renderHide: this.contentWrapperRef.current.childElementCount === 0 });
+    }
   };
 
   handleResizeStart = (resizeData: ResizeCallbackDataX) => {
@@ -119,7 +132,11 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       const contentStyle = ctx.getAppProps().panelContentStyle;
 
       return (
-        <div className={`${CLS_PREFIX}-panel-content`} style={contentStyle}>
+        <div
+          className={`${CLS_PREFIX}-panel-content`}
+          style={contentStyle}
+          ref={this.contentWrapperRef}
+        >
           {typeof content === 'function' ? content({ data, ctx }) : content}
         </div>
       );
@@ -187,6 +204,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
     // 计算 style
     let style: React.CSSProperties = {
       ...ctx.getStyle(data.id).panel,
+      display: this.state.renderHide && 'none',
     };
 
     if (isFlexSpan(data.span)) {

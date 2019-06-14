@@ -34,6 +34,9 @@ export type IContainerPanel = IBasePanel & {
 
   hideIfEmpty?: boolean;
 
+  /** 渲染后隐藏 */
+  hideIfRenderEmpty?: boolean;
+
   /** 隐藏此节点 */
   hide?: boolean;
 

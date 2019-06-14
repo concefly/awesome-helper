@@ -62,8 +62,9 @@ const panels: IPanelLike[] = [
   {
     id: 'center-2-top',
     parentId: 'center-2',
-    span: { type: 'flex', spanPx: 50, disableResize: true },
+    span: { type: 'flex', spanPx: 50 },
     contentDirection: 'v',
+    disableResize: true,
   },
   {
     id: 'center-2-middle',
@@ -269,6 +270,34 @@ ReactDom.render(
               )}
             />
           ))}
+        </App>
+      </div>
+    </section>
+
+    <section title='渲染后隐藏'>
+      <h1>渲染后隐藏</h1>
+      <div>
+        <App
+          defaultValue={[
+            {
+              id: 'root',
+              span: { type: 'flex' as 'flex' },
+              contentDirection: 'v' as any,
+            },
+            ...['a', 'b'].map(id => ({
+              id,
+              parentId: 'root',
+              span: { type: 'flex' as 'flex' },
+              contentDirection: 'h' as any,
+            })),
+          ]}
+          style={{ height: 100, width: 400, border: '1px solid #000' }}
+          panelStyle={{
+            border: '1px dashed #ccc',
+          }}
+        >
+          <div key='a'>a</div>
+          <React.Fragment key='b' />
         </App>
       </div>
     </section>
