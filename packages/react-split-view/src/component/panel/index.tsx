@@ -58,7 +58,12 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
 
   updateRenderHide = () => {
     if (this.contentWrapperRef.current && this.props.data.hideIfRenderEmpty) {
-      this.setState({ renderHide: this.contentWrapperRef.current.childElementCount === 0 });
+      const renderHide = this.contentWrapperRef.current.childElementCount === 0;
+      const lastRenderHide = this.state.renderHide;
+
+      if (renderHide !== lastRenderHide) {
+        this.setState({ renderHide });
+      }
     }
   };
 
@@ -273,7 +278,7 @@ export class PanelBase extends React.PureComponent<IPanelProps, State> {
       return (
         <Resizable
           // workaround: ts error
-          {...{} as any}
+          {...({} as any)}
           width={width || 0}
           height={height || 0}
           axis={axis}
