@@ -1,54 +1,10 @@
 @prefix: RSV;
 
-.@{prefix}-panel {
-  display: flex;
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-
-  &-grow {
-    flex: 1;
-  }
-
-  &-h {
-    flex-direction: row;
-  }
-
-  &-v {
-    flex-direction: column;
-  }
-
-  &-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow: auto;
-  }
-
-  &-resizingBox {
-    display: none;
-    position: absolute;
-    box-sizing: border-box;
-    border: 1px solid #000;
-    pointer-events: none;
-  }
-
-  // 正在 resize
-  &-resizing {
-    > .@{prefix}-panel-resizingBox {
-      display: block;
-      pointer-events: initial;
-    }
-  }
-
-  // 折叠
-  &-collapse {
-    > .@{prefix}-panel-content {
-      overflow: hidden;
+.@{prefix} {
+  // 面板
+  &-panel {
+    // 折叠状态
+    &.collapse {
     }
   }
 }

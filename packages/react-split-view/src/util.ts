@@ -1,25 +1,21 @@
-import { IPanelSpan, IPanelSpanMap, IPanelLike, IContainerPanel } from './interface';
-import some from 'lodash/some';
+import { IPanelLike } from './interface';
+import sum from 'lodash/sum';
 
-export const isFlexSpan = (span: IPanelSpan): span is IPanelSpanMap['flex'] => {
-  return span.type === 'flex';
-};
-export const isFloatSpan = (span: IPanelSpan): span is IPanelSpanMap['float'] => {
-  return span.type === 'float';
-};
+export function calcPanelPxMap(
+  containerPx: number,
+  panels: IPanelLike[]
+): { [key: string]: number } {
+  const result: { [key: string]: number } = {};
 
-/** 是否 container panel */
-export function isContainerPanel(
-  panel: IPanelLike,
-  panelMap: { [id: string]: IPanelLike }
-): panel is IContainerPanel {
-  const hasChild = some(panelMap, child => child.parentId === panel.id);
+  const totalPercent = Math.max(
+    sum(panels.map(p => p.span.spanPercent)),
+    // 最大 100
+    100
+  );
 
-  return hasChild;
-}
+  panels.forEach(p => {
+    result[p.key] = Math.round(containerPx * (p.span.spanPercent / totalPercent));
+  });
 
-export function makeDomProps(panel: IPanelLike) {
-  return {
-    ['data-p-id']: panel.id,
-  };
+  return result;
 }

@@ -1,6 +1,6 @@
 {
   "name": "react-sv",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -10,7 +10,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist/*",
     "dev": "rm -rf .demo-serve && parcel demo/index.html -d .demo-serve",
-    "dev-layout": "parcel demo/layout.html",
     "build:js": "tsc -p tsconfig.build.json --outDir dist",
     "build:css": "cp src/style/*.less dist/style",
     "build": "npm run clean && npm run build:js && npm run build:css",

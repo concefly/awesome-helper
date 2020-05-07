@@ -1,152 +1,91 @@
 import React from 'react';
-import { Context } from './component/provider';
-import { IContext, IContainerPanel, IPanelLike, IPanelRuntimeMeta, IAppProps } from './interface';
-import keyBy from 'lodash/keyBy';
-import get from 'lodash/get';
-import { Panel } from './component/panel';
+import cx from 'classnames';
+import { IPanelLike } from './interface';
+import { calcPanelPxMap } from './util';
+import { CLS_PREFIX, DEFAULT_COLLAPSE_PX } from './constant';
 
-export type Props = IAppProps;
+export type Props = {
+  direction: 'v' | 'h';
+  collapsePx?: number;
+  defaultValue?: IPanelLike[];
+  value?: IPanelLike[];
+  style?: React.CSSProperties;
+};
 
 interface State {
-  value: IContainerPanel[];
+  value: IPanelLike[];
+  containerPx?: number;
+  panelPxMap?: { [key: string]: number };
 }
 
 export class App extends React.PureComponent<Props, State> {
-  static defaultProps: Props = {
-    root: 'root',
-    resizingBoxStyle: {
-      zIndex: 99999999,
-    },
+  private containerRef = React.createRef<HTMLDivElement>();
+
+  state: State = {
+    value: this.props.value || this.props.defaultValue || [],
   };
 
   static getDerivedStateFromProps(np: Props, state: State) {
     return { value: 'value' in np ? np.value : state.value } as State;
   }
 
-  state: State = {
-    value: this.props.value || this.props.defaultValue,
-  };
+  /** 重算容器尺寸 */
+  private calcContainerPx(): number {
+    const rect = this.containerRef.current?.getBoundingClientRect();
+    if (!rect) return 0;
 
-  panelRuntimeMetaMap: {
-    [id: string]: IPanelRuntimeMeta;
-  } = {};
+    if (this.props.direction === 'v') return rect.height;
+    if (this.props.direction === 'h') return rect.width;
 
-  handleChange = (panels: IContainerPanel[]) => {
-    const { onChange } = this.props;
-
-    onChange && onChange(panels);
-  };
-
-  getCtxValue(): IContext {
-    const { resizingBoxStyle, panelStyle, children } = this.props;
-    const { value: panels } = this.state;
-
-    const contentMap = {};
-    const childrenList = Array.isArray(children) ? children : [children];
-
-    childrenList.forEach((child: any) => {
-      if (!child) return;
-
-      const key = child.key || get(child, 'props.id') || null;
-      contentMap[key] = child;
-    });
-
-    const panelMap = keyBy(panels, 'id');
-
-    const getPanel = (id: string) => panelMap[id];
-
-    const getParent = (id: string) => panelMap[panelMap[id].parentId];
-    const getKids = (id: string) => panels.filter(child => child.parentId === id);
-
-    const getAllKids = (id: string) => {
-      const walk = (currentId: string, stash: IPanelLike[]) => {
-        const kids = getKids(currentId);
-
-        kids.forEach(kid => {
-          stash.push(kid);
-          walk(kid.id, stash);
-        });
-      };
-
-      const allKids: IPanelLike[] = [];
-      walk(id, allKids);
-
-      return allKids;
-    };
-
-    const getAllSiblings = (id: string) =>
-      panels.filter(child => child.parentId === panelMap[id].parentId);
-
-    const getSiblings = (id: string) => getAllSiblings(id).filter(child => child.id !== id);
-    const getSiblingIndex = (id: string) => getAllSiblings(id).findIndex(si => si.id === id);
-
-    const getFlowDirection = (id: string) => get(getParent(id), 'contentDirection', 'v');
-    const isFlowStart = (id: string) => getSiblingIndex(id) === 0;
-    const isFlowEnd = (id: string) => getSiblingIndex(id) === getAllSiblings(id).length - 1;
-
-    const isPanelEmpty = (id: string) => {
-      const allKids = getAllKids(id);
-      return allKids.every(kid => !getContent(kid.id)) && !getContent(id);
-    };
-
-    const getPanelRuntimeMeta = (id: string) => this.panelRuntimeMetaMap[id];
-
-    const getContent = (id: string) => contentMap[id];
-
-    const setPanel = (id: string, newPanel: IPanelLike) => {
-      const newPanels = panels.map(_p => (_p.id === id ? newPanel : _p));
-
-      this.setState({
-        value: newPanels,
-      });
-
-      this.handleChange(newPanels);
-    };
-
-    const setPanelRuntimeMeta = (id: string, meta: IPanelRuntimeMeta) => {
-      this.panelRuntimeMetaMap[id] = meta;
-    };
-
-    const getStyle = (id: string) => {
-      void id;
-      return {
-        resizingBox: resizingBoxStyle,
-        panel: panelStyle,
-      };
-    };
-
-    const getAppProps = () => ({ ...this.props });
-
-    return {
-      getPanel,
-      getParent,
-      getKids,
-      getAllKids,
-      getAllSiblings,
-      getSiblings,
-      getSiblingIndex,
-      getContent,
-      getFlowDirection,
-      isFlowStart,
-      isFlowEnd,
-      isPanelEmpty,
-      setPanel,
-      getPanelRuntimeMeta,
-      setPanelRuntimeMeta,
-      getStyle,
-      getAppProps,
-    };
+    return 0;
   }
 
-  render() {
-    const { root, style } = this.props;
-    const ctx = this.getCtxValue();
+  componentDidMount() {
+    const containerPx = this.calcContainerPx();
+    const panelPxMap = calcPanelPxMap(containerPx, this.state.value);
+
+    this.setState({ containerPx, panelPxMap });
+  }
+
+  /** 渲染面板 */
+  renderPanel = (p: IPanelLike) => {
+    const { direction } = this.props;
+    const { panelPxMap } = this.state;
+
+    const style: React.CSSProperties = {};
+
+    // 生成占用 px 尺寸样式
+    if (panelPxMap) {
+      if (direction === 'h') style.width = panelPxMap[p.key];
+      if (direction === 'v') style.height = panelPxMap[p.key];
+    }
+
+    // 生成折叠样式
+    if (p.collapse) {
+      if (direction === 'h') style.width = this.props.collapsePx || DEFAULT_COLLAPSE_PX;
+      if (direction === 'v') style.height = this.props.collapsePx || DEFAULT_COLLAPSE_PX;
+
+      style.overflow = 'hidden';
+    }
 
     return (
-      <div style={style}>
-        <Context.Provider value={ctx}>
-          <Panel id={root} />
-        </Context.Provider>
+      <section
+        className={cx(`${CLS_PREFIX}-panel`, { collapse: p.collapse })}
+        data-name={p.key}
+        style={style}
+      >
+        {p.render(p)}
+      </section>
+    );
+  };
+
+  render() {
+    const { style } = this.props;
+    const { value } = this.state;
+
+    return (
+      <div className={cx(CLS_PREFIX)} ref={this.containerRef} style={style}>
+        {value.map(this.renderPanel)}
       </div>
     );
   }
