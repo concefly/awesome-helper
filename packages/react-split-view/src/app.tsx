@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { IPanelLike } from './interface';
-import { calcPanelPxMap } from './util';
 import { CLS_PREFIX, DEFAULT_COLLAPSE_PX } from './constant';
+import sum from 'lodash/sum';
 
 export type Props = {
   direction: 'v' | 'h';
@@ -14,8 +14,6 @@ export type Props = {
 
 interface State {
   value: IPanelLike[];
-  containerPx?: number;
-  panelPxMap?: { [key: string]: number };
 }
 
 export class App extends React.PureComponent<Props, State> {
@@ -29,43 +27,34 @@ export class App extends React.PureComponent<Props, State> {
     return { value: 'value' in np ? np.value : state.value } as State;
   }
 
-  /** 重算容器尺寸 */
-  private calcContainerPx(): number {
-    const rect = this.containerRef.current?.getBoundingClientRect();
-    if (!rect) return 0;
-
-    if (this.props.direction === 'v') return rect.height;
-    if (this.props.direction === 'h') return rect.width;
-
-    return 0;
-  }
-
-  componentDidMount() {
-    const containerPx = this.calcContainerPx();
-    const panelPxMap = calcPanelPxMap(containerPx, this.state.value);
-
-    this.setState({ containerPx, panelPxMap });
+  private get collapsePx() {
+    return this.props.collapsePx || DEFAULT_COLLAPSE_PX;
   }
 
   /** 渲染面板 */
-  renderPanel = (p: IPanelLike) => {
+  renderPanel(
+    p: IPanelLike,
+    /** 折叠总尺寸 */
+    collapseTotalPx: number,
+    /** 总占据尺寸 */
+    totalSpan: number
+  ) {
     const { direction } = this.props;
-    const { panelPxMap } = this.state;
 
     const style: React.CSSProperties = {};
 
     // 生成占用 px 尺寸样式
-    if (panelPxMap) {
-      if (direction === 'h') style.width = panelPxMap[p.key];
-      if (direction === 'v') style.height = panelPxMap[p.key];
-    }
+    const size = `calc((100% - ${collapseTotalPx}px) * ${
+      p.span.spanPercent / (totalSpan - collapseTotalPx)
+    })`;
+
+    if (direction === 'h') style.width = size;
+    if (direction === 'v') style.height = size;
 
     // 生成折叠样式
     if (p.collapse) {
-      if (direction === 'h') style.width = this.props.collapsePx || DEFAULT_COLLAPSE_PX;
-      if (direction === 'v') style.height = this.props.collapsePx || DEFAULT_COLLAPSE_PX;
-
-      style.overflow = 'hidden';
+      if (direction === 'h') style.width = this.collapsePx;
+      if (direction === 'v') style.height = this.collapsePx;
     }
 
     return (
@@ -77,15 +66,25 @@ export class App extends React.PureComponent<Props, State> {
         {p.render(p)}
       </section>
     );
-  };
+  }
 
   render() {
-    const { style } = this.props;
+    const { style, direction } = this.props;
     const { value } = this.state;
 
+    const totalSpan = sum(value.map(p => p.span.spanPercent));
+    const collapseTotalPx = value.filter(p => p.collapse).length * this.collapsePx;
+
     return (
-      <div className={cx(CLS_PREFIX)} ref={this.containerRef} style={style}>
-        {value.map(this.renderPanel)}
+      <div
+        className={cx(CLS_PREFIX, {
+          ['direction-v']: direction === 'v',
+          ['direction-h']: direction === 'h',
+        })}
+        ref={this.containerRef}
+        style={style}
+      >
+        {value.map(p => this.renderPanel(p, collapseTotalPx, totalSpan))}
       </div>
     );
   }

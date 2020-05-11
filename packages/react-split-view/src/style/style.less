@@ -1,10 +1,25 @@
 @prefix: RSV;
 
 .@{prefix} {
-  // 面板
+  display: flex;
+
+  // 面板(基础样式)
   &-panel {
-    // 折叠状态
-    &.collapse {
+    // 默认必须 border-box
+    box-sizing: border-box;
+  }
+
+  // 横向
+  &.direction-h {
+    .@{prefix}-panel {
+      flex-direction: column;
+    }
+  }
+
+  // 纵向
+  &.direction-v {
+    .@{prefix}-panel {
+      flex-direction: row;
     }
   }
 }
