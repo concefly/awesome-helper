@@ -57,13 +57,35 @@ const list: (IAppProps & {
     ],
     style: { width: 400 },
   },
+  {
+    title: '尾折叠收到下面',
+    direction: 'v',
+    defaultValue: [
+      {
+        key: '1',
+        span: { type: 'flow' as any, spanPercent: 50 },
+        collapse: false,
+        render: () => '11111',
+      },
+      {
+        key: '2',
+        span: { type: 'flow' as any, spanPercent: 50 },
+        collapse: true,
+        render: () => '22222',
+      },
+    ],
+    style: { height: 200 },
+  },
 ];
 
 ReactDom.render(
   <div>
     <style>
-      {`.RSV-panel {
-        border: 1px solid #000
+      {`.RSV {
+        background: rgba(0,0,0,.1);
+      }
+      .RSV-panel {
+        border: 1px solid #000;
       }`}
     </style>
     {list.map(({ title, ...props }) => (

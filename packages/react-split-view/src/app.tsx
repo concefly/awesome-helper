@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import { IPanelLike } from './interface';
 import { CLS_PREFIX, DEFAULT_COLLAPSE_PX } from './constant';
-import sum from 'lodash/sum';
 
 export type Props = {
   direction: 'v' | 'h';
@@ -36,8 +35,8 @@ export class App extends React.PureComponent<Props, State> {
     p: IPanelLike,
     /** 折叠总尺寸 */
     collapseTotalPx: number,
-    /** 总占据尺寸 */
-    totalSpan: number
+    /** 未折叠总尺寸 */
+    unCollapseTotalSpan: number
   ) {
     const { direction } = this.props;
 
@@ -45,7 +44,7 @@ export class App extends React.PureComponent<Props, State> {
 
     // 生成占用 px 尺寸样式
     const size = `calc((100% - ${collapseTotalPx}px) * ${
-      p.span.spanPercent / (totalSpan - collapseTotalPx)
+      p.span.spanPercent / unCollapseTotalSpan
     })`;
 
     if (direction === 'h') style.width = size;
@@ -72,8 +71,13 @@ export class App extends React.PureComponent<Props, State> {
     const { style, direction } = this.props;
     const { value } = this.state;
 
-    const totalSpan = sum(value.map(p => p.span.spanPercent));
-    const collapseTotalPx = value.filter(p => p.collapse).length * this.collapsePx;
+    let collapseTotalPx = 0;
+    let unCollapseTotalSpan = 0;
+
+    value.forEach(v => {
+      if (v.collapse) collapseTotalPx += this.collapsePx;
+      else unCollapseTotalSpan += v.span.spanPercent;
+    });
 
     return (
       <div
@@ -84,7 +88,7 @@ export class App extends React.PureComponent<Props, State> {
         ref={this.containerRef}
         style={style}
       >
-        {value.map(p => this.renderPanel(p, collapseTotalPx, totalSpan))}
+        {value.map(p => this.renderPanel(p, collapseTotalPx, unCollapseTotalSpan))}
       </div>
     );
   }
