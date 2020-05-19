@@ -5,6 +5,7 @@ import { CLS_PREFIX, DEFAULT_COLLAPSE_PX } from './constant';
 
 export type Props = {
   direction: 'v' | 'h';
+  className?: string;
   collapsePx?: number;
   defaultValue?: IPanelLike[];
   value?: IPanelLike[];
@@ -68,7 +69,7 @@ export class App extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { style, direction } = this.props;
+    const { className, style, direction } = this.props;
     const { value } = this.state;
 
     let collapseTotalPx = 0;
@@ -81,7 +82,7 @@ export class App extends React.PureComponent<Props, State> {
 
     return (
       <div
-        className={cx(CLS_PREFIX, {
+        className={cx(CLS_PREFIX, className, {
           ['direction-v']: direction === 'v',
           ['direction-h']: direction === 'h',
         })}
