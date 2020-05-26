@@ -59,6 +59,7 @@ export class App extends React.PureComponent<Props, State> {
 
     return (
       <section
+        key={p.key}
         className={cx(`${CLS_PREFIX}-panel`, { collapse: p.collapse })}
         data-name={p.key}
         style={style}
