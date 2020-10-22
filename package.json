@@ -7,6 +7,7 @@
   "scripts": {
     "test": "lerna run test",
     "lint": "lerna run lint",
-    "ci": "npm run lint && npm run test"
+    "ci": "npm run lint && npm run test",
+    "postinstall": "lerna bootstrap"
   }
 }
