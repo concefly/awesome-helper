@@ -13,7 +13,7 @@
     "build:js": "tsc -p tsconfig.build.json --outDir dist",
     "build:css": "cp src/style/*.less dist/style",
     "build": "npm run clean && npm run build:js && npm run build:css",
-    "prepublishOnly": "npm run build"
+    "prepublish": "npm run build"
   },
   "author": "",
   "license": "ISC",

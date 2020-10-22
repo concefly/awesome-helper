@@ -16,7 +16,7 @@
     "build:lib": "tsc -p tsconfig.build.json --outDir dist/lib",
     "build:rollup": "rollup -c",
     "build": "npm run clean && npm run build:lib && npm run build:es && npm run build:rollup",
-    "prepublishOnly": "npm run ci && npm run build"
+    "prepublish": "npm run ci && npm run build"
   },
   "repository": {
     "type": "git",

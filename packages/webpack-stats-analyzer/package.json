@@ -12,7 +12,7 @@
   "scripts": {
     "test": "jest --config jest.config.json",
     "ci": "npm run test",
-    "prepublishOnly": "npm run ci"
+    "prepublish": "npm run ci"
   },
   "repository": {
     "type": "git",
