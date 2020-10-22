@@ -12,7 +12,7 @@
   "devDependencies": {
     "@types/jest": "^23.3.2",
     "@types/lodash": "^4.14.116",
-    "ai18n-prettier": "^2.1.0",
+    "ah-prettier": "^2.1.0",
     "jest": "^23.5.0",
     "prettier": "^2.1.2",
     "ts-jest": "^23.1.4",
@@ -41,5 +41,5 @@
     ]
   },
   "gitHead": "218c48cf842684fe0bb5ea05ae77bd89caacd07f",
-  "prettier": "ai18n-prettier"
+  "prettier": "ah-prettier"
 }

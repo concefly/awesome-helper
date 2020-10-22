@@ -12,7 +12,7 @@
     "@types/memory-fs": "^0.3.2",
     "@types/node": "^10.9.4",
     "ai18n-loader-ts": "^2.1.7",
-    "ai18n-prettier": "^2.1.0",
+    "ah-prettier": "^2.1.0",
     "ai18n-reducer": "^2.1.7",
     "jest": "^23.6.0",
     "memory-fs": "^0.4.1",
@@ -27,13 +27,13 @@
   },
   "scripts": {
     "prettier": "prettier -c lib",
+    "lint": "npm run prettier",
     "prepublish": "npm run build",
     "build": "tsc -p tsconfig-build.json --outDir ./dist",
-    "lint": "npm run prettier",
     "ci": "npm run lint && npm run test",
     "test": "jest"
   },
-  "prettier": "ai18n-prettier",
+  "prettier": "ah-prettier",
   "jest": {
     "transform": {
       "^.+\\.ts$": "ts-jest"

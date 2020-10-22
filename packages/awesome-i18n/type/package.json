@@ -17,8 +17,8 @@
     "ci": "npm run lint"
   },
   "devDependencies": {
-    "ai18n-prettier": "^2.1.0",
+    "ah-prettier": "^2.1.0",
     "prettier": "^2.1.2"
   },
-  "prettier": "ai18n-prettier"
+  "prettier": "ah-prettier"
 }

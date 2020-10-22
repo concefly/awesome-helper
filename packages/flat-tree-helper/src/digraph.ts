@@ -12,7 +12,7 @@ export const getAllTraceGenerator = <G extends IDigraphNode>(
   const idMap = new Map<string, G>();
   graph.forEach(g => idMap.set(g.id, g));
 
-  const _getRestTraceList = function*(_id: string, _trace: G[] = []): IterableIterator<G[]> {
+  const _getRestTraceList = function* (_id: string, _trace: G[] = []): IterableIterator<G[]> {
     if (_trace.some(t => t.id === _id)) return;
 
     const current = idMap.get(_id);

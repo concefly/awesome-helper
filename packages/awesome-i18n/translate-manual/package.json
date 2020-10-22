@@ -22,13 +22,13 @@
   "devDependencies": {
     "@types/jest": "^26.0.14",
     "@types/prompts": "^2.0.9",
-    "ai18n-prettier": "^2.1.0",
+    "ah-prettier": "^2.1.0",
     "jest": "^26.5.3",
     "prettier": "^2.1.2",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
   },
-  "prettier": "ai18n-prettier",
+  "prettier": "ah-prettier",
   "scripts": {
     "prettier": "prettier -c lib",
     "build": "tsc -p tsconfig-build.json --outDir ./dist",

@@ -9,6 +9,8 @@
   "module": "dist/es/index.js",
   "browser": "dist/index.umd.js",
   "scripts": {
+    "prettier": "prettier -c src",
+    "lint": "npm run prettier",
     "test": "jest",
     "ci": "npm run test",
     "clean": "rm -rf dist/*",
@@ -37,10 +39,12 @@
     "@types/lodash.minby": "^4.6.6",
     "@types/lodash.unionby": "^4.8.6",
     "jest": "^24.8.0",
+    "prettier": "^2.1.2",
     "rollup": "^2.18.2",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "ts-jest": "^24.0.2",
+    "ah-prettier": "^2.1.0",
     "typescript": "^3.5.2"
   },
   "dependencies": {
@@ -51,5 +55,6 @@
     "lodash.minby": "^4.6.0",
     "lodash.unionby": "^4.8.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "prettier": "ah-prettier"
 }

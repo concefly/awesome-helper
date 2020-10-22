@@ -2,5 +2,8 @@
   "name": "ai18n-prettier",
   "version": "2.1.0",
   "main": "index.json",
-  "prettier": "ai18n-prettier"
+  "prettier": "ah-prettier",
+  "devDependencies": {
+    "prettier": "^2.1.2"
+  }
 }

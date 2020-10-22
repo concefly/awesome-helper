@@ -7,6 +7,8 @@
     "dist"
   ],
   "scripts": {
+    "prettier": "prettier -c src",
+    "lint": "npm run prettier",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist/*",
     "dev": "rm -rf .demo-serve && parcel demo/index.html -d .demo-serve",
@@ -26,6 +28,8 @@
     "antd": "^3.18.1",
     "less": "^3.9.0",
     "parcel-bundler": "^1.12.3",
+    "prettier": "^2.1.2",
+    "ah-prettier": "^2.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "typescript": "^3.4.5"
@@ -39,5 +43,6 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "lodash": "^4.17.11"
-  }
+  },
+  "prettier": "ah-prettier"
 }
