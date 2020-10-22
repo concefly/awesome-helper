@@ -1,4 +1,4 @@
-import { Line, Point, LineSet, Rect } from '../src/Geometry';
+import { Line, Point, LineSet, Rect } from '../src/geometry';
 
 describe('geometry', () => {
   describe('Line', () => {
