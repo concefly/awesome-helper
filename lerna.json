@@ -1,8 +1,6 @@
 {
-  "packages": [
-    "packages/awesome-i18n/*",
-    "packages/*"
-  ],
-  "version": "0.0.0",
-  "npmClient": "cnpm"
+  "packages": ["packages/awesome-i18n/*", "packages/*"],
+  "version": "independent",
+  "npmClient": "cnpm",
+  "independent": true
 }
