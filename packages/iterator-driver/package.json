@@ -32,10 +32,10 @@
   "devDependencies": {
     "@types/jest": "^24.0.14",
     "@types/node": "^12.7.1",
+    "ah-prettier": "^2.1.0",
     "jest": "^24.8.0",
     "prettier": "^2.1.2",
     "ts-jest": "^24.0.2",
-    "ah-prettier": "^2.1.0",
     "typescript": "^3.5.2"
   },
   "prettier": "ah-prettier",
