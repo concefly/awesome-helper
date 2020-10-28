@@ -1,13 +1,16 @@
-import { BaseApp, BaseService } from '.';
+import { App, Service, IService, Config } from '.';
 
-export class AService extends BaseService {}
-export class BService extends BaseService {}
+export class AService extends Service {}
+export class BService extends Service {}
 
-class App extends BaseApp {
-  serviceTypes = [AService, BService];
+class DemoApp extends App {
+  service: IService = {
+    a: new AService(this),
+    b: new BService(this),
+  };
 }
 
 (async () => {
-  const app = new App();
+  const app = new DemoApp(new Config());
   await app.start();
 })().catch(e => console.error(e));

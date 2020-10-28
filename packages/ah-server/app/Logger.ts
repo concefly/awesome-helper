@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-export class BaseLogger {
+export class Logger {
   private name = 'APP';
 
   setName(name: string) {
@@ -13,10 +13,9 @@ export class BaseLogger {
     return `[${timestamp}|${this.name}|${level}] ${msg}`;
   }
 
-  extend(subName: string): BaseLogger {
-    const Cls = this.constructor;
+  extend(subName: string): Logger {
     const newName = [this.name, subName].join('.');
-    return (new (Cls as any)() as BaseLogger).setName(newName);
+    return new Logger().setName(newName);
   }
 
   info(msg: string) {

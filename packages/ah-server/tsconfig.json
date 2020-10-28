@@ -5,8 +5,8 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true
+    "declaration": true,
+    "esModuleInterop": true
   },
   "include": ["app"]
 }

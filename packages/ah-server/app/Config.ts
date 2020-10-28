@@ -1,4 +1,8 @@
-export class BaseConfig {
+declare module '.' {
+  interface IConfig extends Config {}
+}
+
+export class Config {
   readonly LOCAL_PORT: number = +(process.env.LOCAL_PORT || 10001);
 
   sequelize() {
