@@ -1,5 +1,5 @@
 {
-  "name": "tiny-webserver",
+  "name": "ah-server",
   "version": "0.0.1",
   "files": [
     "dist"
