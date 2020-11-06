@@ -1,6 +1,6 @@
 {
   "name": "ah-event-bus",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Tiny event bus",
   "files": [
     "dist"
@@ -15,7 +15,7 @@
     "prepublish": "npm run ci && npm run build"
   },
   "author": "concefly@foxmail.com",
-  "license": "ISC", 
+  "license": "ISC",
   "devDependencies": {
     "@types/node": "^12.7.1",
     "ah-prettier": "^2.1.0",
