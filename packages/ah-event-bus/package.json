@@ -1,0 +1,27 @@
+{
+  "name": "ah-event-bus",
+  "version": "0.0.0",
+  "description": "Tiny event bus",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "prettier": "prettier -c src",
+    "lint": "npm run prettier",
+    "ci": " tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist/*",
+    "build": "npm run clean && tsc -p tsconfig.json --outDir dist",
+    "prepublish": "npm run ci && npm run build"
+  },
+  "author": "concefly@foxmail.com",
+  "license": "ISC", 
+  "devDependencies": {
+    "@types/node": "^12.7.1",
+    "ah-prettier": "^2.1.0",
+    "prettier": "^2.1.2",
+    "typescript": "^3.5.2"
+  },
+  "prettier": "ah-prettier",
+  "sideEffects": false
+}

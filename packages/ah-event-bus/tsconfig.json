@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedLocals": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "strict": true,
+  },
+  "exclude": ["dist"]
+}
