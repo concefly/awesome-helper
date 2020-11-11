@@ -87,7 +87,7 @@ export class Rect {
   }
 
   constructor(readonly x1: number, readonly y1: number, readonly x2: number, readonly y2: number) {
-    if (x1 === x2 && x1 === y1 && y1 === y2) {
+    if (x1 > x2 || y1 > y2) {
       throw new Error(`坐标错误 (${x1}, ${y1}), (${x2}, ${y2})`);
     }
   }
