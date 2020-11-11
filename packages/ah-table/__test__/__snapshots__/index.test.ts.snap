@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table normal 1`] = `
+"
+---------------------------------------------------
+ id  | fruit title                  | date           
+---------------------------------------------------
+ 0   | apple                        | 2020-11-11     
+ 1   | banana                       | -              
+ 2   | long name wwwwwwwwwwwwwww... | -              
+---------------------------------------------------
+"
+`;

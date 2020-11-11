@@ -1,0 +1,42 @@
+{
+  "name": "ah-table-formatter",
+  "version": "0.0.0",
+  "author": "concefly@foxmail.com",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/lodash": "^4.14.165",
+    "jest": "^26.5.3",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
+  },
+  "scripts": {
+    "prettier": "prettier -c lib",
+    "build": "tsc -p tsconfig-build.json --outDir ./dist",
+    "lint": "npm run prettier",
+    "ci": "npm run lint && npm run test",
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(/__test__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}
