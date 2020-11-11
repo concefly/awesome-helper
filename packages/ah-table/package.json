@@ -1,5 +1,5 @@
 {
-  "name": "ah-table-formatter",
+  "name": "ah-table",
   "version": "0.0.1",
   "author": "concefly@foxmail.com",
   "license": "ISC",
@@ -20,7 +20,8 @@
     "build": "tsc -p tsconfig-build.json --outDir ./dist",
     "lint": "npm run prettier",
     "ci": "npm run lint && npm run test",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run ci && npm run build"
   },
   "jest": {
     "transform": {
