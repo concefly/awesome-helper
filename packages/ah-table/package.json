@@ -1,6 +1,6 @@
 {
   "name": "ah-table",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": "concefly@foxmail.com",
   "license": "ISC",
   "main": "dist/index.js",
