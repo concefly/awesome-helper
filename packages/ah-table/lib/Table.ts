@@ -42,7 +42,7 @@ export class Table<T extends ITableData = ITableData> {
         this.imp,
         this.columns.map(
           c =>
-            new this.imp.TableTd(this.imp, data[c.dataIndex], {
+            new this.imp.TableTd(this.imp, _.get(data, c.dataIndex), {
               width: c.width || this.defaultColumnWidth,
             })
         )

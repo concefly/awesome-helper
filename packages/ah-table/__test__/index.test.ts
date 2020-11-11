@@ -15,11 +15,14 @@ const columns: ITableColumn[] = [
   {
     dataIndex: 'date',
   },
+  {
+    dataIndex: 'foo.bar',
+  },
 ];
 
 const datasource: ITableData[] = [
   { fruit: 'apple', date: '2020-11-11' },
-  { fruit: 'banana' },
+  { fruit: 'banana', foo: { bar: 'xxx' } },
   { fruit: 'long name wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww' },
 ].map((d, id) => ({ id, ...d }));
 
