@@ -1,6 +1,6 @@
 {
   "name": "wsa",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "webpack stats 分析工具",
   "main": "src/lib/analyser.js",
   "bin": {
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "commander": "^2.20.0",
-    "flat-tree-helper": "^2.5.4",
+    "flat-tree-helper": "^2.5.5",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15"
   },
