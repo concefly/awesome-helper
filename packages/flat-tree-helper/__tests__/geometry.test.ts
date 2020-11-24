@@ -59,5 +59,12 @@ describe('geometry', () => {
       const ri = r1.intersection(r2);
       expect(ri).toMatchSnapshot();
     });
+
+    it('isInsideTarget', () => {
+      const r1 = new Rect(0, 0, 10, 10);
+      const r2 = new Rect(5, 5, 6, 6);
+
+      expect(r2.isInsideTarget(r1)).toBeTruthy();
+    });
   });
 });

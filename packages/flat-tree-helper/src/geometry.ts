@@ -11,6 +11,11 @@ export class Point {
     const dy = p.y - this.y;
     return Math.sqrt(dx * dx + dy * dy);
   }
+
+  /** 在目标矩形内部 */
+  isInsideTarget(r: Rect) {
+    return inRange(this.x, r.x1, r.x2) && inRange(this.y, r.y1, r.y2);
+  }
 }
 
 /** 直线类 */
@@ -108,12 +113,20 @@ export class Rect {
     return this.x2 - this.x1;
   }
 
-  isInside(t: Point) {
-    if (t instanceof Point) {
-      return inRange(t.x, this.x1, this.x2) && inRange(t.y, this.y1, this.y2);
-    }
+  /** @deprecated 改用 isInTarget */
+  isInside(p: Point) {
+    p.isInsideTarget(this);
+  }
 
-    return false;
+  /** 在目标矩形内部 */
+  isInsideTarget(target: Rect) {
+    const { x1y1, x1y2, x2y1, x2y2 } = this.getPoints();
+    return (
+      x1y1.isInsideTarget(target) &&
+      x1y2.isInsideTarget(target) &&
+      x2y1.isInsideTarget(target) &&
+      x2y2.isInsideTarget(target)
+    );
   }
 
   size() {
