@@ -115,7 +115,7 @@ export class Rect {
 
   /** @deprecated 改用 isInTarget */
   isInside(p: Point) {
-    p.isInsideTarget(this);
+    return p.isInsideTarget(this);
   }
 
   /** 在目标矩形内部 */
