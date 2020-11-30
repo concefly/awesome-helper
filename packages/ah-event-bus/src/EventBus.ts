@@ -1,8 +1,8 @@
-import { BaseEvent } from "./BaseEvent";
+import { BaseEvent, EventClass } from './BaseEvent';
 
 export class EventBus {
   private handleMap = new Map<
-    BaseEvent,
+    Function,
     Array<{
       handler: Function;
       once?: boolean;
@@ -21,17 +21,17 @@ export class EventBus {
     return this;
   }
 
-  once<T extends typeof BaseEvent>(type: T, handler: (event: InstanceType<T>) => void) {
+  once<T extends EventClass>(type: T, handler: (event: InstanceType<T>) => void) {
     this.handleMap.set(type, [...(this.handleMap.get(type) || []), { handler, once: true }]);
     return this;
   }
 
-  on<T extends typeof BaseEvent>(type: T, handler: (event: InstanceType<T>) => void) {
+  on<T extends EventClass>(type: T, handler: (event: InstanceType<T>) => void) {
     this.handleMap.set(type, [...(this.handleMap.get(type) || []), { handler }]);
     return this;
   }
 
-  off<T extends typeof BaseEvent>(type?: T, handler?: Function) {
+  off<T extends EventClass>(type?: T, handler?: Function) {
     // 卸载指定 handler
     if (type && handler) {
       this.handleMap.set(
