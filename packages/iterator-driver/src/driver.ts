@@ -22,13 +22,13 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
     }
   ) {}
 
-  private async waitEvOnce<T extends EventClass>(
-    evType: T,
-    tester: (ev: InstanceType<T>) => boolean = () => true
+  private async waitEvOnce<ET extends EventClass>(
+    evType: ET,
+    tester: (ev: InstanceType<ET>) => boolean = () => true
   ) {
     const clear = () => this.eventBus.off(evType, tester);
 
-    const evPromise = new Promise<InstanceType<T>>(resolve => {
+    const evPromise = new Promise<InstanceType<ET>>(resolve => {
       this.eventBus.on(evType, ev => {
         if (!tester(ev)) return;
         clear();
@@ -108,9 +108,9 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
       init: 'skip',
       running: () => this.changeStage(DriverStageEnum.paused),
       paused: 'skip',
-      stopping: 'error',
-      done: 'error',
-      error: 'error',
+      stopping: 'skip',
+      done: 'skip',
+      error: 'skip',
     })(this.stage);
   }
 
@@ -119,10 +119,10 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
     enumCond<DriverStageEnum, void, void>({
       init: 'skip',
       paused: () => this.changeStage(DriverStageEnum.running),
-      running: 'error',
-      stopping: 'error',
-      done: 'error',
-      error: 'error',
+      running: 'skip',
+      stopping: 'skip',
+      done: 'skip',
+      error: 'skip',
     })(this.stage);
   }
 
@@ -195,7 +195,19 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
 
     this.tasks.push(task);
 
-    if (this.config?.autoStart && this.stage !== DriverStageEnum.running) this.start();
+    if (this.config?.autoStart) {
+      const shouldStart = enumCond<DriverStageEnum, void, boolean>({
+        init: () => true,
+        done: () => true,
+        error: () => true,
+        running: 'skip',
+        stopping: 'error',
+        paused: 'skip',
+      })(this.stage);
+
+      if (shouldStart) this.start();
+    }
+
     return this;
   }
 
@@ -221,6 +233,7 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
   private async doLoop() {
     // 启动前检查状态
     enumCond<DriverStageEnum, void, void>({
+      // 部分状态允许重启
       init: 'skip',
       done: 'skip',
       error: 'skip',

@@ -11,7 +11,7 @@ export function runtimeMs<F extends (...args: any) => any>(fn: F): [ReturnType<F
 }
 
 /** 把任意值变成 promise */
-export function toPromise(data: any): Promise<any> {
+export async function toPromise(data: any): Promise<any> {
   // null, undefined ....
   if (!data) return Promise.resolve(data);
 
@@ -43,6 +43,6 @@ export function enumCond<S extends TaskStageEnum | DriverStageEnum, T, R>(
       // do nothing
     }
     if (fn === 'error') throw new Error(`状态错误 ${code}`);
-    if (typeof fn === 'function') return (fn as any)(ctx);
+    if (typeof fn === 'function') return (fn as any)(ctx) as R;
   };
 }
