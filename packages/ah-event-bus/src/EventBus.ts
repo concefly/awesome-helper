@@ -22,12 +22,12 @@ export class EventBus {
   }
 
   once<T extends EventClass>(type: T, handler: (event: InstanceType<T>) => void) {
-    this.handleMap.set(type, [...(this.handleMap.get(type) || []), { handler, once: true }]);
+    this.handleMap.set(type, (this.handleMap.get(type) || []).concat({ handler, once: true }));
     return this;
   }
 
   on<T extends EventClass>(type: T, handler: (event: InstanceType<T>) => void) {
-    this.handleMap.set(type, [...(this.handleMap.get(type) || []), { handler }]);
+    this.handleMap.set(type, (this.handleMap.get(type) || []).concat({ handler }));
     return this;
   }
 
@@ -36,7 +36,7 @@ export class EventBus {
     if (type && handler) {
       this.handleMap.set(
         type,
-        [...(this.handleMap.get(type) || [])].filter(_h => _h.handler !== handler)
+        (this.handleMap.get(type) || []).filter(_h => _h.handler !== handler)
       );
       return this;
     }

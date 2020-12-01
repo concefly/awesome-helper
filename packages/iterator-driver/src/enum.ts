@@ -1,4 +1,5 @@
-export enum DriverStateEnum {
+export enum DriverStageEnum {
+  stopping = 'stopping',
   stop = 'stop',
   running = 'running',
   paused = 'paused',

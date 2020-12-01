@@ -39,5 +39,8 @@
     "typescript": "^3.5.2"
   },
   "prettier": "ah-prettier",
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "ah-event-bus": "^0.0.2"
+  }
 }
