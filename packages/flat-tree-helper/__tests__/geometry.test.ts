@@ -34,6 +34,13 @@ describe('geometry', () => {
   });
 
   describe('Rect', () => {
+    it('isValid', () => {
+      expect(Rect.isValid(0, 0, 0, 0)).toBeTruthy();
+      expect(Rect.isValid(1, 0, 1, 1)).toBeTruthy();
+      expect(Rect.isValid(0, 1, 1, 1)).toBeTruthy();
+      expect(Rect.isValid(2, 0, 1, 1)).toBeFalsy();
+    });
+
     it('union', () => {
       const r1 = new Rect(0, 0, 10, 10);
       const r2 = new Rect(5, 5, 15, 15);
@@ -54,7 +61,7 @@ describe('geometry', () => {
 
     it('intersection - 空', () => {
       const r1 = new Rect(0, 0, 1, 1);
-      const r2 = new Rect(1, 1, 2, 2);
+      const r2 = new Rect(2, 2, 3, 3);
 
       const ri = r1.intersection(r2);
       expect(ri).toMatchSnapshot();

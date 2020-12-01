@@ -77,6 +77,11 @@ export class LineSegment extends Line {
 
 /** 矩形 */
 export class Rect {
+  /** 判断坐标是否能组成矩形 */
+  static isValid(x1: number, y1: number, x2: number, y2: number) {
+    return x1 <= x2 && y1 <= y2;
+  }
+
   static union(list: Rect[]): Rect {
     const [first, ...rest] = list;
     if (rest.length === 0) return first;
@@ -92,9 +97,7 @@ export class Rect {
   }
 
   constructor(readonly x1: number, readonly y1: number, readonly x2: number, readonly y2: number) {
-    if (x1 > x2 || y1 > y2) {
-      throw new Error(`坐标错误 (${x1}, ${y1}), (${x2}, ${y2})`);
-    }
+    if (!Rect.isValid(x1, y1, x2, y2)) throw new Error(`坐标错误 (${x1}, ${y1}), (${x2}, ${y2})`);
   }
 
   get ym() {
@@ -153,6 +156,7 @@ export class Rect {
     const y2 = this.y2 === ur.y2 ? t.y2 : this.y2;
 
     if (x1 === x2 || y1 === y2) return null;
+    if (!Rect.isValid(x1, y1, x2, y2)) return null;
 
     return new Rect(x1, y1, x2, y2);
   }
