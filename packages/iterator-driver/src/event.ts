@@ -24,8 +24,12 @@ export class DriverStageChangeEvent extends BaseEvent {
     return this.stage === DriverStageEnum.running;
   }
 
-  public isStop() {
-    return this.stage === DriverStageEnum.stop;
+  public isDone() {
+    return this.stage === DriverStageEnum.done;
+  }
+
+  public isError() {
+    return this.stage === DriverStageEnum.error;
   }
 }
 

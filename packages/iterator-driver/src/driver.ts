@@ -8,7 +8,7 @@ import { EventBus, EventClass } from 'ah-event-bus';
 /** 创建切片任务驱动器 */
 export class TaskDriver<T extends BaseTask = BaseTask> {
   public eventBus = new EventBus();
-  private readonly stage: DriverStageEnum = DriverStageEnum.stop;
+  private readonly stage: DriverStageEnum = DriverStageEnum.init;
   private error?: Error;
 
   constructor(
@@ -105,10 +105,11 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
   /** 暂停 */
   public async pause() {
     enumCond<DriverStageEnum, void, void>({
+      init: 'skip',
       running: () => this.changeStage(DriverStageEnum.paused),
       paused: 'skip',
       stopping: 'error',
-      stop: 'error',
+      done: 'error',
       error: 'error',
     })(this.stage);
   }
@@ -116,10 +117,11 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
   /** 恢复 */
   public async resume() {
     enumCond<DriverStageEnum, void, void>({
+      init: 'skip',
       paused: () => this.changeStage(DriverStageEnum.running),
       running: 'error',
       stopping: 'error',
-      stop: 'error',
+      done: 'error',
       error: 'error',
     })(this.stage);
   }
@@ -158,20 +160,21 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
 
     const doStop = async () => {
       this.changeStage(DriverStageEnum.stopping);
-      await this.waitEvOnce(DriverStageChangeEvent, () => this.stage === DriverStageEnum.stop);
+      await this.waitEvOnce(DriverStageChangeEvent, () => this.stage === DriverStageEnum.done);
     };
 
     await enumCond<DriverStageEnum, void, Promise<void>>({
+      init: async () => this.changeStage(DriverStageEnum.done),
       running: doStop,
       paused: doStop,
       stopping: 'skip',
-      stop: 'skip',
+      done: 'skip',
       error: 'skip',
     })(this.stage);
   }
 
   public async waitStop() {
-    await this.waitEvOnce(DriverStageChangeEvent, () => this.stage === DriverStageEnum.stop);
+    await this.waitEvOnce(DriverStageChangeEvent, () => this.stage === DriverStageEnum.done);
   }
 
   /**
@@ -218,7 +221,8 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
   private async doLoop() {
     // 启动前检查状态
     enumCond<DriverStageEnum, void, void>({
-      stop: 'skip',
+      init: 'skip',
+      done: 'skip',
       error: 'skip',
       running: 'error',
       stopping: 'error',
@@ -236,13 +240,14 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
 
         // 执行前检查
         const loopStartAction = enumCond<DriverStageEnum, void, 'continue' | 'break'>({
+          init: 'error',
           running: 'skip',
           // 停止中
           stopping: () => {
-            this.changeStage(DriverStageEnum.stop);
+            this.changeStage(DriverStageEnum.done);
             return 'break';
           },
-          stop: 'error',
+          done: 'error',
           paused: () => 'continue',
           error: 'skip',
         })(this.stage);
@@ -254,7 +259,7 @@ export class TaskDriver<T extends BaseTask = BaseTask> {
 
         const unfinishedTasks = this.getUnFinishTaskQueue();
         if (unfinishedTasks.length === 0) {
-          this.changeStage(DriverStageEnum.stop);
+          this.changeStage(DriverStageEnum.done);
           break;
         }
 

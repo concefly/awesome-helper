@@ -24,7 +24,7 @@ describe('__tests__/driver.test.ts', () => {
     d.eventBus.on(DriverStageChangeEvent, ev => {
       if (ev.stage === DriverStageEnum.running) {
         startFlag++;
-      } else if (ev.stage === DriverStageEnum.stop) {
+      } else if (ev.stage === DriverStageEnum.done) {
         expect(startFlag).toBe(1);
         done();
       }
@@ -55,7 +55,7 @@ describe('__tests__/driver.test.ts', () => {
       .on(DriverStageChangeEvent, ev => {
         flag.push(`DriverStageChangeEvent-${ev.extra.lastStage}->${ev.stage}`);
 
-        if (ev.isStop()) {
+        if (ev.isDone()) {
           expect(flag).toMatchSnapshot();
           done();
         }
@@ -96,7 +96,7 @@ describe('__tests__/driver.test.ts', () => {
     });
 
     d.eventBus.on(DriverStageChangeEvent, ev => {
-      if (ev.isStop()) done();
+      if (ev.isDone()) done();
     });
 
     d.start();
@@ -129,7 +129,7 @@ describe('__tests__/driver.test.ts', () => {
     const d = new TaskDriver([t1, t2], new TimeoutScheduler());
 
     d.eventBus.on(DriverStageChangeEvent, ev => {
-      if (ev.isStop()) done();
+      if (ev.isDone()) done();
     });
 
     d.start();
@@ -148,7 +148,7 @@ describe('__tests__/driver.test.ts', () => {
     const d = new TaskDriver([t1], new TimeoutScheduler(), () => {});
 
     d.eventBus.on(DriverStageChangeEvent, ev => {
-      if (ev.isStop()) done();
+      if (ev.isDone()) done();
     });
 
     d.start();
@@ -219,7 +219,7 @@ describe('__tests__/driver.test.ts', () => {
     const d = new TestTaskDriver([t1, t2], new TimeoutScheduler());
 
     d.eventBus.on(DriverStageChangeEvent, ev => {
-      if (ev.isStop()) {
+      if (ev.isDone()) {
         expect(flag).toEqual(['i1', 'i1', 'i1']);
         done();
       }
@@ -357,7 +357,7 @@ describe('__tests__/driver.test.ts', () => {
 
       d.eventBus
         .on(DriverStageChangeEvent, ev => {
-          if (ev.isStop()) {
+          if (ev.isDone()) {
             expect(invokeCnt).toStrictEqual({ i1: 1, i2: 1, i3: 2 });
 
             expect(invokeErrorEvents[0].message).toContain('fake error1');

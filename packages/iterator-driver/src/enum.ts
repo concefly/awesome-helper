@@ -1,6 +1,7 @@
 export enum DriverStageEnum {
+  init = 'init',
   stopping = 'stopping',
-  stop = 'stop',
+  done = 'done',
   running = 'running',
   paused = 'paused',
   error = 'error',
