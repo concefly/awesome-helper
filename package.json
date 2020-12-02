@@ -8,6 +8,7 @@
     "test": "lerna run test",
     "lint": "lerna run lint",
     "ci": "npm run lint && npm run test",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "auto-publish": "lerna publish"
   }
 }
