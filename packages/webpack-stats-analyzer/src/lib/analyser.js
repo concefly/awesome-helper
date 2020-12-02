@@ -4,7 +4,7 @@
 /** @typedef {import('webpack').Stats.FnModules} Stats.FnModules */
 
 const _ = require('lodash');
-const { Digraph } = require('flat-tree-helper/dist/lib/digraph');
+const { Digraph } = require('ah-digraph-helper');
 
 class Analyser {
   constructor(statsJson) {
