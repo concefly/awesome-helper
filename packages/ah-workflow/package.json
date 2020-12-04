@@ -1,0 +1,28 @@
+{
+  "name": "ah-workflow",
+  "version": "0.0.1",
+  "bin": "./dist/cli.js",
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "build": "npm run clean && tsc -p tsconfig.build.json --outDir dist"
+  },
+  "dependencies": {
+    "dayjs": "^1.9.6",
+    "fs-extra": "^9.0.1",
+    "glob": "^7.1.6",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.4.4",
+    "yargs": "^16.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.4",
+    "@types/jest": "^26.0.16",
+    "@types/prettier": "^2.1.5",
+    "@types/yargs": "^15.0.10"
+  },
+  "peerDependencies": {
+    "typescript": "^4.1.2",
+    "@types/jest": "^26.0.16"
+  }
+}
