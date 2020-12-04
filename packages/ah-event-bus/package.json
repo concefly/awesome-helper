@@ -1,6 +1,6 @@
 {
   "name": "ah-event-bus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tiny event bus",
   "files": [
     "dist"
@@ -15,8 +15,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^12.7.1",
-    "typescript": "^3.5.2",
-    "ah-workflow": "*"
+    "ah-workflow": "^0.0.2",
+    "typescript": "^3.5.2"
   },
   "sideEffects": false
 }
