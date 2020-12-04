@@ -1,6 +1,6 @@
 import { WorkflowModule } from '../WorkflowModule';
-import { spawnSync } from 'child_process';
 import * as jest from 'jest';
+import * as fs from 'fs-extra';
 
 export class JestWM extends WorkflowModule {
   private config = {
@@ -26,6 +26,8 @@ export class JestWM extends WorkflowModule {
   };
 
   async test() {
+    if (!fs.existsSync('__test__')) return;
+
     this.logger.info(`run jest`);
     const r = await jest.runCLI({ ...this.config, _: [], $0: '' }, [process.cwd()]);
     if (!r.results.success) throw new Error('jest fail');
