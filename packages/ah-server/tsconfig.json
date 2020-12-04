@@ -8,5 +8,5 @@
     "declaration": true,
     "esModuleInterop": true
   },
-  "include": ["app"]
+  "include": ["src", "__tests__"]
 }
