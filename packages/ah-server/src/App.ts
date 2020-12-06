@@ -1,6 +1,7 @@
 import { CronJob } from 'cron';
 import Koa from 'koa';
 import Router from 'koa-router';
+import koaBody from 'koa-body';
 import urllib, { RequestOptions } from 'urllib';
 import { Logger } from './Logger';
 import { Scheduler } from './Scheduler';
@@ -46,6 +47,9 @@ export class App extends Koa {
     // 路由
     this.use(this.router.routes());
     this.use(this.router.allowedMethods());
+
+    // 其他扩展
+    this.use(koaBody);
 
     // 全局错误
     this.on('error', err => {
