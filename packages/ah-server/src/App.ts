@@ -25,7 +25,9 @@ export class App extends Koa {
 
   // 注入 app 扩展
   public service: IService = {};
-  public scheduler: IScheduler = {};
+
+  /** @override 定时任务列表 */
+  public schedulerList: Scheduler[] = [];
 
   public logger = new Logger();
   public router = new Router<any, IContext>();
@@ -66,7 +68,7 @@ export class App extends Koa {
 
   /** 启动定时调度 */
   protected async startScheduler() {
-    const list: Scheduler[] = Object.values(this.scheduler);
+    const list = this.schedulerList;
     if (list.length === 0) return;
 
     const schedulerLogger = this.logger.extend('Scheduler');
@@ -121,4 +123,7 @@ export class App extends Koa {
     this.listen(port);
     this.logger.info(`app start at localhost:${port}`);
   }
+
+  /** @deprecated 用 schedulerList 替代 */
+  public scheduler: IScheduler = {};
 }
