@@ -66,7 +66,7 @@ export abstract class App extends Koa {
           `register controller: ${m.method} ${m.path} -> ${c.name}.${m.handler.name}`
         );
 
-        router.register(m.path, [m.method], m.handler.bind(c));
+        router.register(m.path, Array.isArray(m.method) ? m.method : [m.method], m.handler.bind(c));
       });
     });
 
