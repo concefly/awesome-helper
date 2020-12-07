@@ -1,6 +1,6 @@
 {
   "name": "wsa",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "webpack stats 分析工具",
   "main": "src/lib/analyser.js",
   "bin": {
@@ -36,7 +36,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "ah-digraph-helper": "^1.0.4",
+    "ah-digraph-helper": "^1.0.5",
     "commander": "^2.20.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15"
