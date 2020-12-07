@@ -58,6 +58,8 @@ export abstract class App extends Koa {
   }
 
   private async initController() {
+    this.use(koaBody());
+
     // 构造 router
     const router = new Router<any, IContext>();
     this.controllerList.forEach(c => {
@@ -72,9 +74,6 @@ export abstract class App extends Koa {
 
     this.use(router.routes());
     this.use(router.allowedMethods());
-
-    // 必须放在 router 后面，不然会 404
-    this.use(koaBody);
 
     await Promise.all(this.controllerList.map(c => c.init?.()));
   }

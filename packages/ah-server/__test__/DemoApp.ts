@@ -10,13 +10,13 @@ class EchoController extends Controller {
   mapper: IControllerMapperItem[] = [
     {
       path: '/echo',
-      method: 'GET',
+      method: ['GET', 'POST'],
       handler: this.echo,
     },
   ];
 
   echo(ctx: IContext) {
-    const input: string = ctx.request.query.text;
+    const input: string = ctx.request.body.text || ctx.request.query.text;
     const output = (this.service as any).echo.echo(input);
 
     ctx.body = output;

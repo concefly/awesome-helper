@@ -9,8 +9,19 @@ describe('App', () => {
     await app.start();
 
     // curl test
-    const data = await app.curl<any>('http://localhost:10001/echo?text=hi', { dataType: 'text' });
-    expect(data.data).toEqual('hi');
+    const r1 = await app.curl<any>('http://localhost:10001/echo?text=hi', { dataType: 'text' });
+    expect(r1.data).toEqual('hi');
+
+    // post body test
+    const r2 = await app.curl<any>('http://localhost:10001/echo', {
+      method: 'POST',
+      contentType: 'json',
+      dataType: 'text',
+      data: {
+        text: 'hi',
+      },
+    });
+    expect(r2.data).toEqual('hi');
 
     await app.stop();
   });
