@@ -5,6 +5,19 @@ import * as yargs from 'yargs';
 
 yargs
   .command(
+    'test',
+    'test',
+    _yargs => {},
+    _argv => {
+      const w = new Workflow();
+
+      w.test().catch(e => {
+        console.log('@@@', 'e ->', e);
+        process.exit(1);
+      });
+    }
+  )
+  .command(
     'ci',
     'ci',
     _yargs => {},
