@@ -1,6 +1,6 @@
 {
   "name": "ah-server",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -27,7 +27,7 @@
     "@types/koa": "^2.11.6",
     "@types/koa-router": "^7.4.1",
     "@types/node": "^14.11.10",
-    "ah-workflow": "^1.0.1",
+    "ah-workflow": "^1.0.2",
     "nodemon": "^2.0.5",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"

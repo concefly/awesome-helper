@@ -1,6 +1,6 @@
 {
   "name": "iterator-driver",
-  "version": "6.0.5",
+  "version": "6.0.6",
   "description": "Tiny 迭代器驱动",
   "files": [
     "dist"
@@ -41,6 +41,6 @@
   "prettier": "ah-prettier",
   "sideEffects": false,
   "dependencies": {
-    "ah-event-bus": "^1.0.4"
+    "ah-event-bus": "^1.0.5"
   }
 }

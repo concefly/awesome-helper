@@ -1,6 +1,6 @@
 {
   "name": "ah-digraph-helper",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "files": [
     "dist"
@@ -14,7 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^26.0.16",
-    "ah-workflow": "^1.0.1",
+    "ah-workflow": "^1.0.2",
     "typescript": "^3.5.2"
   },
   "sideEffects": false
