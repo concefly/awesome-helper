@@ -6,8 +6,10 @@ import urllib, { RequestOptions } from 'urllib';
 import { Logger } from './Logger';
 import { Scheduler } from './Scheduler';
 import { Service } from './Service';
-import { IConfig, IContext, IScheduler, IService } from '.';
+import { IConfig, IContext, IService } from '.';
 import { validate } from './util';
+import { Controller } from './Controller';
+import { Server } from 'http';
 
 declare module '.' {
   interface IApplication extends App {}
@@ -18,56 +20,67 @@ declare module '.' {
   }
 }
 
-export class App extends Koa {
+export abstract class App extends Koa {
   constructor(readonly config: IConfig) {
     super();
   }
 
   // 注入 app 扩展
-  public service: IService = {};
-
-  /** @override 定时任务列表 */
-  public schedulerList: Scheduler[] = [];
+  public abstract service: IService = {};
+  /** controller 列表 */
+  public abstract controllerList: Controller[] = [];
+  /** 定时任务列表 */
+  public abstract schedulerList: Scheduler[] = [];
 
   public logger = new Logger();
-  public router = new Router<any, IContext>();
+
+  private server?: Server;
 
   public async curl<T>(url: string, opt?: RequestOptions) {
     return urllib.request<T>(url, opt);
   }
 
-  protected async init() {
+  private async initCommon() {
     // 扩展 ctx
     Object.assign(this.context, { validate, app: this });
-
-    // 更新 service ctx
-    this.use((ctx, next) => {
-      Object.values(this.service).forEach(s => (s.ctx = ctx));
-      return next();
-    });
-
-    // 路由
-    this.use(this.router.routes());
-    this.use(this.router.allowedMethods());
-
-    // 其他扩展
-    this.use(koaBody);
 
     // 全局错误
     this.on('error', err => {
       this.logger.error(err.message || err);
     });
-
-    this.logger.info(`service: ${Object.values(this.service).map(s => s.name)}`);
   }
 
-  protected async startService() {
+  private async initService() {
     const list: Service[] = Object.values(this.service);
     await Promise.all(list.map(s => s.init?.()));
+
+    this.logger.info(`service: ${list.map(s => s.name)}`);
+  }
+
+  private async initController() {
+    // 构造 router
+    const router = new Router<any, IContext>();
+    this.controllerList.forEach(c => {
+      c.mapper.forEach(m => {
+        this.logger.info(
+          `register controller: ${m.method} ${m.path} -> ${c.name}.${m.handler.name}`
+        );
+
+        router.register(m.path, [m.method], m.handler.bind(c));
+      });
+    });
+
+    this.use(router.routes());
+    this.use(router.allowedMethods());
+
+    // 必须放在 router 后面，不然会 404
+    this.use(koaBody);
+
+    await Promise.all(this.controllerList.map(c => c.init?.()));
   }
 
   /** 启动定时调度 */
-  protected async startScheduler() {
+  private async initScheduler() {
     const list = this.schedulerList;
     if (list.length === 0) return;
 
@@ -78,7 +91,6 @@ export class App extends Koa {
           new CronJob(
             s.cron!,
             () => {
-              s.ctx = this.createContext({} as any, {} as any);
               s.invoke().catch(e => {
                 schedulerLogger.error(`${s.name} error: ${e.message || e}`);
               });
@@ -93,7 +105,6 @@ export class App extends Koa {
       } else if (s.interval) {
         return () => {
           const invoke = () => {
-            s.ctx = this.createContext({} as any, {} as any);
             s.invoke()
               .then(() => setTimeout(invoke, s.interval))
               .catch(e => {
@@ -115,15 +126,27 @@ export class App extends Koa {
   public async start() {
     this.logger.info(this.config.sequelize());
 
-    await this.init();
-    await this.startService();
-    await this.startScheduler();
+    await this.initCommon();
+    await this.initService();
+    await this.initController();
+    await this.initScheduler();
 
     const port = this.config.LOCAL_PORT;
-    this.listen(port);
+    this.server = this.listen(port);
     this.logger.info(`app start at localhost:${port}`);
   }
 
-  /** @deprecated 用 schedulerList 替代 */
-  public scheduler: IScheduler = {};
+  public async stop(): Promise<void> {
+    if (!this.server) return;
+    const server = this.server;
+
+    return new Promise((resolve, reject) => {
+      // 优雅退出
+      // @see https://zhuanlan.zhihu.com/p/275312155?utm_source=wechat_session&utm_medium=social&utm_oi=39191756931072
+      server.close(err => {
+        if (err) return reject(err);
+        return resolve();
+      });
+    });
+  }
 }

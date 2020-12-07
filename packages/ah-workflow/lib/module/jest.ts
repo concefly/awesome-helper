@@ -26,7 +26,7 @@ export class JestWM extends WorkflowModule {
   };
 
   async test() {
-    if (!fs.existsSync('__test__')) return;
+    if (!fs.existsSync('__test__') || !fs.existsSync('__tests__')) return;
 
     this.logger.info(`run jest`);
     const r = await jest.runCLI({ ...this.config, _: [], $0: '' }, [process.cwd()]);

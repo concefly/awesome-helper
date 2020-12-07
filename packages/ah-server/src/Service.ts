@@ -1,7 +1,6 @@
-import { IApplication, IContext } from '.';
+import { IApplication } from '.';
 
 export class Service {
-  public ctx!: IContext;
   readonly name = this.constructor.name;
 
   protected get config() {
