@@ -4,7 +4,8 @@
   "bin": "./dist/cli.js",
   "scripts": {
     "clean": "rm -rf dist/*",
-    "build": "npm run clean && tsc -p tsconfig.build.json --outDir dist"
+    "build": "npm run clean && tsc -p tsconfig.build.json --outDir dist",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "dayjs": "^1.9.6",
