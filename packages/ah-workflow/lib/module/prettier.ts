@@ -2,7 +2,7 @@ import { WorkflowModule } from '../WorkflowModule';
 import * as prettier from 'prettier';
 import * as fs from 'fs';
 
-export class PrettierWM extends WorkflowModule {
+export class PrettierModule extends WorkflowModule {
   private config: prettier.Options = {
     trailingComma: 'es5',
     tabWidth: 2,

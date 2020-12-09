@@ -2,7 +2,7 @@ import { WorkflowModule } from '../WorkflowModule';
 import * as jest from 'jest';
 import * as fs from 'fs-extra';
 
-export class JestWM extends WorkflowModule {
+export class JestModule extends WorkflowModule {
   private config = {
     collectCoverage: true,
     coverageReporters: ['json', 'html'],

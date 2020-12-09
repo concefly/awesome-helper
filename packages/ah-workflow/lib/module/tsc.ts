@@ -2,7 +2,7 @@ import { WorkflowModule } from '../WorkflowModule';
 import { spawnSync } from 'child_process';
 import * as fs from 'fs-extra';
 
-export class TscWM extends WorkflowModule {
+export class TscModule extends WorkflowModule {
   private resolveTsConfigPath(stage: string) {
     const configPath = `${this.ctx.projDir}/tsconfig.${stage}.json`;
     if (fs.existsSync(configPath)) return configPath;

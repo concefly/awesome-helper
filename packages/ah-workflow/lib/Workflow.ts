@@ -1,16 +1,22 @@
-import { PrettierWM } from './module/prettier';
-import { TscWM } from './module/tsc';
+import { PrettierModule } from './module/prettier';
+import { TscModule } from './module/tsc';
 import { ModuleCtx } from './ModuleCtx';
 import { WorkflowModule } from './WorkflowModule';
 import { Logger } from './Logger';
 import * as fs from 'fs-extra';
 import * as glob from 'glob';
-import { JestWM } from './module/jest';
+import { JestModule } from './module/jest';
+import { EslintModule } from './module/eslint';
 
 export class Workflow {
   protected logger = new Logger(this.constructor.name);
 
-  private moduleTypes: typeof WorkflowModule[] = [PrettierWM, TscWM, JestWM];
+  private moduleTypes: typeof WorkflowModule[] = [
+    PrettierModule,
+    TscModule,
+    JestModule,
+    EslintModule,
+  ];
   private modules = this.moduleTypes.map(M => new M(new ModuleCtx('src', 'dist', process.cwd())));
 
   async lint() {
