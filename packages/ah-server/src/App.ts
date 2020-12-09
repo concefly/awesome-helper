@@ -14,6 +14,7 @@ import { Server } from 'http';
 declare module '.' {
   interface IApplication extends App {}
 
+  // eslint:disable-next-line
   interface IContext {
     validate: typeof validate;
     app: IApplication;
