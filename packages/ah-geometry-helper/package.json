@@ -1,6 +1,6 @@
 {
   "name": "ah-geometry-helper",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "files": [
     "dist"
@@ -19,7 +19,7 @@
     "@types/lodash.keyby": "^4.6.6",
     "@types/lodash.minby": "^4.6.6",
     "@types/lodash.unionby": "^4.8.6",
-    "ah-workflow": "^1.0.4",
+    "ah-workflow": "^1.0.5",
     "typescript": "^3.5.2"
   },
   "sideEffects": false
