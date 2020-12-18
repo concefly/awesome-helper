@@ -13,7 +13,7 @@ export interface IWalkXmlCtx {
 
 export function walkXml(
   current: Element,
-  tap: (c: Element, ctx: IWalkXmlCtx) => void,
+  tap: (c: Element, _ctx: IWalkXmlCtx) => void,
   ctx: IWalkXmlCtx = { index: 0, depth: 0 }
 ) {
   tap(current, ctx);

@@ -22,5 +22,6 @@
   "dependencies": {
     "ah-tree-helper": "^1.0.1",
     "xml-js": "^1.6.11"
-  }
+  },
+  "gitHead": "f6b0a23053f4713b6f9651011509f91f0ebcdc6c"
 }
