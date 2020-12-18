@@ -1,6 +1,6 @@
 {
   "name": "ah-xml",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Tiny event bus",
   "files": [
     "dist"
