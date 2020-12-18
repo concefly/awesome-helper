@@ -1,0 +1,1172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index XmlHelper 1`] = `
+Array [
+  XmlNode {
+    "id": "0_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "declaration": Object {
+          "attributes": Object {
+            "encoding": "ISO-8859-1",
+            "version": "1.0",
+          },
+        },
+        "elements": Array [
+          Object {
+            "comment": " Edited with XML Spy v2007 (http://www.altova.com) ",
+            "id": "1_0",
+            "parentId": "0_0",
+            "type": "comment",
+          },
+          Object {
+            "attributes": Object {
+              "title": "菜单",
+            },
+            "elements": Array [
+              Object {
+                "attributes": Object {
+                  "title": "菜名",
+                },
+                "elements": Array [
+                  Object {
+                    "elements": Array [
+                      Object {
+                        "id": "4_0",
+                        "parentId": "3_0",
+                        "text": "Belgian Waffles",
+                        "type": "text",
+                      },
+                    ],
+                    "id": "3_0",
+                    "name": "name",
+                    "parentId": "2_0",
+                    "type": "element",
+                  },
+                  Object {
+                    "elements": Array [
+                      Object {
+                        "id": "4_0",
+                        "parentId": "3_1",
+                        "text": "$5.95",
+                        "type": "text",
+                      },
+                    ],
+                    "id": "3_1",
+                    "name": "price",
+                    "parentId": "2_0",
+                    "type": "element",
+                  },
+                  Object {
+                    "elements": Array [
+                      Object {
+                        "id": "4_0",
+                        "parentId": "3_2",
+                        "text": "two of our famous Belgian Waffles with plenty of real maple syrup",
+                        "type": "text",
+                      },
+                    ],
+                    "id": "3_2",
+                    "name": "description",
+                    "parentId": "2_0",
+                    "type": "element",
+                  },
+                  Object {
+                    "elements": Array [
+                      Object {
+                        "id": "4_0",
+                        "parentId": "3_3",
+                        "text": "650",
+                        "type": "text",
+                      },
+                    ],
+                    "id": "3_3",
+                    "name": "calories",
+                    "parentId": "2_0",
+                    "type": "element",
+                  },
+                ],
+                "id": "2_0",
+                "name": "food",
+                "parentId": "1_1",
+                "type": "element",
+              },
+              Object {
+                "elements": Array [
+                  Object {
+                    "elements": Array [
+                      Object {
+                        "id": "4_0",
+                        "parentId": "3_0",
+                        "text": "Strawberry Belgian Waffles",
+                        "type": "text",
+                      },
+                    ],
+                    "id": "3_0",
+                    "name": "name",
+                    "parentId": "2_1",
+                    "type": "element",
+                  },
+                  Object {
+                    "elements": Array [
+                      Object {
+                        "id": "4_0",
+                        "parentId": "3_1",
+                        "text": "$7.95",
+                        "type": "text",
+                      },
+                    ],
+                    "id": "3_1",
+                    "name": "price",
+                    "parentId": "2_1",
+                    "type": "element",
+                  },
+                  Object {
+                    "elements": Array [
+                      Object {
+                        "id": "4_0",
+                        "parentId": "3_2",
+                        "text": "light Belgian waffles covered with strawberries and whipped cream",
+                        "type": "text",
+                      },
+                    ],
+                    "id": "3_2",
+                    "name": "description",
+                    "parentId": "2_1",
+                    "type": "element",
+                  },
+                  Object {
+                    "elements": Array [
+                      Object {
+                        "id": "4_0",
+                        "parentId": "3_3",
+                        "text": "900",
+                        "type": "text",
+                      },
+                    ],
+                    "id": "3_3",
+                    "name": "calories",
+                    "parentId": "2_1",
+                    "type": "element",
+                  },
+                ],
+                "id": "2_1",
+                "name": "food",
+                "parentId": "1_1",
+                "type": "element",
+              },
+            ],
+            "id": "1_1",
+            "name": "breakfast_menu",
+            "parentId": "0_0",
+            "type": "element",
+          },
+        ],
+        "id": "0_0",
+        "parentId": "",
+      },
+    },
+    "parentId": "",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "1_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "comment": " Edited with XML Spy v2007 (http://www.altova.com) ",
+        "id": "1_0",
+        "parentId": "0_0",
+        "type": "comment",
+      },
+    },
+    "parentId": "0_0",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "1_1",
+    "meta": Object {
+      "xmlElement": Object {
+        "attributes": Object {
+          "title": "菜单",
+        },
+        "elements": Array [
+          Object {
+            "attributes": Object {
+              "title": "菜名",
+            },
+            "elements": Array [
+              Object {
+                "elements": Array [
+                  Object {
+                    "id": "4_0",
+                    "parentId": "3_0",
+                    "text": "Belgian Waffles",
+                    "type": "text",
+                  },
+                ],
+                "id": "3_0",
+                "name": "name",
+                "parentId": "2_0",
+                "type": "element",
+              },
+              Object {
+                "elements": Array [
+                  Object {
+                    "id": "4_0",
+                    "parentId": "3_1",
+                    "text": "$5.95",
+                    "type": "text",
+                  },
+                ],
+                "id": "3_1",
+                "name": "price",
+                "parentId": "2_0",
+                "type": "element",
+              },
+              Object {
+                "elements": Array [
+                  Object {
+                    "id": "4_0",
+                    "parentId": "3_2",
+                    "text": "two of our famous Belgian Waffles with plenty of real maple syrup",
+                    "type": "text",
+                  },
+                ],
+                "id": "3_2",
+                "name": "description",
+                "parentId": "2_0",
+                "type": "element",
+              },
+              Object {
+                "elements": Array [
+                  Object {
+                    "id": "4_0",
+                    "parentId": "3_3",
+                    "text": "650",
+                    "type": "text",
+                  },
+                ],
+                "id": "3_3",
+                "name": "calories",
+                "parentId": "2_0",
+                "type": "element",
+              },
+            ],
+            "id": "2_0",
+            "name": "food",
+            "parentId": "1_1",
+            "type": "element",
+          },
+          Object {
+            "elements": Array [
+              Object {
+                "elements": Array [
+                  Object {
+                    "id": "4_0",
+                    "parentId": "3_0",
+                    "text": "Strawberry Belgian Waffles",
+                    "type": "text",
+                  },
+                ],
+                "id": "3_0",
+                "name": "name",
+                "parentId": "2_1",
+                "type": "element",
+              },
+              Object {
+                "elements": Array [
+                  Object {
+                    "id": "4_0",
+                    "parentId": "3_1",
+                    "text": "$7.95",
+                    "type": "text",
+                  },
+                ],
+                "id": "3_1",
+                "name": "price",
+                "parentId": "2_1",
+                "type": "element",
+              },
+              Object {
+                "elements": Array [
+                  Object {
+                    "id": "4_0",
+                    "parentId": "3_2",
+                    "text": "light Belgian waffles covered with strawberries and whipped cream",
+                    "type": "text",
+                  },
+                ],
+                "id": "3_2",
+                "name": "description",
+                "parentId": "2_1",
+                "type": "element",
+              },
+              Object {
+                "elements": Array [
+                  Object {
+                    "id": "4_0",
+                    "parentId": "3_3",
+                    "text": "900",
+                    "type": "text",
+                  },
+                ],
+                "id": "3_3",
+                "name": "calories",
+                "parentId": "2_1",
+                "type": "element",
+              },
+            ],
+            "id": "2_1",
+            "name": "food",
+            "parentId": "1_1",
+            "type": "element",
+          },
+        ],
+        "id": "1_1",
+        "name": "breakfast_menu",
+        "parentId": "0_0",
+        "type": "element",
+      },
+    },
+    "parentId": "0_0",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "2_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "attributes": Object {
+          "title": "菜名",
+        },
+        "elements": Array [
+          Object {
+            "elements": Array [
+              Object {
+                "id": "4_0",
+                "parentId": "3_0",
+                "text": "Belgian Waffles",
+                "type": "text",
+              },
+            ],
+            "id": "3_0",
+            "name": "name",
+            "parentId": "2_0",
+            "type": "element",
+          },
+          Object {
+            "elements": Array [
+              Object {
+                "id": "4_0",
+                "parentId": "3_1",
+                "text": "$5.95",
+                "type": "text",
+              },
+            ],
+            "id": "3_1",
+            "name": "price",
+            "parentId": "2_0",
+            "type": "element",
+          },
+          Object {
+            "elements": Array [
+              Object {
+                "id": "4_0",
+                "parentId": "3_2",
+                "text": "two of our famous Belgian Waffles with plenty of real maple syrup",
+                "type": "text",
+              },
+            ],
+            "id": "3_2",
+            "name": "description",
+            "parentId": "2_0",
+            "type": "element",
+          },
+          Object {
+            "elements": Array [
+              Object {
+                "id": "4_0",
+                "parentId": "3_3",
+                "text": "650",
+                "type": "text",
+              },
+            ],
+            "id": "3_3",
+            "name": "calories",
+            "parentId": "2_0",
+            "type": "element",
+          },
+        ],
+        "id": "2_0",
+        "name": "food",
+        "parentId": "1_1",
+        "type": "element",
+      },
+    },
+    "parentId": "1_1",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "3_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "elements": Array [
+          Object {
+            "id": "4_0",
+            "parentId": "3_0",
+            "text": "Belgian Waffles",
+            "type": "text",
+          },
+        ],
+        "id": "3_0",
+        "name": "name",
+        "parentId": "2_0",
+        "type": "element",
+      },
+    },
+    "parentId": "2_0",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "4_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "id": "4_0",
+        "parentId": "3_0",
+        "text": "Belgian Waffles",
+        "type": "text",
+      },
+    },
+    "parentId": "3_0",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "3_1",
+    "meta": Object {
+      "xmlElement": Object {
+        "elements": Array [
+          Object {
+            "id": "4_0",
+            "parentId": "3_1",
+            "text": "$5.95",
+            "type": "text",
+          },
+        ],
+        "id": "3_1",
+        "name": "price",
+        "parentId": "2_0",
+        "type": "element",
+      },
+    },
+    "parentId": "2_0",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "4_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "id": "4_0",
+        "parentId": "3_1",
+        "text": "$5.95",
+        "type": "text",
+      },
+    },
+    "parentId": "3_1",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "3_2",
+    "meta": Object {
+      "xmlElement": Object {
+        "elements": Array [
+          Object {
+            "id": "4_0",
+            "parentId": "3_2",
+            "text": "two of our famous Belgian Waffles with plenty of real maple syrup",
+            "type": "text",
+          },
+        ],
+        "id": "3_2",
+        "name": "description",
+        "parentId": "2_0",
+        "type": "element",
+      },
+    },
+    "parentId": "2_0",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "4_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "id": "4_0",
+        "parentId": "3_2",
+        "text": "two of our famous Belgian Waffles with plenty of real maple syrup",
+        "type": "text",
+      },
+    },
+    "parentId": "3_2",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "3_3",
+    "meta": Object {
+      "xmlElement": Object {
+        "elements": Array [
+          Object {
+            "id": "4_0",
+            "parentId": "3_3",
+            "text": "650",
+            "type": "text",
+          },
+        ],
+        "id": "3_3",
+        "name": "calories",
+        "parentId": "2_0",
+        "type": "element",
+      },
+    },
+    "parentId": "2_0",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "4_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "id": "4_0",
+        "parentId": "3_3",
+        "text": "650",
+        "type": "text",
+      },
+    },
+    "parentId": "3_3",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "2_1",
+    "meta": Object {
+      "xmlElement": Object {
+        "elements": Array [
+          Object {
+            "elements": Array [
+              Object {
+                "id": "4_0",
+                "parentId": "3_0",
+                "text": "Strawberry Belgian Waffles",
+                "type": "text",
+              },
+            ],
+            "id": "3_0",
+            "name": "name",
+            "parentId": "2_1",
+            "type": "element",
+          },
+          Object {
+            "elements": Array [
+              Object {
+                "id": "4_0",
+                "parentId": "3_1",
+                "text": "$7.95",
+                "type": "text",
+              },
+            ],
+            "id": "3_1",
+            "name": "price",
+            "parentId": "2_1",
+            "type": "element",
+          },
+          Object {
+            "elements": Array [
+              Object {
+                "id": "4_0",
+                "parentId": "3_2",
+                "text": "light Belgian waffles covered with strawberries and whipped cream",
+                "type": "text",
+              },
+            ],
+            "id": "3_2",
+            "name": "description",
+            "parentId": "2_1",
+            "type": "element",
+          },
+          Object {
+            "elements": Array [
+              Object {
+                "id": "4_0",
+                "parentId": "3_3",
+                "text": "900",
+                "type": "text",
+              },
+            ],
+            "id": "3_3",
+            "name": "calories",
+            "parentId": "2_1",
+            "type": "element",
+          },
+        ],
+        "id": "2_1",
+        "name": "food",
+        "parentId": "1_1",
+        "type": "element",
+      },
+    },
+    "parentId": "1_1",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "3_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "elements": Array [
+          Object {
+            "id": "4_0",
+            "parentId": "3_0",
+            "text": "Strawberry Belgian Waffles",
+            "type": "text",
+          },
+        ],
+        "id": "3_0",
+        "name": "name",
+        "parentId": "2_1",
+        "type": "element",
+      },
+    },
+    "parentId": "2_1",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "4_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "id": "4_0",
+        "parentId": "3_0",
+        "text": "Strawberry Belgian Waffles",
+        "type": "text",
+      },
+    },
+    "parentId": "3_0",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "3_1",
+    "meta": Object {
+      "xmlElement": Object {
+        "elements": Array [
+          Object {
+            "id": "4_0",
+            "parentId": "3_1",
+            "text": "$7.95",
+            "type": "text",
+          },
+        ],
+        "id": "3_1",
+        "name": "price",
+        "parentId": "2_1",
+        "type": "element",
+      },
+    },
+    "parentId": "2_1",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "4_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "id": "4_0",
+        "parentId": "3_1",
+        "text": "$7.95",
+        "type": "text",
+      },
+    },
+    "parentId": "3_1",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "3_2",
+    "meta": Object {
+      "xmlElement": Object {
+        "elements": Array [
+          Object {
+            "id": "4_0",
+            "parentId": "3_2",
+            "text": "light Belgian waffles covered with strawberries and whipped cream",
+            "type": "text",
+          },
+        ],
+        "id": "3_2",
+        "name": "description",
+        "parentId": "2_1",
+        "type": "element",
+      },
+    },
+    "parentId": "2_1",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "4_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "id": "4_0",
+        "parentId": "3_2",
+        "text": "light Belgian waffles covered with strawberries and whipped cream",
+        "type": "text",
+      },
+    },
+    "parentId": "3_2",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "3_3",
+    "meta": Object {
+      "xmlElement": Object {
+        "elements": Array [
+          Object {
+            "id": "4_0",
+            "parentId": "3_3",
+            "text": "900",
+            "type": "text",
+          },
+        ],
+        "id": "3_3",
+        "name": "calories",
+        "parentId": "2_1",
+        "type": "element",
+      },
+    },
+    "parentId": "2_1",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+  XmlNode {
+    "id": "4_0",
+    "meta": Object {
+      "xmlElement": Object {
+        "id": "4_0",
+        "parentId": "3_3",
+        "text": "900",
+        "type": "text",
+      },
+    },
+    "parentId": "3_3",
+    "tree": XmlHelper {
+      "getChildrenMap": [Function],
+      "getIdMap": [Function],
+      "list": [Circular],
+      "raw": "<?xml version=\\"1.0\\" encoding=\\"ISO-8859-1\\"?>
+<!-- Edited with XML Spy v2007 (http://www.altova.com) -->
+<breakfast_menu title=\\"菜单\\">
+	<food title=\\"菜名\\">
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories>650</calories>
+	</food>
+	<food>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+		<description>light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories>900</calories>
+	</food>
+</breakfast_menu>",
+    },
+  },
+]
+`;

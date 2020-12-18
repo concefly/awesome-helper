@@ -1,0 +1,26 @@
+{
+  "name": "ah-xml",
+  "version": "0.0.0",
+  "description": "Tiny event bus",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "ci": "ah-workflow ci",
+    "build": "ah-workflow build",
+    "prepublishOnly": "npm run ci && npm run build"
+  },
+  "author": "concefly@foxmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.7.1",
+    "ah-workflow": "^1.0.5",
+    "typescript": "^3.5.2"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "ah-tree-helper": "^1.0.1",
+    "xml-js": "^1.6.11"
+  }
+}
