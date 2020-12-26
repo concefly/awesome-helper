@@ -6,20 +6,22 @@ export interface ElementWithId extends Element {
 }
 
 export interface IWalkXmlCtx {
-  index: number;
-  depth: number;
+  indexTrace: number[];
   parent?: Element;
 }
 
 export function walkXml(
   current: Element,
   tap: (c: Element, _ctx: IWalkXmlCtx) => void,
-  ctx: IWalkXmlCtx = { index: 0, depth: 0 }
+  ctx: IWalkXmlCtx = { indexTrace: [0] }
 ) {
   tap(current, ctx);
 
   current.elements?.forEach((child, index) => {
-    walkXml(child, tap, { parent: current, index, depth: ctx.depth + 1 });
+    walkXml(child, tap, {
+      parent: current,
+      indexTrace: ctx.indexTrace.concat(index),
+    });
   });
 }
 
@@ -32,8 +34,8 @@ export function convertXml2List(input: Element | string) {
 
   const list: ElementWithId[] = [];
 
-  walkXml(xml, (current, { parent, index, depth }) => {
-    const id = [depth, index].join('_');
+  walkXml(xml, (current, { parent, indexTrace }) => {
+    const id = indexTrace.join('.');
 
     // walk 是深度遍历，parent 一定已经被打过 id 了
     const parentId = parent ? (parent as ElementWithId)!.id : '';
@@ -43,4 +45,13 @@ export function convertXml2List(input: Element | string) {
   });
 
   return list;
+}
+
+export function matchTrim<T extends string>(text: string, reg: RegExp, flag: T) {
+  const match = text.match(reg);
+  if (!match) return;
+
+  text = text.replace(reg, '');
+
+  return { text, match, flag };
 }

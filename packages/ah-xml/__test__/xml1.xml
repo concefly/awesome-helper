@@ -2,15 +2,15 @@
 <!-- Edited with XML Spy v2007 (http://www.altova.com) -->
 <breakfast_menu title="菜单">
 	<food title="菜名">
-		<name>Belgian Waffles</name>
-		<price>$5.95</price>
-		<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
-		<calories>650</calories>
+		<name d="1">Belgian Waffles</name>
+		<price d="1">$5.95</price>
+		<description d="1">two of our famous Belgian Waffles with plenty of real maple syrup</description>
+		<calories d="1">650</calories>
 	</food>
 	<food>
-		<name>Strawberry Belgian Waffles</name>
-		<price>$7.95</price>
-		<description>light Belgian waffles covered with strawberries and whipped cream</description>
-		<calories>900</calories>
+		<name d="2">Strawberry Belgian Waffles</name>
+		<price d="2">$7.95</price>
+		<description d="2">light Belgian waffles covered with strawberries and whipped cream</description>
+		<calories d="2">900</calories>
 	</food>
 </breakfast_menu>

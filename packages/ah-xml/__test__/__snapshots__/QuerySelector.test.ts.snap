@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuerySelector "[title=菜名] [d=2]" 1`] = `Array []`;
+
+exports[`QuerySelector "[title] [d=1]" 1`] = `
+Array [
+  "<name __id=\\"0.1.0.0\\" d=\\"1\\">...<name/>",
+  "<price __id=\\"0.1.0.1\\" d=\\"1\\">...<price/>",
+  "<description __id=\\"0.1.0.2\\" d=\\"1\\">...<description/>",
+  "<calories __id=\\"0.1.0.3\\" d=\\"1\\">...<calories/>",
+  "<name __id=\\"0.1.0.0\\" d=\\"1\\">...<name/>",
+  "<price __id=\\"0.1.0.1\\" d=\\"1\\">...<price/>",
+  "<description __id=\\"0.1.0.2\\" d=\\"1\\">...<description/>",
+  "<calories __id=\\"0.1.0.3\\" d=\\"1\\">...<calories/>",
+]
+`;
+
+exports[`QuerySelector "[title] [d]" 1`] = `
+Array [
+  "<name __id=\\"0.1.0.0\\" d=\\"1\\">...<name/>",
+  "<price __id=\\"0.1.0.1\\" d=\\"1\\">...<price/>",
+  "<description __id=\\"0.1.0.2\\" d=\\"1\\">...<description/>",
+  "<calories __id=\\"0.1.0.3\\" d=\\"1\\">...<calories/>",
+  "<name __id=\\"0.1.1.0\\" d=\\"2\\">...<name/>",
+  "<price __id=\\"0.1.1.1\\" d=\\"2\\">...<price/>",
+  "<description __id=\\"0.1.1.2\\" d=\\"2\\">...<description/>",
+  "<calories __id=\\"0.1.1.3\\" d=\\"2\\">...<calories/>",
+  "<name __id=\\"0.1.0.0\\" d=\\"1\\">...<name/>",
+  "<price __id=\\"0.1.0.1\\" d=\\"1\\">...<price/>",
+  "<description __id=\\"0.1.0.2\\" d=\\"1\\">...<description/>",
+  "<calories __id=\\"0.1.0.3\\" d=\\"1\\">...<calories/>",
+]
+`;
+
+exports[`QuerySelector "breakfast_menu food name" 1`] = `
+Array [
+  "<name __id=\\"0.1.0.0\\" d=\\"1\\">...<name/>",
+  "<name __id=\\"0.1.1.0\\" d=\\"2\\">...<name/>",
+]
+`;
+
+exports[`QuerySelector "breakfast_menu food" 1`] = `
+Array [
+  "<food __id=\\"0.1.0\\" title=\\"菜名\\">...<food/>",
+  "<food __id=\\"0.1.1\\">...<food/>",
+]
+`;
+
+exports[`QuerySelector "breakfast_menu food[title=菜名]" 1`] = `
+Array [
+  "<food __id=\\"0.1.0\\" title=\\"菜名\\">...<food/>",
+]
+`;
+
+exports[`QuerySelector "breakfast_menu food[title]" 1`] = `
+Array [
+  "<food __id=\\"0.1.0\\" title=\\"菜名\\">...<food/>",
+]
+`;
+
+exports[`QuerySelector "food > name[d=1]" 1`] = `
+Array [
+  "<name __id=\\"0.1.0.0\\" d=\\"1\\">...<name/>",
+]
+`;
+
+exports[`QuerySelector "name[d]" 1`] = `
+Array [
+  "<name __id=\\"0.1.0.0\\" d=\\"1\\">...<name/>",
+  "<name __id=\\"0.1.1.0\\" d=\\"2\\">...<name/>",
+]
+`;
+
+exports[`createQuerySelector "div   input" 1`] = `
+Array [
+  TypeSelector {
+    "tag": "div",
+  },
+  DescendantCombinator {},
+  TypeSelector {
+    "tag": "input",
+  },
+]
+`;
+
+exports[`createQuerySelector "div > input" 1`] = `
+Array [
+  TypeSelector {
+    "tag": "div",
+  },
+  ChildCombinator {},
+  TypeSelector {
+    "tag": "input",
+  },
+]
+`;
+
+exports[`createQuerySelector "div" 1`] = `
+Array [
+  TypeSelector {
+    "tag": "div",
+  },
+]
+`;
+
+exports[`createQuerySelector "div[title=aa] input" 1`] = `
+Array [
+  TypeSelector {
+    "tag": "div",
+  },
+  AttributeSelector {
+    "attrName": "title",
+    "valueReg": /\\^aa\\$/,
+  },
+  DescendantCombinator {},
+  TypeSelector {
+    "tag": "input",
+  },
+]
+`;
+
+exports[`createQuerySelector "div[title=aa] input[type]    >  span" 1`] = `
+Array [
+  TypeSelector {
+    "tag": "div",
+  },
+  AttributeSelector {
+    "attrName": "title",
+    "valueReg": /\\^aa\\$/,
+  },
+  DescendantCombinator {},
+  TypeSelector {
+    "tag": "input",
+  },
+  AttributeSelector {
+    "attrName": "type",
+    "valueReg": undefined,
+  },
+  ChildCombinator {},
+  TypeSelector {
+    "tag": "span",
+  },
+]
+`;
+
+exports[`createQuerySelector "div[title=aa] input[type]" 1`] = `
+Array [
+  TypeSelector {
+    "tag": "div",
+  },
+  AttributeSelector {
+    "attrName": "title",
+    "valueReg": /\\^aa\\$/,
+  },
+  DescendantCombinator {},
+  TypeSelector {
+    "tag": "input",
+  },
+  AttributeSelector {
+    "attrName": "type",
+    "valueReg": undefined,
+  },
+]
+`;
+
+exports[`createQuerySelector "div[title=aa]" 1`] = `
+Array [
+  TypeSelector {
+    "tag": "div",
+  },
+  AttributeSelector {
+    "attrName": "title",
+    "valueReg": /\\^aa\\$/,
+  },
+]
+`;

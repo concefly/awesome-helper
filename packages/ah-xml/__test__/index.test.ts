@@ -1,11 +1,9 @@
 import { XmlHelper } from '../src';
-import * as fs from 'fs';
-
-const xmlRaw1 = fs.readFileSync('__test__/xml1.xml', { encoding: 'utf-8' });
+import { xmlRaw1 } from './xmlRaw1';
 
 describe('index', () => {
   it('XmlHelper', () => {
     const xml = new XmlHelper(xmlRaw1);
-    expect(xml.list).toMatchSnapshot();
+    expect(xml.list.map(n => n.toString())).toMatchSnapshot();
   });
 });

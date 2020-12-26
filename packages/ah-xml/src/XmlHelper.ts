@@ -1,14 +1,22 @@
 import { TreeHelper } from 'ah-tree-helper';
 import { convertXml2List } from './util';
-import { XmlNode } from './XmlNode';
+import { XmlElementNode, XmlNode, XmlTextNode } from './XmlNode';
+
+function convertInput2NodeList(input: string) {
+  const eleTypeMapper = new Map<string, typeof XmlNode>([
+    ['text', XmlTextNode],
+    ['element', XmlElementNode],
+  ]);
+
+  return convertXml2List(input).map(ele => {
+    const EleType = eleTypeMapper.get(ele.type!) || XmlNode;
+    return new EleType(ele.id, ele.parentId, { xmlElement: ele });
+  });
+}
 
 export class XmlHelper extends TreeHelper<XmlNode> {
   constructor(readonly raw: string) {
-    super(
-      convertXml2List(raw).map(ele => {
-        return new XmlNode(ele.id, ele.parentId, { xmlElement: ele });
-      })
-    );
+    super(convertInput2NodeList(raw));
 
     // 设置 tree
     this.list.forEach(t => t.setTree(this));
