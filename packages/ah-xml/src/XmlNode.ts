@@ -43,7 +43,9 @@ export class XmlNode implements ITreeNode {
   }
 
   get attributes() {
-    return this.meta.xmlElement.attributes;
+    return new Map<string, string>(
+      Object.entries(this.meta.xmlElement.attributes || {}).map(([n, v]) => [n, v + ''])
+    );
   }
 
   walk(...args: RestParameters<XmlHelper['walk']>) {
@@ -66,11 +68,9 @@ export class XmlElementNode extends XmlNode {
   }
 
   toString() {
-    const attrObj = Object.entries({
-      __id: this.id,
-      ...(this.attributes || {}),
-    });
-    const attrStr = attrObj.map(([n, v]) => `${n}="${v}"`).join(' ');
+    const attrStr = [['__id', this.id], ...Array.from(this.attributes.entries())]
+      .map(([n, v]) => `${n}="${v}"`)
+      .join(' ');
 
     if (this.flatChildren.length === 0) {
       return `<${this.tagName} ${attrStr}/>`;

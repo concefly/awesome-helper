@@ -80,9 +80,9 @@ export class AttributeSelector extends BaseSelector {
 
   test(n: XmlNode) {
     if (!n.attributes) return false;
-    if (typeof n.attributes[this.attrName] === 'undefined') return false;
+    if (typeof n.attributes.get(this.attrName) === 'undefined') return false;
 
-    const value = n.attributes[this.attrName] + '';
+    const value = n.attributes.get(this.attrName) + '';
     if (this.valueReg) return this.valueReg.test(value);
 
     return true;
