@@ -85,6 +85,10 @@ export class XmlTextNode extends XmlNode {
     return '';
   }
 
+  get text() {
+    return this.meta.xmlElement.text || '';
+  }
+
   toString() {
     return this.meta.xmlElement.text + '';
   }
