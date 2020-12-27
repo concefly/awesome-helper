@@ -22,4 +22,14 @@ export class XmlHelper extends TreeHelper<XmlNode> {
     // 设置 tree
     this.list.forEach(t => t.setTree(this));
   }
+
+  query(selector: string) {
+    let result: XmlNode[] = [];
+
+    this.findAllRoot().forEach(root => {
+      result = result.concat(root.query(selector));
+    });
+
+    return result;
+  }
 }
