@@ -1,11 +1,12 @@
 import { TreeHelper } from 'ah-tree-helper';
 import { convertXml2List } from './util';
-import { XmlElementNode, XmlNode, XmlTextNode } from './XmlNode';
+import { XmlElementNode, XmlNode, XmlTextNode, XmlCDataNode } from './XmlNode';
 
 function convertInput2NodeList(input: string) {
   const eleTypeMapper = new Map<string, typeof XmlNode>([
     ['text', XmlTextNode],
     ['element', XmlElementNode],
+    ['cdata', XmlCDataNode],
   ]);
 
   return convertXml2List(input).map(ele => {

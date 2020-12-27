@@ -125,9 +125,9 @@ export function createQuerySelector(selector: string): QuerySelector {
   while (cnt-- > 0) {
     const mr =
       // selector
-      matchTrim(selector, /^(\w+)/, 'tag') ||
-      matchTrim(selector, /^\[(\w+)\]/, 'attr1') ||
-      matchTrim(selector, /^\[(\w+)=(.+?)\]/, 'attr2') ||
+      matchTrim(selector, /^([\w_-]+)/, 'tag') ||
+      matchTrim(selector, /^\[([\w_-]+)\]/, 'attr1') ||
+      matchTrim(selector, /^\[([\w_-]+)=(.+?)\]/, 'attr2') ||
       // combinator
       matchTrim(selector, /^\s+(?![>])/, 'DescendantCombinator') ||
       matchTrim(selector, /^\s?\>\s?/, 'ChildCombinator');

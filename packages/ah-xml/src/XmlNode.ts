@@ -89,3 +89,17 @@ export class XmlTextNode extends XmlNode {
     return this.meta.xmlElement.text + '';
   }
 }
+
+export class XmlCDataNode extends XmlNode {
+  get tagName() {
+    return '';
+  }
+
+  get cdata() {
+    return this.meta.xmlElement.cdata || '';
+  }
+
+  toString() {
+    return 'cdata';
+  }
+}
