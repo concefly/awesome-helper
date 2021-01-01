@@ -10,10 +10,9 @@ Object {
             "classes": Object {
               "items": Array [
                 Object {
-                  "format": "object",
                   "properties": Object {
                     "flag": Object {
-                      "format": "string",
+                      "title": undefined,
                       "type": "string",
                     },
                     "foo": Object {
@@ -26,18 +25,17 @@ Object {
                                 "params": Object {
                                   "items": Array [
                                     Object {
-                                      "format": "string",
+                                      "title": undefined,
                                       "type": "string",
                                     },
                                     Object {
-                                      "format": "number",
+                                      "title": undefined,
                                       "type": "integer",
                                     },
                                     Object {
-                                      "format": "object",
                                       "properties": Object {
                                         "city": Object {
-                                          "format": "string",
+                                          "title": undefined,
                                           "type": "string",
                                         },
                                       },
@@ -47,7 +45,7 @@ Object {
                                   "type": "array",
                                 },
                                 "return": Object {
-                                  "format": "string",
+                                  "title": undefined,
                                   "type": "string",
                                 },
                               },
@@ -57,6 +55,7 @@ Object {
                           "type": "array",
                         },
                       },
+                      "title": "foo",
                       "type": "object",
                     },
                     "foo2": Object {
@@ -71,7 +70,7 @@ Object {
                                   "type": "array",
                                 },
                                 "return": Object {
-                                  "format": "number",
+                                  "title": undefined,
                                   "type": "integer",
                                 },
                               },
@@ -81,6 +80,7 @@ Object {
                           "type": "array",
                         },
                       },
+                      "title": "foo2",
                       "type": "object",
                     },
                     "foo3": Object {
@@ -95,10 +95,9 @@ Object {
                                   "type": "array",
                                 },
                                 "return": Object {
-                                  "format": "object",
                                   "properties": Object {
                                     "data": Object {
-                                      "format": "string",
+                                      "title": undefined,
                                       "type": "string",
                                     },
                                   },
@@ -111,6 +110,7 @@ Object {
                           "type": "array",
                         },
                       },
+                      "title": "foo3",
                       "type": "object",
                     },
                     "foo4": Object {
@@ -125,13 +125,11 @@ Object {
                                   "type": "array",
                                 },
                                 "return": Object {
-                                  "format": "object",
                                   "properties": Object {
                                     "foo3Result": Object {
-                                      "format": "object",
                                       "properties": Object {
                                         "data": Object {
-                                          "format": "string",
+                                          "title": undefined,
                                           "type": "string",
                                         },
                                       },
@@ -147,151 +145,15 @@ Object {
                           "type": "array",
                         },
                       },
+                      "title": "foo4",
                       "type": "object",
                     },
                   },
+                  "title": "Animal",
                   "type": "object",
                 },
                 Object {
-                  "format": "object",
                   "properties": Object {
-                    "flag": Object {
-                      "format": "string",
-                      "type": "string",
-                    },
-                    "foo": Object {
-                      "format": "function",
-                      "properties": Object {
-                        "signatures": Object {
-                          "items": Array [
-                            Object {
-                              "properties": Object {
-                                "params": Object {
-                                  "items": Array [
-                                    Object {
-                                      "format": "string",
-                                      "type": "string",
-                                    },
-                                    Object {
-                                      "format": "number",
-                                      "type": "integer",
-                                    },
-                                    Object {
-                                      "format": "object",
-                                      "properties": Object {
-                                        "city": Object {
-                                          "format": "string",
-                                          "type": "string",
-                                        },
-                                      },
-                                      "type": "object",
-                                    },
-                                  ],
-                                  "type": "array",
-                                },
-                                "return": Object {
-                                  "format": "string",
-                                  "type": "string",
-                                },
-                              },
-                              "type": "object",
-                            },
-                          ],
-                          "type": "array",
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "foo2": Object {
-                      "format": "function",
-                      "properties": Object {
-                        "signatures": Object {
-                          "items": Array [
-                            Object {
-                              "properties": Object {
-                                "params": Object {
-                                  "items": Array [],
-                                  "type": "array",
-                                },
-                                "return": Object {
-                                  "format": "number",
-                                  "type": "integer",
-                                },
-                              },
-                              "type": "object",
-                            },
-                          ],
-                          "type": "array",
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "foo3": Object {
-                      "format": "function",
-                      "properties": Object {
-                        "signatures": Object {
-                          "items": Array [
-                            Object {
-                              "properties": Object {
-                                "params": Object {
-                                  "items": Array [],
-                                  "type": "array",
-                                },
-                                "return": Object {
-                                  "format": "object",
-                                  "properties": Object {
-                                    "data": Object {
-                                      "format": "string",
-                                      "type": "string",
-                                    },
-                                  },
-                                  "type": "object",
-                                },
-                              },
-                              "type": "object",
-                            },
-                          ],
-                          "type": "array",
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "foo4": Object {
-                      "format": "function",
-                      "properties": Object {
-                        "signatures": Object {
-                          "items": Array [
-                            Object {
-                              "properties": Object {
-                                "params": Object {
-                                  "items": Array [],
-                                  "type": "array",
-                                },
-                                "return": Object {
-                                  "format": "object",
-                                  "properties": Object {
-                                    "foo3Result": Object {
-                                      "format": "object",
-                                      "properties": Object {
-                                        "data": Object {
-                                          "format": "string",
-                                          "type": "string",
-                                        },
-                                      },
-                                      "type": "object",
-                                    },
-                                  },
-                                  "type": "object",
-                                },
-                              },
-                              "type": "object",
-                            },
-                          ],
-                          "type": "array",
-                        },
-                      },
-                      "type": "object",
-                    },
                     "foo5": Object {
                       "format": "function",
                       "properties": Object {
@@ -304,16 +166,13 @@ Object {
                                   "type": "array",
                                 },
                                 "return": Object {
-                                  "format": "object",
                                   "properties": Object {
                                     "data": Object {
-                                      "format": "object",
                                       "properties": Object {
                                         "foo3Result": Object {
-                                          "format": "object",
                                           "properties": Object {
                                             "data": Object {
-                                              "format": "string",
+                                              "title": undefined,
                                               "type": "string",
                                             },
                                           },
@@ -332,6 +191,7 @@ Object {
                           "type": "array",
                         },
                       },
+                      "title": "foo5",
                       "type": "object",
                     },
                     "walk": Object {
@@ -351,7 +211,7 @@ Object {
                                     "typeArguments": Object {
                                       "items": Array [
                                         Object {
-                                          "format": "number",
+                                          "title": undefined,
                                           "type": "integer",
                                         },
                                       ],
@@ -367,9 +227,11 @@ Object {
                           "type": "array",
                         },
                       },
+                      "title": "walk",
                       "type": "object",
                     },
                   },
+                  "title": "Cat",
                   "type": "object",
                 },
               ],

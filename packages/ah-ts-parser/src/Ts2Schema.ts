@@ -13,13 +13,33 @@ export class Ts2Schema {
   private type2Schema(type: Type, depth = 0): Schema {
     if (depth >= 9) return {};
 
-    if (type.isString() || type.isStringLiteral()) return { format: 'string', type: 'string' };
-    if (type.isNumber() || type.isNumberLiteral()) return { format: 'number', type: 'integer' };
+    const title = type.getSymbol()?.getEscapedName();
+
+    if (type.isString() || type.isStringLiteral()) return { title, type: 'string' };
+    if (type.isNumber() || type.isNumberLiteral()) return { title, type: 'integer' };
+
+    // class
+    if (type.isClass()) {
+      const sym = type.getSymbolOrThrow();
+      const properties: any = {};
+
+      sym.getMembers().forEach(mSym => {
+        const mType = symbol2Type(mSym);
+        properties[mSym.getEscapedName()] = this.type2Schema(mType, depth + 1);
+      });
+
+      return {
+        title,
+        type: 'object',
+        properties,
+      };
+    }
 
     const callSignatures = type.getCallSignatures();
 
     if (callSignatures.length) {
       return {
+        title,
         type: 'object',
         format: 'function',
         properties: {
@@ -70,7 +90,6 @@ export class Ts2Schema {
 
       return {
         type: 'object',
-        format: 'object',
         properties,
       };
     }
