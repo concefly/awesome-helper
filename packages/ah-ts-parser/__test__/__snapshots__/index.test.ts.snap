@@ -1,0 +1,388 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index normal 1`] = `
+Object {
+  "properties": Object {
+    "files": Object {
+      "items": Array [
+        Object {
+          "properties": Object {
+            "classes": Object {
+              "items": Array [
+                Object {
+                  "format": "object",
+                  "properties": Object {
+                    "flag": Object {
+                      "format": "string",
+                      "type": "string",
+                    },
+                    "foo": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [
+                                    Object {
+                                      "format": "string",
+                                      "type": "string",
+                                    },
+                                    Object {
+                                      "format": "number",
+                                      "type": "integer",
+                                    },
+                                    Object {
+                                      "format": "object",
+                                      "properties": Object {
+                                        "city": Object {
+                                          "format": "string",
+                                          "type": "string",
+                                        },
+                                      },
+                                      "type": "object",
+                                    },
+                                  ],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "string",
+                                  "type": "string",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "foo2": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "number",
+                                  "type": "integer",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "foo3": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "object",
+                                  "properties": Object {
+                                    "data": Object {
+                                      "format": "string",
+                                      "type": "string",
+                                    },
+                                  },
+                                  "type": "object",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "foo4": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "object",
+                                  "properties": Object {
+                                    "foo3Result": Object {
+                                      "format": "object",
+                                      "properties": Object {
+                                        "data": Object {
+                                          "format": "string",
+                                          "type": "string",
+                                        },
+                                      },
+                                      "type": "object",
+                                    },
+                                  },
+                                  "type": "object",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                  },
+                  "type": "object",
+                },
+                Object {
+                  "format": "object",
+                  "properties": Object {
+                    "flag": Object {
+                      "format": "string",
+                      "type": "string",
+                    },
+                    "foo": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [
+                                    Object {
+                                      "format": "string",
+                                      "type": "string",
+                                    },
+                                    Object {
+                                      "format": "number",
+                                      "type": "integer",
+                                    },
+                                    Object {
+                                      "format": "object",
+                                      "properties": Object {
+                                        "city": Object {
+                                          "format": "string",
+                                          "type": "string",
+                                        },
+                                      },
+                                      "type": "object",
+                                    },
+                                  ],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "string",
+                                  "type": "string",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "foo2": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "number",
+                                  "type": "integer",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "foo3": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "object",
+                                  "properties": Object {
+                                    "data": Object {
+                                      "format": "string",
+                                      "type": "string",
+                                    },
+                                  },
+                                  "type": "object",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "foo4": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "object",
+                                  "properties": Object {
+                                    "foo3Result": Object {
+                                      "format": "object",
+                                      "properties": Object {
+                                        "data": Object {
+                                          "format": "string",
+                                          "type": "string",
+                                        },
+                                      },
+                                      "type": "object",
+                                    },
+                                  },
+                                  "type": "object",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "foo5": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "object",
+                                  "properties": Object {
+                                    "data": Object {
+                                      "format": "object",
+                                      "properties": Object {
+                                        "foo3Result": Object {
+                                          "format": "object",
+                                          "properties": Object {
+                                            "data": Object {
+                                              "format": "string",
+                                              "type": "string",
+                                            },
+                                          },
+                                          "type": "object",
+                                        },
+                                      },
+                                      "type": "object",
+                                    },
+                                  },
+                                  "type": "object",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "walk": Object {
+                      "format": "function",
+                      "properties": Object {
+                        "signatures": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "params": Object {
+                                  "items": Array [],
+                                  "type": "array",
+                                },
+                                "return": Object {
+                                  "format": "promise",
+                                  "properties": Object {
+                                    "typeArguments": Object {
+                                      "items": Array [
+                                        Object {
+                                          "format": "number",
+                                          "type": "integer",
+                                        },
+                                      ],
+                                      "type": "array",
+                                    },
+                                  },
+                                  "type": "object",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
+                  },
+                  "type": "object",
+                },
+              ],
+              "type": "array",
+            },
+          },
+          "title": "__test__/fixture.ts",
+          "type": "object",
+        },
+      ],
+      "type": "array",
+    },
+  },
+  "type": "object",
+}
+`;

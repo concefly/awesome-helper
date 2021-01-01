@@ -1,0 +1,31 @@
+{
+  "name": "ah-ts-parser",
+  "version": "0.0.0",
+  "description": "ah-ts-parser",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "ci": "ah-workflow ci",
+    "build": "ah-workflow build",
+    "prepublishOnly": "npm run ci && npm run build"
+  },
+  "author": "concefly@foxmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash": "^4.14.166",
+    "@types/node": "^12.7.1",
+    "ah-workflow": "^1.0.5",
+    "typescript": "^3.5.2"
+  },
+  "peerDependencies": {
+    "typescript": ">3"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "jsonschema": "^1.4.0",
+    "ts-morph": "^9.1.0"
+  },
+  "gitHead": "f6b0a23053f4713b6f9651011509f91f0ebcdc6c"
+}
