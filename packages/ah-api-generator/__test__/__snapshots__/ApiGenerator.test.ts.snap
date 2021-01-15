@@ -51,26 +51,26 @@ confirmUserRequest = async (query: { id: number,username: string }) => {
 
 export class SystemService extends BaseService {
   getApiDoc = async () => {
-  return this.request({ pathName: '/system/apiDoc', method: 'get', query });
+  return this.request({ pathName: '/system/apiDoc', method: 'get',  });
 }
 getList = async () => {
-  return this.request({ pathName: '/system', method: 'get', query });
+  return this.request({ pathName: '/system', method: 'get',  });
 }
 updateOne = async () => {
-  return this.request({ pathName: '/system/:name', method: 'put', query });
+  return this.request({ pathName: '/system/:name', method: 'put',  });
 }      
 }
 
 
 export class UserService extends BaseService {
   getUserInfo = async () => {
-  return this.request({ pathName: '/user', method: 'get', query });
+  return this.request({ pathName: '/user', method: 'get',  });
 }
 updateSession = async () => {
-  return this.request({ pathName: '/user/updateSession', method: 'get', query });
+  return this.request({ pathName: '/user/updateSession', method: 'get',  });
 }
 getShiluRoles = async () => {
-  return this.request({ pathName: '/user/shiluRoles', method: 'get', query });
+  return this.request({ pathName: '/user/shiluRoles', method: 'get',  });
 }
 assignShiluRoles = async (query: { roleId: number }) => {
   return this.request({ pathName: '/user/shiluRoles', method: 'post', query });

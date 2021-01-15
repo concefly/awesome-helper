@@ -387,17 +387,17 @@ Object {
   },
   "system": Object {
     "getApiDoc": Object {
-      "body": "return this.request({ pathName: '/system/apiDoc', method: 'get', query });",
+      "body": "return this.request({ pathName: '/system/apiDoc', method: 'get',  });",
       "parameters": Array [],
       "reqSchema": undefined,
     },
     "getList": Object {
-      "body": "return this.request({ pathName: '/system', method: 'get', query });",
+      "body": "return this.request({ pathName: '/system', method: 'get',  });",
       "parameters": Array [],
       "reqSchema": undefined,
     },
     "updateOne": Object {
-      "body": "return this.request({ pathName: '/system/:name', method: 'put', query });",
+      "body": "return this.request({ pathName: '/system/:name', method: 'put',  });",
       "parameters": Array [],
       "reqSchema": undefined,
     },
@@ -538,12 +538,12 @@ Object {
       },
     },
     "getShiluRoles": Object {
-      "body": "return this.request({ pathName: '/user/shiluRoles', method: 'get', query });",
+      "body": "return this.request({ pathName: '/user/shiluRoles', method: 'get',  });",
       "parameters": Array [],
       "reqSchema": undefined,
     },
     "getUserInfo": Object {
-      "body": "return this.request({ pathName: '/user', method: 'get', query });",
+      "body": "return this.request({ pathName: '/user', method: 'get',  });",
       "parameters": Array [],
       "reqSchema": undefined,
     },
@@ -565,7 +565,7 @@ Object {
       },
     },
     "updateSession": Object {
-      "body": "return this.request({ pathName: '/user/updateSession', method: 'get', query });",
+      "body": "return this.request({ pathName: '/user/updateSession', method: 'get',  });",
       "parameters": Array [],
       "reqSchema": undefined,
     },
