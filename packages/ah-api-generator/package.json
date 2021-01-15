@@ -9,6 +9,7 @@
   "scripts": {
     "ci": "ah-workflow ci",
     "build": "ah-workflow build",
+    "test": "ah-workflow test",
     "prepublishOnly": "npm run ci && npm run build"
   },
   "author": "concefly@foxmail.com",

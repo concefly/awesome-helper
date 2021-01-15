@@ -81,7 +81,9 @@ export function renderService(apiDoc: API.Document) {
       ).split('.');
 
       const reqSchema = parseRequestSchema(commonPiData);
-      const parameters = reqSchema
+      const hasQuery = !!reqSchema;
+
+      const parameters = hasQuery
         ? [
             {
               name: 'query',
@@ -93,7 +95,9 @@ export function renderService(apiDoc: API.Document) {
       const requestMeta: IRequestMeta = {
         reqSchema,
         parameters,
-        body: `return this.request({ pathName: '${pathName}', method: '${method}', query });`,
+        body: `return this.request({ pathName: '${pathName}', method: '${method}', ${
+          hasQuery ? 'query' : ''
+        } });`,
       };
 
       //
