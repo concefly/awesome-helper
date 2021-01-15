@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApiGenerator normal 1`] = `
+"
+export class PageService extends BaseService {
+  getList = async (query: { name?: string,title?: string,summary?: string }) => {
+  return this.request({ pathName: '/page', method: 'get', query });
+}
+createOne = async (query: { title: string,summary: string,content: string,meta: object }) => {
+  return this.request({ pathName: '/page', method: 'post', query });
+}
+updateOne = async (query: { name: string,title?: string,summary?: string,content?: string,meta?: object }) => {
+  return this.request({ pathName: '/page/:name', method: 'put', query });
+}
+removeOne = async (query: { name?: string }) => {
+  return this.request({ pathName: '/page/:name', method: 'delete', query });
+}      
+}
+
+
+export class ReserveService extends BaseService {
+  getActivityList = async (query: { id?: number }) => {
+  return this.request({ pathName: '/reserve_activity', method: 'get', query });
+}
+createActivity = async (query: { title: string,detail?: string,meta?: { richDetailMeta?: object } }) => {
+  return this.request({ pathName: '/reserve_activity', method: 'post', query });
+}
+updateActivity = async (query: { id: number,title?: string,detail?: string,meta?: { richDetailMeta?: object } }) => {
+  return this.request({ pathName: '/reserve_activity/:id', method: 'put', query });
+}
+removeActivity = async (query: { id?: number }) => {
+  return this.request({ pathName: '/reserve_activity/:id', method: 'delete', query });
+}
+getCalenderList = async (query: { id?: number,activity_id?: number,startTime?: string,endTime?: string }) => {
+  return this.request({ pathName: '/reserve_calendar', method: 'get', query });
+}
+createCalender = async (query: { activity_id: number,list: any }) => {
+  return this.request({ pathName: '/reserve_calendar', method: 'post', query });
+}
+updateCalender = async (query: { id: number,start_time?: string,end_time?: string,location?: string,detail?: string,status?: string,meta?: { richDetailMeta?: object } }) => {
+  return this.request({ pathName: '/reserve_calendar/:id', method: 'put', query });
+}
+getUserRequestList = async (query: { calendar_id?: number }) => {
+  return this.request({ pathName: '/reserve_request', method: 'get', query });
+}
+confirmUserRequest = async (query: { id: number,username: string }) => {
+  return this.request({ pathName: '/reserve_request/:id/confirm', method: 'put', query });
+}      
+}
+
+
+export class SystemService extends BaseService {
+  getApiDoc = async () => {
+  return this.request({ pathName: '/system/apiDoc', method: 'get', query });
+}
+getList = async () => {
+  return this.request({ pathName: '/system', method: 'get', query });
+}
+updateOne = async () => {
+  return this.request({ pathName: '/system/:name', method: 'put', query });
+}      
+}
+
+
+export class UserService extends BaseService {
+  getUserInfo = async () => {
+  return this.request({ pathName: '/user', method: 'get', query });
+}
+updateSession = async () => {
+  return this.request({ pathName: '/user/updateSession', method: 'get', query });
+}
+getShiluRoles = async () => {
+  return this.request({ pathName: '/user/shiluRoles', method: 'get', query });
+}
+assignShiluRoles = async (query: { roleId: number }) => {
+  return this.request({ pathName: '/user/shiluRoles', method: 'post', query });
+}
+removeShiluRoles = async (query: { roleId?: number }) => {
+  return this.request({ pathName: '/user/shiluRoles', method: 'delete', query });
+}
+getEnterCode = async (query: { pavilionId?: number }) => {
+  return this.request({ pathName: '/user/enterCode', method: 'get', query });
+}
+getLeaveInfo = async (query: { pavilionId?: number }) => {
+  return this.request({ pathName: '/user/leaveInfo', method: 'get', query });
+}
+addReserveRequest = async (query: { calendar_id: number,type: string,meta?: { members?: any } }) => {
+  return this.request({ pathName: '/user/reserve_request', method: 'post', query });
+}
+cancelReserveRequest = async (query: { id: number }) => {
+  return this.request({ pathName: '/user/reserve_request/:id/cancel', method: 'put', query });
+}      
+}"
+`;

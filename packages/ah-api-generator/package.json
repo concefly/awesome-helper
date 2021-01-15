@@ -1,0 +1,30 @@
+{
+  "name": "ah-api-generator",
+  "version": "0.0.1",
+  "description": "ah-api-generator",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "ci": "ah-workflow ci",
+    "build": "ah-workflow build",
+    "prepublishOnly": "npm run ci && npm run build"
+  },
+  "author": "concefly@foxmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ejs": "^3.0.5",
+    "@types/lodash": "^4.14.167",
+    "@types/node": "^12.7.1",
+    "ah-workflow": "^1.0.5",
+    "openapi-types": "^7.2.3",
+    "typescript": "^3.5.2"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "jsonschema": "^1.4.0",
+    "lodash": "^4.17.20"
+  }
+}
