@@ -197,6 +197,26 @@ Object {
                     "walk": Object {
                       "format": "function",
                       "properties": Object {
+                        "decorators": Object {
+                          "items": Array [
+                            Object {
+                              "properties": Object {
+                                "arguments": Object {
+                                  "items": Array [
+                                    Object {
+                                      "const": "'meta'",
+                                      "type": "string",
+                                    },
+                                  ],
+                                  "type": "array",
+                                },
+                              },
+                              "title": "addMeta",
+                              "type": "object",
+                            },
+                          ],
+                          "type": "array",
+                        },
                         "signatures": Object {
                           "items": Array [
                             Object {
@@ -232,6 +252,129 @@ Object {
                     },
                   },
                   "title": "Cat",
+                  "type": "object",
+                },
+              ],
+              "type": "array",
+            },
+            "functions": Object {
+              "items": Array [
+                Object {
+                  "format": "function",
+                  "properties": Object {
+                    "signatures": Object {
+                      "items": Array [
+                        Object {
+                          "properties": Object {
+                            "params": Object {
+                              "items": Array [
+                                Object {
+                                  "title": undefined,
+                                  "type": "string",
+                                },
+                              ],
+                              "type": "array",
+                            },
+                            "return": Object {
+                              "format": "function",
+                              "properties": Object {
+                                "signatures": Object {
+                                  "items": Array [
+                                    Object {
+                                      "properties": Object {
+                                        "params": Object {
+                                          "items": Array [
+                                            Object {},
+                                            Object {
+                                              "title": undefined,
+                                              "type": "string",
+                                            },
+                                            Object {
+                                              "properties": Object {
+                                                "configurable": Object {},
+                                                "enumerable": Object {},
+                                                "get": Object {},
+                                                "set": Object {},
+                                                "value": Object {},
+                                                "writable": Object {},
+                                              },
+                                              "type": "object",
+                                            },
+                                          ],
+                                          "type": "array",
+                                        },
+                                        "return": Object {},
+                                      },
+                                      "type": "object",
+                                    },
+                                  ],
+                                  "type": "array",
+                                },
+                              },
+                              "title": "__function",
+                              "type": "object",
+                            },
+                          },
+                          "type": "object",
+                        },
+                      ],
+                      "type": "array",
+                    },
+                  },
+                  "title": "addMeta",
+                  "type": "object",
+                },
+                Object {
+                  "format": "function",
+                  "properties": Object {
+                    "signatures": Object {
+                      "items": Array [
+                        Object {
+                          "properties": Object {
+                            "params": Object {
+                              "items": Array [
+                                Object {
+                                  "title": undefined,
+                                  "type": "string",
+                                },
+                                Object {
+                                  "title": undefined,
+                                  "type": "integer",
+                                },
+                                Object {
+                                  "properties": Object {
+                                    "city": Object {
+                                      "title": undefined,
+                                      "type": "string",
+                                    },
+                                  },
+                                  "type": "object",
+                                },
+                              ],
+                              "type": "array",
+                            },
+                            "return": Object {
+                              "properties": Object {
+                                "age": Object {
+                                  "title": undefined,
+                                  "type": "string",
+                                },
+                                "list": Object {},
+                                "name": Object {
+                                  "title": undefined,
+                                  "type": "string",
+                                },
+                              },
+                              "type": "object",
+                            },
+                          },
+                          "type": "object",
+                        },
+                      ],
+                      "type": "array",
+                    },
+                  },
+                  "title": "foo",
                   "type": "object",
                 },
               ],
