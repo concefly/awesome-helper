@@ -1,6 +1,6 @@
 {
   "name": "wsa",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "webpack stats 分析工具",
   "main": "src/lib/analyser.js",
   "bin": {
