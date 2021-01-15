@@ -1,6 +1,6 @@
 {
   "name": "ah-api-generator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "ah-api-generator",
   "files": [
     "dist"
@@ -17,7 +17,7 @@
     "@types/ejs": "^3.0.5",
     "@types/lodash": "^4.14.167",
     "@types/node": "^12.7.1",
-    "ah-workflow": "^1.0.5",
+    "ah-workflow": "^1.0.6",
     "openapi-types": "^7.2.3",
     "typescript": "^3.5.2"
   },
