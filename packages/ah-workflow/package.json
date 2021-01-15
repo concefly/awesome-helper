@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "npm run clean && tsc -p tsconfig.build.json --outDir dist",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "echo buildManualPlease"
   },
   "dependencies": {
     "@typescript-eslint/parser": "^4.9.1",
