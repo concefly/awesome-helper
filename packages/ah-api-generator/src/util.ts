@@ -129,9 +129,9 @@ export function schema2TsTypeLiteral(s?: Schema): string {
           }),
           '}',
         ].join(' ');
-      } else {
-        return 'object';
       }
+
+      return 'object';
     }
   }
 

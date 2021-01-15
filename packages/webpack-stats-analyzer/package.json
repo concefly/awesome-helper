@@ -14,7 +14,7 @@
     "lint": "npm run prettier",
     "test": "jest --config jest.config.json",
     "ci": "npm run test",
-    "prepublish": "npm run ci"
+    "prepublishOnly": "npm run ci"
   },
   "repository": {
     "type": "git",

@@ -26,5 +26,6 @@
     "ejs": "^3.1.5",
     "jsonschema": "^1.4.0",
     "lodash": "^4.17.20"
-  }
+  },
+  "gitHead": "9df7519e8efca6682776dfa85a23bdbc66e5d2b1"
 }
