@@ -4,570 +4,557 @@ exports[`util renderService 1`] = `
 Object {
   "page": Object {
     "createOne": Object {
-      "body": "return this.request({ pathName: '/page', method: 'post', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ title: string,summary: string,content: string,meta: object }",
+      "description": undefined,
+      "method": "post",
+      "pathName": "/page",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "content": Object {
+              "type": "string",
+            },
+            "meta": Object {
+              "type": "object",
+            },
+            "summary": Object {
+              "type": "string",
+            },
+            "title": Object {
+              "type": "string",
+            },
+          },
+          "required": Array [
+            "title",
+            "summary",
+            "content",
+            "meta",
+          ],
+          "type": "object",
         },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "content": Object {
-            "type": "string",
-          },
-          "meta": Object {
-            "type": "object",
-          },
-          "summary": Object {
-            "type": "string",
-          },
-          "title": Object {
-            "type": "string",
-          },
-        },
-        "required": Array [
-          "title",
-          "summary",
-          "content",
-          "meta",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ title: string,summary: string,content: string,meta: object }",
       },
     },
     "getList": Object {
-      "body": "return this.request({ pathName: '/page', method: 'get', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ name?: string,title?: string,summary?: string }",
+      "description": undefined,
+      "method": "get",
+      "pathName": "/page",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "name": Object {
+              "type": "string",
+            },
+            "summary": Object {
+              "type": "string",
+            },
+            "title": Object {
+              "type": "string",
+            },
+          },
+          "type": "object",
         },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "name": Object {
-            "type": "string",
-          },
-          "summary": Object {
-            "type": "string",
-          },
-          "title": Object {
-            "type": "string",
-          },
-        },
-        "type": "object",
+        "tsTypeLiteral": "{ name?: string,title?: string,summary?: string }",
       },
     },
     "removeOne": Object {
-      "body": "return this.request({ pathName: '/page/:name', method: 'delete', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ name?: string }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "name": Object {
-            "type": "string",
+      "description": undefined,
+      "method": "delete",
+      "pathName": "/page/:name",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "name": Object {
+              "type": "string",
+            },
           },
+          "type": "object",
         },
-        "type": "object",
+        "tsTypeLiteral": "{ name?: string }",
       },
     },
     "updateOne": Object {
-      "body": "return this.request({ pathName: '/page/:name', method: 'put', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ name: string,title?: string,summary?: string,content?: string,meta?: object }",
+      "description": undefined,
+      "method": "put",
+      "pathName": "/page/:name",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "content": Object {
+              "type": "string",
+            },
+            "meta": Object {
+              "type": "object",
+            },
+            "name": Object {
+              "type": "string",
+            },
+            "summary": Object {
+              "type": "string",
+            },
+            "title": Object {
+              "type": "string",
+            },
+          },
+          "required": Array [
+            "name",
+          ],
+          "type": "object",
         },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "content": Object {
-            "type": "string",
-          },
-          "meta": Object {
-            "type": "object",
-          },
-          "name": Object {
-            "type": "string",
-          },
-          "summary": Object {
-            "type": "string",
-          },
-          "title": Object {
-            "type": "string",
-          },
-        },
-        "required": Array [
-          "name",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ name: string,title?: string,summary?: string,content?: string,meta?: object }",
       },
     },
   },
   "reserve": Object {
     "confirmUserRequest": Object {
-      "body": "return this.request({ pathName: '/reserve_request/:id/confirm', method: 'put', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ id: number,username: string }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "id": Object {
-            "type": "integer",
+      "description": undefined,
+      "method": "put",
+      "pathName": "/reserve_request/:id/confirm",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "id": Object {
+              "type": "integer",
+            },
+            "username": Object {
+              "type": "string",
+            },
           },
-          "username": Object {
-            "type": "string",
-          },
+          "required": Array [
+            "id",
+            "username",
+          ],
+          "type": "object",
         },
-        "required": Array [
-          "id",
-          "username",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ id: number,username: string }",
       },
     },
     "createActivity": Object {
-      "body": "return this.request({ pathName: '/reserve_activity', method: 'post', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ title: string,detail?: string,meta?: { richDetailMeta?: object } }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "detail": Object {
-            "type": "string",
-          },
-          "meta": Object {
-            "properties": Object {
-              "richDetailMeta": Object {
-                "type": "object",
-              },
+      "description": undefined,
+      "method": "post",
+      "pathName": "/reserve_activity",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "detail": Object {
+              "type": "string",
             },
-            "type": "object",
+            "meta": Object {
+              "properties": Object {
+                "richDetailMeta": Object {
+                  "type": "object",
+                },
+              },
+              "type": "object",
+            },
+            "title": Object {
+              "description": "活动标题",
+              "type": "string",
+            },
           },
-          "title": Object {
-            "description": "活动标题",
-            "type": "string",
-          },
+          "required": Array [
+            "title",
+          ],
+          "type": "object",
         },
-        "required": Array [
-          "title",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ title: string,detail?: string,meta?: { richDetailMeta?: object } }",
       },
     },
     "createCalender": Object {
-      "body": "return this.request({ pathName: '/reserve_calendar', method: 'post', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ activity_id: number,list: any }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "activity_id": Object {
-            "type": "integer",
-          },
-          "list": Object {
-            "items": Object {
-              "properties": Object {
-                "detail": Object {
-                  "type": "string",
-                },
-                "end_time": Object {
-                  "type": "string",
-                },
-                "location": Object {
-                  "type": "string",
-                },
-                "meta": Object {
-                  "properties": Object {
-                    "richDetailMeta": Object {
-                      "type": "object",
-                    },
-                  },
-                  "type": "object",
-                },
-                "start_time": Object {
-                  "type": "string",
-                },
-                "status": Object {
-                  "enum": Array [
-                    "enabled",
-                    "disabled",
-                  ],
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "start_time",
-                "end_time",
-              ],
-              "type": "object",
+      "description": undefined,
+      "method": "post",
+      "pathName": "/reserve_calendar",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "activity_id": Object {
+              "type": "integer",
             },
-            "maxItems": 30,
-            "type": "array",
+            "list": Object {
+              "items": Object {
+                "properties": Object {
+                  "detail": Object {
+                    "type": "string",
+                  },
+                  "end_time": Object {
+                    "type": "string",
+                  },
+                  "location": Object {
+                    "type": "string",
+                  },
+                  "meta": Object {
+                    "properties": Object {
+                      "richDetailMeta": Object {
+                        "type": "object",
+                      },
+                    },
+                    "type": "object",
+                  },
+                  "start_time": Object {
+                    "type": "string",
+                  },
+                  "status": Object {
+                    "enum": Array [
+                      "enabled",
+                      "disabled",
+                    ],
+                    "type": "string",
+                  },
+                },
+                "required": Array [
+                  "start_time",
+                  "end_time",
+                ],
+                "type": "object",
+              },
+              "maxItems": 30,
+              "type": "array",
+            },
           },
+          "required": Array [
+            "activity_id",
+            "list",
+          ],
+          "type": "object",
         },
-        "required": Array [
-          "activity_id",
-          "list",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ activity_id: number,list: any }",
       },
     },
     "getActivityList": Object {
-      "body": "return this.request({ pathName: '/reserve_activity', method: 'get', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ id?: number }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "id": Object {
-            "type": "integer",
+      "description": undefined,
+      "method": "get",
+      "pathName": "/reserve_activity",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "id": Object {
+              "type": "integer",
+            },
           },
+          "type": "object",
         },
-        "type": "object",
+        "tsTypeLiteral": "{ id?: number }",
       },
     },
     "getCalenderList": Object {
-      "body": "return this.request({ pathName: '/reserve_calendar', method: 'get', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ id?: number,activity_id?: number,startTime?: string,endTime?: string }",
+      "description": undefined,
+      "method": "get",
+      "pathName": "/reserve_calendar",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "activity_id": Object {
+              "type": "integer",
+            },
+            "endTime": Object {
+              "type": "string",
+            },
+            "id": Object {
+              "type": "integer",
+            },
+            "startTime": Object {
+              "type": "string",
+            },
+          },
+          "type": "object",
         },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "activity_id": Object {
-            "type": "integer",
-          },
-          "endTime": Object {
-            "type": "string",
-          },
-          "id": Object {
-            "type": "integer",
-          },
-          "startTime": Object {
-            "type": "string",
-          },
-        },
-        "type": "object",
+        "tsTypeLiteral": "{ id?: number,activity_id?: number,startTime?: string,endTime?: string }",
       },
     },
     "getUserRequestList": Object {
-      "body": "return this.request({ pathName: '/reserve_request', method: 'get', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ calendar_id?: number }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "calendar_id": Object {
-            "type": "integer",
+      "description": undefined,
+      "method": "get",
+      "pathName": "/reserve_request",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "calendar_id": Object {
+              "type": "integer",
+            },
           },
+          "type": "object",
         },
-        "type": "object",
+        "tsTypeLiteral": "{ calendar_id?: number }",
       },
     },
     "removeActivity": Object {
-      "body": "return this.request({ pathName: '/reserve_activity/:id', method: 'delete', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ id?: number }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "id": Object {
-            "type": "integer",
+      "description": undefined,
+      "method": "delete",
+      "pathName": "/reserve_activity/:id",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "id": Object {
+              "type": "integer",
+            },
           },
+          "type": "object",
         },
-        "type": "object",
+        "tsTypeLiteral": "{ id?: number }",
       },
     },
     "updateActivity": Object {
-      "body": "return this.request({ pathName: '/reserve_activity/:id', method: 'put', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ id: number,title?: string,detail?: string,meta?: { richDetailMeta?: object } }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "detail": Object {
-            "type": "string",
-          },
-          "id": Object {
-            "type": "integer",
-          },
-          "meta": Object {
-            "properties": Object {
-              "richDetailMeta": Object {
-                "type": "object",
-              },
+      "description": undefined,
+      "method": "put",
+      "pathName": "/reserve_activity/:id",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "detail": Object {
+              "type": "string",
             },
-            "type": "object",
+            "id": Object {
+              "type": "integer",
+            },
+            "meta": Object {
+              "properties": Object {
+                "richDetailMeta": Object {
+                  "type": "object",
+                },
+              },
+              "type": "object",
+            },
+            "title": Object {
+              "type": "string",
+            },
           },
-          "title": Object {
-            "type": "string",
-          },
+          "required": Array [
+            "id",
+          ],
+          "type": "object",
         },
-        "required": Array [
-          "id",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ id: number,title?: string,detail?: string,meta?: { richDetailMeta?: object } }",
       },
     },
     "updateCalender": Object {
-      "body": "return this.request({ pathName: '/reserve_calendar/:id', method: 'put', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ id: number,start_time?: string,end_time?: string,location?: string,detail?: string,status?: string,meta?: { richDetailMeta?: object } }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "detail": Object {
-            "type": "string",
-          },
-          "end_time": Object {
-            "type": "string",
-          },
-          "id": Object {
-            "type": "integer",
-          },
-          "location": Object {
-            "type": "string",
-          },
-          "meta": Object {
-            "properties": Object {
-              "richDetailMeta": Object {
-                "type": "object",
-              },
+      "description": undefined,
+      "method": "put",
+      "pathName": "/reserve_calendar/:id",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "detail": Object {
+              "type": "string",
             },
-            "type": "object",
+            "end_time": Object {
+              "type": "string",
+            },
+            "id": Object {
+              "type": "integer",
+            },
+            "location": Object {
+              "type": "string",
+            },
+            "meta": Object {
+              "properties": Object {
+                "richDetailMeta": Object {
+                  "type": "object",
+                },
+              },
+              "type": "object",
+            },
+            "start_time": Object {
+              "type": "string",
+            },
+            "status": Object {
+              "enum": Array [
+                "enabled",
+                "disabled",
+              ],
+              "type": "string",
+            },
           },
-          "start_time": Object {
-            "type": "string",
-          },
-          "status": Object {
-            "enum": Array [
-              "enabled",
-              "disabled",
-            ],
-            "type": "string",
-          },
+          "required": Array [
+            "id",
+          ],
+          "type": "object",
         },
-        "required": Array [
-          "id",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ id: number,start_time?: string,end_time?: string,location?: string,detail?: string,status?: string,meta?: { richDetailMeta?: object } }",
       },
     },
   },
   "system": Object {
     "getApiDoc": Object {
-      "body": "return this.request({ pathName: '/system/apiDoc', method: 'get',  });",
-      "parameters": Array [],
-      "reqSchema": undefined,
+      "description": undefined,
+      "method": "get",
+      "pathName": "/system/apiDoc",
+      "query": undefined,
     },
     "getList": Object {
-      "body": "return this.request({ pathName: '/system', method: 'get',  });",
-      "parameters": Array [],
-      "reqSchema": undefined,
+      "description": undefined,
+      "method": "get",
+      "pathName": "/system",
+      "query": undefined,
     },
     "updateOne": Object {
-      "body": "return this.request({ pathName: '/system/:name', method: 'put',  });",
-      "parameters": Array [],
-      "reqSchema": undefined,
+      "description": undefined,
+      "method": "put",
+      "pathName": "/system/:name",
+      "query": undefined,
     },
   },
   "user": Object {
     "addReserveRequest": Object {
-      "body": "return this.request({ pathName: '/user/reserve_request', method: 'post', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ calendar_id: number,type: string,meta?: { members?: any } }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "calendar_id": Object {
-            "type": "integer",
-          },
-          "meta": Object {
-            "properties": Object {
-              "members": Object {
-                "items": Object {
-                  "properties": Object {
-                    "gender": Object {
-                      "enum": Array [
-                        "男",
-                        "女",
-                      ],
-                      "type": "string",
-                    },
-                    "nick": Object {
-                      "type": "string",
-                    },
-                    "phone": Object {
-                      "type": "string",
-                    },
-                  },
-                  "required": Array [
-                    "nick",
-                    "gender",
-                    "phone",
-                  ],
-                  "type": "object",
-                },
-                "maxItems": 20,
-                "type": "array",
-              },
+      "description": undefined,
+      "method": "post",
+      "pathName": "/user/reserve_request",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "calendar_id": Object {
+              "type": "integer",
             },
-            "type": "object",
+            "meta": Object {
+              "properties": Object {
+                "members": Object {
+                  "items": Object {
+                    "properties": Object {
+                      "gender": Object {
+                        "enum": Array [
+                          "男",
+                          "女",
+                        ],
+                        "type": "string",
+                      },
+                      "nick": Object {
+                        "type": "string",
+                      },
+                      "phone": Object {
+                        "type": "string",
+                      },
+                    },
+                    "required": Array [
+                      "nick",
+                      "gender",
+                      "phone",
+                    ],
+                    "type": "object",
+                  },
+                  "maxItems": 20,
+                  "type": "array",
+                },
+              },
+              "type": "object",
+            },
+            "type": Object {
+              "enum": Array [
+                "team",
+                "personal",
+              ],
+              "type": "string",
+            },
           },
-          "type": Object {
-            "enum": Array [
-              "team",
-              "personal",
-            ],
-            "type": "string",
-          },
+          "required": Array [
+            "calendar_id",
+            "type",
+          ],
+          "type": "object",
         },
-        "required": Array [
-          "calendar_id",
-          "type",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ calendar_id: number,type: string,meta?: { members?: any } }",
       },
     },
     "assignShiluRoles": Object {
-      "body": "return this.request({ pathName: '/user/shiluRoles', method: 'post', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ roleId: number }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "roleId": Object {
-            "type": "integer",
+      "description": undefined,
+      "method": "post",
+      "pathName": "/user/shiluRoles",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "roleId": Object {
+              "type": "integer",
+            },
           },
+          "required": Array [
+            "roleId",
+          ],
+          "type": "object",
         },
-        "required": Array [
-          "roleId",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ roleId: number }",
       },
     },
     "cancelReserveRequest": Object {
-      "body": "return this.request({ pathName: '/user/reserve_request/:id/cancel', method: 'put', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ id: number }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "id": Object {
-            "type": "integer",
+      "description": undefined,
+      "method": "put",
+      "pathName": "/user/reserve_request/:id/cancel",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "id": Object {
+              "type": "integer",
+            },
           },
+          "required": Array [
+            "id",
+          ],
+          "type": "object",
         },
-        "required": Array [
-          "id",
-        ],
-        "type": "object",
+        "tsTypeLiteral": "{ id: number }",
       },
     },
     "getEnterCode": Object {
-      "body": "return this.request({ pathName: '/user/enterCode', method: 'get', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ pavilionId?: number }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "pavilionId": Object {
-            "type": "integer",
+      "description": undefined,
+      "method": "get",
+      "pathName": "/user/enterCode",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "pavilionId": Object {
+              "type": "integer",
+            },
           },
+          "type": "object",
         },
-        "type": "object",
+        "tsTypeLiteral": "{ pavilionId?: number }",
       },
     },
     "getLeaveInfo": Object {
-      "body": "return this.request({ pathName: '/user/leaveInfo', method: 'get', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ pavilionId?: number }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "pavilionId": Object {
-            "type": "integer",
+      "description": undefined,
+      "method": "get",
+      "pathName": "/user/leaveInfo",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "pavilionId": Object {
+              "type": "integer",
+            },
           },
+          "type": "object",
         },
-        "type": "object",
+        "tsTypeLiteral": "{ pavilionId?: number }",
       },
     },
     "getShiluRoles": Object {
-      "body": "return this.request({ pathName: '/user/shiluRoles', method: 'get',  });",
-      "parameters": Array [],
-      "reqSchema": undefined,
+      "description": undefined,
+      "method": "get",
+      "pathName": "/user/shiluRoles",
+      "query": undefined,
     },
     "getUserInfo": Object {
-      "body": "return this.request({ pathName: '/user', method: 'get',  });",
-      "parameters": Array [],
-      "reqSchema": undefined,
+      "description": undefined,
+      "method": "get",
+      "pathName": "/user",
+      "query": undefined,
     },
     "removeShiluRoles": Object {
-      "body": "return this.request({ pathName: '/user/shiluRoles', method: 'delete', query });",
-      "parameters": Array [
-        Object {
-          "name": "query",
-          "tsType": "{ roleId?: number }",
-        },
-      ],
-      "reqSchema": Object {
-        "properties": Object {
-          "roleId": Object {
-            "type": "integer",
+      "description": undefined,
+      "method": "delete",
+      "pathName": "/user/shiluRoles",
+      "query": Object {
+        "schema": Object {
+          "properties": Object {
+            "roleId": Object {
+              "type": "integer",
+            },
           },
+          "type": "object",
         },
-        "type": "object",
+        "tsTypeLiteral": "{ roleId?: number }",
       },
     },
     "updateSession": Object {
-      "body": "return this.request({ pathName: '/user/updateSession', method: 'get',  });",
-      "parameters": Array [],
-      "reqSchema": undefined,
+      "description": undefined,
+      "method": "get",
+      "pathName": "/user/updateSession",
+      "query": undefined,
     },
   },
 }

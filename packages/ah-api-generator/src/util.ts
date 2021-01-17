@@ -48,12 +48,13 @@ export function parseRequestSchema(
 }
 
 export type IRequestMeta = {
-  reqSchema?: Schema;
-  parameters: {
-    name: string;
-    tsType: string;
-  }[];
-  body: string;
+  query?: {
+    schema: Schema;
+    tsTypeLiteral: string;
+  };
+  pathName: string;
+  method: string;
+  description?: string;
 };
 
 export interface IServiceMap {
@@ -81,23 +82,14 @@ export function renderService(apiDoc: API.Document) {
       ).split('.');
 
       const reqSchema = parseRequestSchema(commonPiData);
-      const hasQuery = !!reqSchema;
-
-      const parameters = hasQuery
-        ? [
-            {
-              name: 'query',
-              tsType: schema2TsTypeLiteral(reqSchema),
-            },
-          ]
-        : [];
 
       const requestMeta: IRequestMeta = {
-        reqSchema,
-        parameters,
-        body: `return this.request({ pathName: '${pathName}', method: '${method}', ${
-          hasQuery ? 'query' : ''
-        } });`,
+        query: reqSchema
+          ? { schema: reqSchema, tsTypeLiteral: schema2TsTypeLiteral(reqSchema) }
+          : undefined,
+        method,
+        pathName,
+        description: commonPiData.description,
       };
 
       //

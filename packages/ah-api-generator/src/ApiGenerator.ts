@@ -3,12 +3,7 @@ import { OpenAPIV3 as API } from 'openapi-types';
 import { IRequestMeta, IServiceMap, renderService } from './util';
 
 interface IConfig {
-  renderRequestMethod(ctx: {
-    paramsLiteral: string;
-    requestName: string;
-    requestBody: string;
-    reqMeta: IRequestMeta;
-  }): string;
+  renderRequestMethod(ctx: { requestName: string; meta: IRequestMeta }): string;
 
   renderServiceCls(ctx: {
     StartCaseServiceName: string;
@@ -23,8 +18,24 @@ interface IConfig {
 /** API 生成器 */
 export class ApiGenerator {
   private config: IConfig = {
-    renderRequestMethod: ctx =>
-      `${ctx.requestName} = async (${ctx.paramsLiteral}) => {\n  ${ctx.requestBody}\n}`,
+    renderRequestMethod: ctx => {
+      const cDesc = `/** ${ctx.meta.description || ctx.requestName} */`;
+      const crCallArgs = `pathName: '${ctx.meta.pathName}', method: '${ctx.meta.method}'`;
+
+      if (!ctx.meta.query) {
+        return `
+${cDesc}
+${ctx.requestName} = async () => { return this.request({ ${crCallArgs} }); }`;
+      }
+
+      const schemaLiteral = JSON.stringify(ctx.meta.query.schema);
+
+      return `
+${cDesc}
+${ctx.requestName} = async (query: ${ctx.meta.query.tsTypeLiteral}) => {
+  return this.request({ ${crCallArgs}, query, schema: ${schemaLiteral} });
+}`;
+    },
 
     renderServiceCls: ctx => `
 export class ${ctx.StartCaseServiceName}Service extends ${ctx.baseServiceName} {
@@ -46,14 +57,10 @@ export class ${ctx.StartCaseServiceName}Service extends ${ctx.baseServiceName} {
 
     const serviceClsLiterals = Object.entries(this.serviceMap).map(([serviceName, serviceData]) => {
       const requestMethodLiterals = Object.entries(serviceData).map(([requestName, reqMeta]) => {
-        const paramsLiteral = reqMeta.parameters.map(p => `${p.name}: ${p.tsType}`).join(', ');
-
         // 生成请求函数
         return this.config.renderRequestMethod({
-          paramsLiteral,
           requestName,
-          requestBody: reqMeta.body,
-          reqMeta,
+          meta: reqMeta,
         });
       });
 

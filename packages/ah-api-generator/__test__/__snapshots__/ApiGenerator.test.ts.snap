@@ -3,92 +3,130 @@
 exports[`ApiGenerator normal 1`] = `
 "
 export class PageService extends BaseService {
-  getList = async (query: { name?: string,title?: string,summary?: string }) => {
-  return this.request({ pathName: '/page', method: 'get', query });
+  
+/** getList */
+getList = async (query: { name?: string,title?: string,summary?: string }) => {
+  return this.request({ pathName: '/page', method: 'get', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"name\\":{\\"type\\":\\"string\\"},\\"title\\":{\\"type\\":\\"string\\"},\\"summary\\":{\\"type\\":\\"string\\"}}} });
 }
+
+/** createOne */
 createOne = async (query: { title: string,summary: string,content: string,meta: object }) => {
-  return this.request({ pathName: '/page', method: 'post', query });
+  return this.request({ pathName: '/page', method: 'post', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"title\\":{\\"type\\":\\"string\\"},\\"summary\\":{\\"type\\":\\"string\\"},\\"content\\":{\\"type\\":\\"string\\"},\\"meta\\":{\\"type\\":\\"object\\"}},\\"required\\":[\\"title\\",\\"summary\\",\\"content\\",\\"meta\\"]} });
 }
+
+/** updateOne */
 updateOne = async (query: { name: string,title?: string,summary?: string,content?: string,meta?: object }) => {
-  return this.request({ pathName: '/page/:name', method: 'put', query });
+  return this.request({ pathName: '/page/:name', method: 'put', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"name\\":{\\"type\\":\\"string\\"},\\"title\\":{\\"type\\":\\"string\\"},\\"summary\\":{\\"type\\":\\"string\\"},\\"content\\":{\\"type\\":\\"string\\"},\\"meta\\":{\\"type\\":\\"object\\"}},\\"required\\":[\\"name\\"]} });
 }
+
+/** removeOne */
 removeOne = async (query: { name?: string }) => {
-  return this.request({ pathName: '/page/:name', method: 'delete', query });
+  return this.request({ pathName: '/page/:name', method: 'delete', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"name\\":{\\"type\\":\\"string\\"}}} });
 }      
 }
 
 
 export class ReserveService extends BaseService {
-  getActivityList = async (query: { id?: number }) => {
-  return this.request({ pathName: '/reserve_activity', method: 'get', query });
+  
+/** getActivityList */
+getActivityList = async (query: { id?: number }) => {
+  return this.request({ pathName: '/reserve_activity', method: 'get', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"id\\":{\\"type\\":\\"integer\\"}}} });
 }
+
+/** createActivity */
 createActivity = async (query: { title: string,detail?: string,meta?: { richDetailMeta?: object } }) => {
-  return this.request({ pathName: '/reserve_activity', method: 'post', query });
+  return this.request({ pathName: '/reserve_activity', method: 'post', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"title\\":{\\"type\\":\\"string\\",\\"description\\":\\"活动标题\\"},\\"detail\\":{\\"type\\":\\"string\\"},\\"meta\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"richDetailMeta\\":{\\"type\\":\\"object\\"}}}},\\"required\\":[\\"title\\"]} });
 }
+
+/** updateActivity */
 updateActivity = async (query: { id: number,title?: string,detail?: string,meta?: { richDetailMeta?: object } }) => {
-  return this.request({ pathName: '/reserve_activity/:id', method: 'put', query });
+  return this.request({ pathName: '/reserve_activity/:id', method: 'put', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"id\\":{\\"type\\":\\"integer\\"},\\"title\\":{\\"type\\":\\"string\\"},\\"detail\\":{\\"type\\":\\"string\\"},\\"meta\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"richDetailMeta\\":{\\"type\\":\\"object\\"}}}},\\"required\\":[\\"id\\"]} });
 }
+
+/** removeActivity */
 removeActivity = async (query: { id?: number }) => {
-  return this.request({ pathName: '/reserve_activity/:id', method: 'delete', query });
+  return this.request({ pathName: '/reserve_activity/:id', method: 'delete', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"id\\":{\\"type\\":\\"integer\\"}}} });
 }
+
+/** getCalenderList */
 getCalenderList = async (query: { id?: number,activity_id?: number,startTime?: string,endTime?: string }) => {
-  return this.request({ pathName: '/reserve_calendar', method: 'get', query });
+  return this.request({ pathName: '/reserve_calendar', method: 'get', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"id\\":{\\"type\\":\\"integer\\"},\\"activity_id\\":{\\"type\\":\\"integer\\"},\\"startTime\\":{\\"type\\":\\"string\\"},\\"endTime\\":{\\"type\\":\\"string\\"}}} });
 }
+
+/** createCalender */
 createCalender = async (query: { activity_id: number,list: any }) => {
-  return this.request({ pathName: '/reserve_calendar', method: 'post', query });
+  return this.request({ pathName: '/reserve_calendar', method: 'post', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"activity_id\\":{\\"type\\":\\"integer\\"},\\"list\\":{\\"type\\":\\"array\\",\\"items\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"start_time\\":{\\"type\\":\\"string\\"},\\"end_time\\":{\\"type\\":\\"string\\"},\\"location\\":{\\"type\\":\\"string\\"},\\"detail\\":{\\"type\\":\\"string\\"},\\"status\\":{\\"type\\":\\"string\\",\\"enum\\":[\\"enabled\\",\\"disabled\\"]},\\"meta\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"richDetailMeta\\":{\\"type\\":\\"object\\"}}}},\\"required\\":[\\"start_time\\",\\"end_time\\"]},\\"maxItems\\":30}},\\"required\\":[\\"activity_id\\",\\"list\\"]} });
 }
+
+/** updateCalender */
 updateCalender = async (query: { id: number,start_time?: string,end_time?: string,location?: string,detail?: string,status?: string,meta?: { richDetailMeta?: object } }) => {
-  return this.request({ pathName: '/reserve_calendar/:id', method: 'put', query });
+  return this.request({ pathName: '/reserve_calendar/:id', method: 'put', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"id\\":{\\"type\\":\\"integer\\"},\\"start_time\\":{\\"type\\":\\"string\\"},\\"end_time\\":{\\"type\\":\\"string\\"},\\"location\\":{\\"type\\":\\"string\\"},\\"detail\\":{\\"type\\":\\"string\\"},\\"status\\":{\\"type\\":\\"string\\",\\"enum\\":[\\"enabled\\",\\"disabled\\"]},\\"meta\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"richDetailMeta\\":{\\"type\\":\\"object\\"}}}},\\"required\\":[\\"id\\"]} });
 }
+
+/** getUserRequestList */
 getUserRequestList = async (query: { calendar_id?: number }) => {
-  return this.request({ pathName: '/reserve_request', method: 'get', query });
+  return this.request({ pathName: '/reserve_request', method: 'get', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"calendar_id\\":{\\"type\\":\\"integer\\"}}} });
 }
+
+/** confirmUserRequest */
 confirmUserRequest = async (query: { id: number,username: string }) => {
-  return this.request({ pathName: '/reserve_request/:id/confirm', method: 'put', query });
+  return this.request({ pathName: '/reserve_request/:id/confirm', method: 'put', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"id\\":{\\"type\\":\\"integer\\"},\\"username\\":{\\"type\\":\\"string\\"}},\\"required\\":[\\"id\\",\\"username\\"]} });
 }      
 }
 
 
 export class SystemService extends BaseService {
-  getApiDoc = async () => {
-  return this.request({ pathName: '/system/apiDoc', method: 'get',  });
-}
-getList = async () => {
-  return this.request({ pathName: '/system', method: 'get',  });
-}
-updateOne = async () => {
-  return this.request({ pathName: '/system/:name', method: 'put',  });
-}      
+  
+/** getApiDoc */
+getApiDoc = async () => { return this.request({ pathName: '/system/apiDoc', method: 'get' }); }
+
+/** getList */
+getList = async () => { return this.request({ pathName: '/system', method: 'get' }); }
+
+/** updateOne */
+updateOne = async () => { return this.request({ pathName: '/system/:name', method: 'put' }); }      
 }
 
 
 export class UserService extends BaseService {
-  getUserInfo = async () => {
-  return this.request({ pathName: '/user', method: 'get',  });
-}
-updateSession = async () => {
-  return this.request({ pathName: '/user/updateSession', method: 'get',  });
-}
-getShiluRoles = async () => {
-  return this.request({ pathName: '/user/shiluRoles', method: 'get',  });
-}
+  
+/** getUserInfo */
+getUserInfo = async () => { return this.request({ pathName: '/user', method: 'get' }); }
+
+/** updateSession */
+updateSession = async () => { return this.request({ pathName: '/user/updateSession', method: 'get' }); }
+
+/** getShiluRoles */
+getShiluRoles = async () => { return this.request({ pathName: '/user/shiluRoles', method: 'get' }); }
+
+/** assignShiluRoles */
 assignShiluRoles = async (query: { roleId: number }) => {
-  return this.request({ pathName: '/user/shiluRoles', method: 'post', query });
+  return this.request({ pathName: '/user/shiluRoles', method: 'post', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"roleId\\":{\\"type\\":\\"integer\\"}},\\"required\\":[\\"roleId\\"]} });
 }
+
+/** removeShiluRoles */
 removeShiluRoles = async (query: { roleId?: number }) => {
-  return this.request({ pathName: '/user/shiluRoles', method: 'delete', query });
+  return this.request({ pathName: '/user/shiluRoles', method: 'delete', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"roleId\\":{\\"type\\":\\"integer\\"}}} });
 }
+
+/** getEnterCode */
 getEnterCode = async (query: { pavilionId?: number }) => {
-  return this.request({ pathName: '/user/enterCode', method: 'get', query });
+  return this.request({ pathName: '/user/enterCode', method: 'get', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"pavilionId\\":{\\"type\\":\\"integer\\"}}} });
 }
+
+/** getLeaveInfo */
 getLeaveInfo = async (query: { pavilionId?: number }) => {
-  return this.request({ pathName: '/user/leaveInfo', method: 'get', query });
+  return this.request({ pathName: '/user/leaveInfo', method: 'get', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"pavilionId\\":{\\"type\\":\\"integer\\"}}} });
 }
+
+/** addReserveRequest */
 addReserveRequest = async (query: { calendar_id: number,type: string,meta?: { members?: any } }) => {
-  return this.request({ pathName: '/user/reserve_request', method: 'post', query });
+  return this.request({ pathName: '/user/reserve_request', method: 'post', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"calendar_id\\":{\\"type\\":\\"integer\\"},\\"type\\":{\\"type\\":\\"string\\",\\"enum\\":[\\"team\\",\\"personal\\"]},\\"meta\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"members\\":{\\"type\\":\\"array\\",\\"items\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"nick\\":{\\"type\\":\\"string\\"},\\"gender\\":{\\"type\\":\\"string\\",\\"enum\\":[\\"男\\",\\"女\\"]},\\"phone\\":{\\"type\\":\\"string\\"}},\\"required\\":[\\"nick\\",\\"gender\\",\\"phone\\"]},\\"maxItems\\":20}}}},\\"required\\":[\\"calendar_id\\",\\"type\\"]} });
 }
+
+/** cancelReserveRequest */
 cancelReserveRequest = async (query: { id: number }) => {
-  return this.request({ pathName: '/user/reserve_request/:id/cancel', method: 'put', query });
+  return this.request({ pathName: '/user/reserve_request/:id/cancel', method: 'put', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"id\\":{\\"type\\":\\"integer\\"}},\\"required\\":[\\"id\\"]} });
 }      
 }"
 `;
