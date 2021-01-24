@@ -133,3 +133,28 @@ export function schema2TsTypeLiteral(s?: Schema): string {
 
   return 'any';
 }
+
+/** 从数据结构猜测 schema */
+export function data2Schema(data: any): Schema {
+  if (_.isString(data)) return { type: 'string' };
+  if (_.isInteger(data)) return { type: 'integer' };
+  if (_.isNumber(data)) return { type: 'number' };
+
+  if (_.isBoolean(data)) return { type: 'boolean' };
+
+  if (_.isArray(data)) {
+    return {
+      type: 'array',
+      items: data2Schema(data[0]),
+    };
+  }
+
+  if (_.isPlainObject(data)) {
+    return {
+      type: 'object',
+      properties: _.mapValues(data, data2Schema),
+    };
+  }
+
+  return {};
+}

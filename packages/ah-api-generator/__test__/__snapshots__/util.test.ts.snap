@@ -1,5 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`util data2Schema normal 1`] = `
+Object {
+  "properties": Object {
+    "list": Object {
+      "items": Object {
+        "properties": Object {
+          "a": Object {
+            "type": "string",
+          },
+          "b": Object {
+            "type": "boolean",
+          },
+          "c": Object {},
+          "created_at": Object {
+            "type": "string",
+          },
+          "d": Object {},
+          "e": Object {
+            "type": "boolean",
+          },
+          "f": Object {
+            "type": "number",
+          },
+          "id": Object {
+            "type": "integer",
+          },
+          "level": Object {
+            "type": "integer",
+          },
+          "updated_at": Object {
+            "type": "string",
+          },
+        },
+        "type": "object",
+      },
+      "type": "array",
+    },
+    "pageNum": Object {
+      "type": "integer",
+    },
+    "pageSize": Object {
+      "type": "integer",
+    },
+    "total": Object {
+      "type": "integer",
+    },
+  },
+  "type": "object",
+}
+`;
+
 exports[`util renderService 1`] = `
 Object {
   "page": Object {
