@@ -54,7 +54,7 @@ getCalenderList = async (query: { id?: number,activity_id?: number,startTime?: s
 }
 
 /** createCalender */
-createCalender = async (query: { activity_id: number,list: any }) => {
+createCalender = async (query: { activity_id: number,list: Array<{ start_time: string,end_time: string,location?: string,detail?: string,status?: string,meta?: { richDetailMeta?: object } }> }) => {
   return this.request({ pathName: '/reserve_calendar', method: 'post', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"activity_id\\":{\\"type\\":\\"integer\\"},\\"list\\":{\\"type\\":\\"array\\",\\"items\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"start_time\\":{\\"type\\":\\"string\\"},\\"end_time\\":{\\"type\\":\\"string\\"},\\"location\\":{\\"type\\":\\"string\\"},\\"detail\\":{\\"type\\":\\"string\\"},\\"status\\":{\\"type\\":\\"string\\",\\"enum\\":[\\"enabled\\",\\"disabled\\"]},\\"meta\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"richDetailMeta\\":{\\"type\\":\\"object\\"}}}},\\"required\\":[\\"start_time\\",\\"end_time\\"]},\\"maxItems\\":30}},\\"required\\":[\\"activity_id\\",\\"list\\"]} });
 }
 
@@ -120,7 +120,7 @@ getLeaveInfo = async (query: { pavilionId?: number }) => {
 }
 
 /** addReserveRequest */
-addReserveRequest = async (query: { calendar_id: number,type: string,meta?: { members?: any } }) => {
+addReserveRequest = async (query: { calendar_id: number,type: string,meta?: { members?: Array<{ nick: string,gender: string,phone: string }> } }) => {
   return this.request({ pathName: '/user/reserve_request', method: 'post', query, schema: {\\"type\\":\\"object\\",\\"properties\\":{\\"calendar_id\\":{\\"type\\":\\"integer\\"},\\"type\\":{\\"type\\":\\"string\\",\\"enum\\":[\\"team\\",\\"personal\\"]},\\"meta\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"members\\":{\\"type\\":\\"array\\",\\"items\\":{\\"type\\":\\"object\\",\\"properties\\":{\\"nick\\":{\\"type\\":\\"string\\"},\\"gender\\":{\\"type\\":\\"string\\",\\"enum\\":[\\"男\\",\\"女\\"]},\\"phone\\":{\\"type\\":\\"string\\"}},\\"required\\":[\\"nick\\",\\"gender\\",\\"phone\\"]},\\"maxItems\\":20}}}},\\"required\\":[\\"calendar_id\\",\\"type\\"]} });
 }
 

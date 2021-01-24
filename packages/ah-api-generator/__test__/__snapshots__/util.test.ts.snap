@@ -84,6 +84,7 @@ Object {
         },
         "tsTypeLiteral": "{ title: string,summary: string,content: string,meta: object }",
       },
+      "response": undefined,
     },
     "getList": Object {
       "description": undefined,
@@ -106,6 +107,53 @@ Object {
         },
         "tsTypeLiteral": "{ name?: string,title?: string,summary?: string }",
       },
+      "response": Object {
+        "schema": Object {
+          "properties": Object {
+            "list": Object {
+              "items": Object {
+                "properties": Object {
+                  "a": Object {
+                    "type": "string",
+                  },
+                  "b": Object {
+                    "type": "boolean",
+                  },
+                  "c": Object {},
+                  "created_at": Object {
+                    "type": "string",
+                  },
+                  "e": Object {
+                    "type": "boolean",
+                  },
+                  "id": Object {
+                    "type": "integer",
+                  },
+                  "level": Object {
+                    "type": "integer",
+                  },
+                  "updated_at": Object {
+                    "type": "string",
+                  },
+                },
+                "type": "object",
+              },
+              "type": "array",
+            },
+            "pageNum": Object {
+              "type": "integer",
+            },
+            "pageSize": Object {
+              "type": "integer",
+            },
+            "total": Object {
+              "type": "integer",
+            },
+          },
+          "type": "object",
+        },
+        "tsTypeLiteral": "{ pageSize?: number,pageNum?: number,total?: number,list?: Array<{ id?: number,created_at?: string,updated_at?: string,level?: number,a?: string,b?: any,c?: any,e?: any }> }",
+      },
     },
     "removeOne": Object {
       "description": undefined,
@@ -122,6 +170,7 @@ Object {
         },
         "tsTypeLiteral": "{ name?: string }",
       },
+      "response": undefined,
     },
     "updateOne": Object {
       "description": undefined,
@@ -153,6 +202,7 @@ Object {
         },
         "tsTypeLiteral": "{ name: string,title?: string,summary?: string,content?: string,meta?: object }",
       },
+      "response": undefined,
     },
   },
   "reserve": Object {
@@ -178,6 +228,7 @@ Object {
         },
         "tsTypeLiteral": "{ id: number,username: string }",
       },
+      "response": undefined,
     },
     "createActivity": Object {
       "description": undefined,
@@ -209,6 +260,7 @@ Object {
         },
         "tsTypeLiteral": "{ title: string,detail?: string,meta?: { richDetailMeta?: object } }",
       },
+      "response": undefined,
     },
     "createCalender": Object {
       "description": undefined,
@@ -267,8 +319,9 @@ Object {
           ],
           "type": "object",
         },
-        "tsTypeLiteral": "{ activity_id: number,list: any }",
+        "tsTypeLiteral": "{ activity_id: number,list: Array<{ start_time: string,end_time: string,location?: string,detail?: string,status?: string,meta?: { richDetailMeta?: object } }> }",
       },
+      "response": undefined,
     },
     "getActivityList": Object {
       "description": undefined,
@@ -285,6 +338,7 @@ Object {
         },
         "tsTypeLiteral": "{ id?: number }",
       },
+      "response": undefined,
     },
     "getCalenderList": Object {
       "description": undefined,
@@ -310,6 +364,7 @@ Object {
         },
         "tsTypeLiteral": "{ id?: number,activity_id?: number,startTime?: string,endTime?: string }",
       },
+      "response": undefined,
     },
     "getUserRequestList": Object {
       "description": undefined,
@@ -326,6 +381,7 @@ Object {
         },
         "tsTypeLiteral": "{ calendar_id?: number }",
       },
+      "response": undefined,
     },
     "removeActivity": Object {
       "description": undefined,
@@ -342,6 +398,7 @@ Object {
         },
         "tsTypeLiteral": "{ id?: number }",
       },
+      "response": undefined,
     },
     "updateActivity": Object {
       "description": undefined,
@@ -375,6 +432,7 @@ Object {
         },
         "tsTypeLiteral": "{ id: number,title?: string,detail?: string,meta?: { richDetailMeta?: object } }",
       },
+      "response": undefined,
     },
     "updateCalender": Object {
       "description": undefined,
@@ -421,6 +479,7 @@ Object {
         },
         "tsTypeLiteral": "{ id: number,start_time?: string,end_time?: string,location?: string,detail?: string,status?: string,meta?: { richDetailMeta?: object } }",
       },
+      "response": undefined,
     },
   },
   "system": Object {
@@ -429,18 +488,21 @@ Object {
       "method": "get",
       "pathName": "/system/apiDoc",
       "query": undefined,
+      "response": undefined,
     },
     "getList": Object {
       "description": undefined,
       "method": "get",
       "pathName": "/system",
       "query": undefined,
+      "response": undefined,
     },
     "updateOne": Object {
       "description": undefined,
       "method": "put",
       "pathName": "/system/:name",
       "query": undefined,
+      "response": undefined,
     },
   },
   "user": Object {
@@ -500,8 +562,9 @@ Object {
           ],
           "type": "object",
         },
-        "tsTypeLiteral": "{ calendar_id: number,type: string,meta?: { members?: any } }",
+        "tsTypeLiteral": "{ calendar_id: number,type: string,meta?: { members?: Array<{ nick: string,gender: string,phone: string }> } }",
       },
+      "response": undefined,
     },
     "assignShiluRoles": Object {
       "description": undefined,
@@ -521,6 +584,7 @@ Object {
         },
         "tsTypeLiteral": "{ roleId: number }",
       },
+      "response": undefined,
     },
     "cancelReserveRequest": Object {
       "description": undefined,
@@ -540,6 +604,7 @@ Object {
         },
         "tsTypeLiteral": "{ id: number }",
       },
+      "response": undefined,
     },
     "getEnterCode": Object {
       "description": undefined,
@@ -556,6 +621,7 @@ Object {
         },
         "tsTypeLiteral": "{ pavilionId?: number }",
       },
+      "response": undefined,
     },
     "getLeaveInfo": Object {
       "description": undefined,
@@ -572,18 +638,21 @@ Object {
         },
         "tsTypeLiteral": "{ pavilionId?: number }",
       },
+      "response": undefined,
     },
     "getShiluRoles": Object {
       "description": undefined,
       "method": "get",
       "pathName": "/user/shiluRoles",
       "query": undefined,
+      "response": undefined,
     },
     "getUserInfo": Object {
       "description": undefined,
       "method": "get",
       "pathName": "/user",
       "query": undefined,
+      "response": undefined,
     },
     "removeShiluRoles": Object {
       "description": undefined,
@@ -600,12 +669,14 @@ Object {
         },
         "tsTypeLiteral": "{ roleId?: number }",
       },
+      "response": undefined,
     },
     "updateSession": Object {
       "description": undefined,
       "method": "get",
       "pathName": "/user/updateSession",
       "query": undefined,
+      "response": undefined,
     },
   },
 }
