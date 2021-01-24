@@ -47,8 +47,34 @@ export function parseRequestSchema(
   return schema;
 }
 
+export function parseResponseSchema(
+  data:
+    | API.PathItemObject['get']
+    | API.PathItemObject['put']
+    | API.PathItemObject['post']
+    | API.PathItemObject['delete']
+): Schema | undefined {
+  const response = data?.responses?.['200'] as API.ResponseObject;
+  const jsonResponse = response.content?.['application/json'];
+
+  if (jsonResponse) {
+    // 尝试取 schema
+    if (jsonResponse.schema) return jsonResponse.schema as Schema;
+
+    const example =
+      jsonResponse.example || (jsonResponse.examples && Object.values(jsonResponse.examples).pop());
+
+    // 尝试转换 example
+    if (example) return data2Schema(example);
+  }
+}
+
 export type IRequestMeta = {
   query?: {
+    schema: Schema;
+    tsTypeLiteral: string;
+  };
+  response?: {
     schema: Schema;
     tsTypeLiteral: string;
   };
@@ -81,11 +107,15 @@ export function renderService(apiDoc: API.Document) {
         commonPiData.operationId || `default.${_.camelCase(pathName)}`
       ).split('.');
 
-      const reqSchema = parseRequestSchema(commonPiData);
+      const requestSchema = parseRequestSchema(commonPiData);
+      const respSchema = parseResponseSchema(commonPiData);
 
       const requestMeta: IRequestMeta = {
-        query: reqSchema
-          ? { schema: reqSchema, tsTypeLiteral: schema2TsTypeLiteral(reqSchema) }
+        query: requestSchema
+          ? { schema: requestSchema, tsTypeLiteral: schema2TsTypeLiteral(requestSchema) }
+          : undefined,
+        response: respSchema
+          ? { schema: respSchema, tsTypeLiteral: schema2TsTypeLiteral(respSchema) }
           : undefined,
         method,
         pathName,
@@ -105,6 +135,10 @@ export function schema2TsTypeLiteral(s?: Schema): string {
 
   if (s.type === 'string') return 'string';
   if (s.type === 'integer') return 'number';
+
+  if (s.type === 'array') {
+    return `Array<${schema2TsTypeLiteral((s.items as any) || '{}')}>`;
+  }
 
   if (s.type === 'object') {
     {

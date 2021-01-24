@@ -27,10 +27,7 @@
     "/page": {
       "get": {
         "operationId": "page.getList",
-        "tags": [
-          "page",
-          "toC"
-        ],
+        "tags": ["page", "toC"],
         "summary": "page.getList",
         "parameters": [
           {
@@ -57,16 +54,34 @@
         ],
         "responses": {
           "200": {
-            "description": "ok"
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "example": {
+                  "pageSize": 1,
+                  "pageNum": 1,
+                  "total": 783562,
+                  "list": [
+                    {
+                      "id": 1,
+                      "created_at": "2021-01-24T17:22:45+08:00",
+                      "updated_at": "2021-01-24T17:22:45+08:00",
+                      "level": 0,
+                      "a": "0dfew2",
+                      "b": false,
+                      "c": null,
+                      "e": true
+                    }
+                  ]
+                }
+              }
+            }
           }
         }
       },
       "post": {
         "operationId": "page.createOne",
-        "tags": [
-          "page",
-          "toM"
-        ],
+        "tags": ["page", "toM"],
         "summary": "page.createOne",
         "requestBody": {
           "content": {
@@ -87,12 +102,7 @@
                     "type": "object"
                   }
                 },
-                "required": [
-                  "title",
-                  "summary",
-                  "content",
-                  "meta"
-                ]
+                "required": ["title", "summary", "content", "meta"]
               }
             }
           }
@@ -107,10 +117,7 @@
     "/page/:name": {
       "put": {
         "operationId": "page.updateOne",
-        "tags": [
-          "page",
-          "toM"
-        ],
+        "tags": ["page", "toM"],
         "summary": "page.updateOne",
         "requestBody": {
           "content": {
@@ -134,9 +141,7 @@
                     "type": "object"
                   }
                 },
-                "required": [
-                  "name"
-                ]
+                "required": ["name"]
               }
             }
           }
@@ -149,10 +154,7 @@
       },
       "delete": {
         "operationId": "page.removeOne",
-        "tags": [
-          "page",
-          "toM"
-        ],
+        "tags": ["page", "toM"],
         "summary": "page.removeOne",
         "parameters": [
           {
@@ -173,10 +175,7 @@
     "/reserve_activity": {
       "post": {
         "operationId": "reserve.createActivity",
-        "tags": [
-          "reserve",
-          "toM"
-        ],
+        "tags": ["reserve", "toM"],
         "summary": "创建预约活动",
         "requestBody": {
           "content": {
@@ -200,9 +199,7 @@
                     }
                   }
                 },
-                "required": [
-                  "title"
-                ]
+                "required": ["title"]
               }
             }
           }
@@ -215,10 +212,7 @@
       },
       "get": {
         "operationId": "reserve.getActivityList",
-        "tags": [
-          "reserve",
-          "toC"
-        ],
+        "tags": ["reserve", "toC"],
         "summary": "获取预约活动列表",
         "parameters": [
           {
@@ -239,10 +233,7 @@
     "/reserve_activity/:id": {
       "put": {
         "operationId": "reserve.updateActivity",
-        "tags": [
-          "reserve",
-          "toM"
-        ],
+        "tags": ["reserve", "toM"],
         "summary": "更新预约活动",
         "requestBody": {
           "content": {
@@ -268,9 +259,7 @@
                     }
                   }
                 },
-                "required": [
-                  "id"
-                ]
+                "required": ["id"]
               }
             }
           }
@@ -283,10 +272,7 @@
       },
       "delete": {
         "operationId": "reserve.removeActivity",
-        "tags": [
-          "reserve",
-          "toM"
-        ],
+        "tags": ["reserve", "toM"],
         "summary": "删除预约活动",
         "parameters": [
           {
@@ -307,10 +293,7 @@
     "/reserve_calendar": {
       "post": {
         "operationId": "reserve.createCalender",
-        "tags": [
-          "reserve",
-          "toM"
-        ],
+        "tags": ["reserve", "toM"],
         "summary": "创建日历",
         "requestBody": {
           "content": {
@@ -340,10 +323,7 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": [
-                            "enabled",
-                            "disabled"
-                          ]
+                          "enum": ["enabled", "disabled"]
                         },
                         "meta": {
                           "type": "object",
@@ -354,18 +334,12 @@
                           }
                         }
                       },
-                      "required": [
-                        "start_time",
-                        "end_time"
-                      ]
+                      "required": ["start_time", "end_time"]
                     },
                     "maxItems": 30
                   }
                 },
-                "required": [
-                  "activity_id",
-                  "list"
-                ]
+                "required": ["activity_id", "list"]
               }
             }
           }
@@ -378,10 +352,7 @@
       },
       "get": {
         "operationId": "reserve.getCalenderList",
-        "tags": [
-          "reserve",
-          "toC"
-        ],
+        "tags": ["reserve", "toC"],
         "summary": "获取活动日历列表",
         "parameters": [
           {
@@ -423,10 +394,7 @@
     "/reserve_calendar/:id": {
       "put": {
         "operationId": "reserve.updateCalender",
-        "tags": [
-          "reserve",
-          "toM"
-        ],
+        "tags": ["reserve", "toM"],
         "summary": "修改日历",
         "requestBody": {
           "content": {
@@ -451,10 +419,7 @@
                   },
                   "status": {
                     "type": "string",
-                    "enum": [
-                      "enabled",
-                      "disabled"
-                    ]
+                    "enum": ["enabled", "disabled"]
                   },
                   "meta": {
                     "type": "object",
@@ -465,9 +430,7 @@
                     }
                   }
                 },
-                "required": [
-                  "id"
-                ]
+                "required": ["id"]
               }
             }
           }
@@ -482,10 +445,7 @@
     "/reserve_request": {
       "get": {
         "operationId": "reserve.getUserRequestList",
-        "tags": [
-          "reserve",
-          "toM"
-        ],
+        "tags": ["reserve", "toM"],
         "summary": "reserve.getUserRequestList",
         "parameters": [
           {
@@ -506,10 +466,7 @@
     "/reserve_request/:id/confirm": {
       "put": {
         "operationId": "reserve.confirmUserRequest",
-        "tags": [
-          "reserve",
-          "toM"
-        ],
+        "tags": ["reserve", "toM"],
         "summary": "reserve.confirmUserRequest",
         "requestBody": {
           "content": {
@@ -524,10 +481,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "id",
-                  "username"
-                ]
+                "required": ["id", "username"]
               }
             }
           }
@@ -542,10 +496,7 @@
     "/system/apiDoc": {
       "get": {
         "operationId": "system.getApiDoc",
-        "tags": [
-          "system",
-          "toM"
-        ],
+        "tags": ["system", "toM"],
         "summary": "system.getApiDoc",
         "responses": {
           "200": {
@@ -557,10 +508,7 @@
     "/system": {
       "get": {
         "operationId": "system.getList",
-        "tags": [
-          "system",
-          "toM"
-        ],
+        "tags": ["system", "toM"],
         "summary": "system.getList",
         "responses": {
           "200": {
@@ -572,10 +520,7 @@
     "/system/:name": {
       "put": {
         "operationId": "system.updateOne",
-        "tags": [
-          "system",
-          "toM"
-        ],
+        "tags": ["system", "toM"],
         "summary": "system.updateOne",
         "requestBody": {
           "content": {
@@ -595,9 +540,7 @@
                             "type": "object"
                           }
                         },
-                        "required": [
-                          "homepageBanner"
-                        ]
+                        "required": ["homepageBanner"]
                       }
                     }
                   },
@@ -614,9 +557,7 @@
                             "type": "object"
                           }
                         },
-                        "required": [
-                          "replyScoreRankMap"
-                        ]
+                        "required": ["replyScoreRankMap"]
                       }
                     }
                   }
@@ -635,10 +576,7 @@
     "/user": {
       "get": {
         "operationId": "user.getUserInfo",
-        "tags": [
-          "user",
-          "toC"
-        ],
+        "tags": ["user", "toC"],
         "summary": "获取用户信息",
         "responses": {
           "200": {
@@ -650,10 +588,7 @@
     "/user/updateSession": {
       "get": {
         "operationId": "user.updateSession",
-        "tags": [
-          "user",
-          "toC"
-        ],
+        "tags": ["user", "toC"],
         "summary": "续期 session",
         "responses": {
           "200": {
@@ -665,10 +600,7 @@
     "/user/shiluRoles": {
       "get": {
         "operationId": "user.getShiluRoles",
-        "tags": [
-          "user",
-          "toC"
-        ],
+        "tags": ["user", "toC"],
         "summary": "获取诗路角色",
         "responses": {
           "200": {
@@ -678,10 +610,7 @@
       },
       "post": {
         "operationId": "user.assignShiluRoles",
-        "tags": [
-          "user",
-          "toC"
-        ],
+        "tags": ["user", "toC"],
         "summary": "添加诗路角色",
         "requestBody": {
           "content": {
@@ -693,9 +622,7 @@
                     "type": "integer"
                   }
                 },
-                "required": [
-                  "roleId"
-                ]
+                "required": ["roleId"]
               }
             }
           }
@@ -708,10 +635,7 @@
       },
       "delete": {
         "operationId": "user.removeShiluRoles",
-        "tags": [
-          "user",
-          "toC"
-        ],
+        "tags": ["user", "toC"],
         "summary": "删除诗路角色",
         "parameters": [
           {
@@ -732,10 +656,7 @@
     "/user/enterCode": {
       "get": {
         "operationId": "user.getEnterCode",
-        "tags": [
-          "user",
-          "toC"
-        ],
+        "tags": ["user", "toC"],
         "summary": "用户入场码",
         "parameters": [
           {
@@ -756,10 +677,7 @@
     "/user/leaveInfo": {
       "get": {
         "operationId": "user.getLeaveInfo",
-        "tags": [
-          "user",
-          "toC"
-        ],
+        "tags": ["user", "toC"],
         "summary": "用户离场信息",
         "parameters": [
           {
@@ -780,10 +698,7 @@
     "/user/reserve_request": {
       "post": {
         "operationId": "user.addReserveRequest",
-        "tags": [
-          "user",
-          "toC"
-        ],
+        "tags": ["user", "toC"],
         "summary": "提交预约",
         "requestBody": {
           "content": {
@@ -796,10 +711,7 @@
                   },
                   "type": {
                     "type": "string",
-                    "enum": [
-                      "team",
-                      "personal"
-                    ]
+                    "enum": ["team", "personal"]
                   },
                   "meta": {
                     "type": "object",
@@ -814,30 +726,20 @@
                             },
                             "gender": {
                               "type": "string",
-                              "enum": [
-                                "男",
-                                "女"
-                              ]
+                              "enum": ["男", "女"]
                             },
                             "phone": {
                               "type": "string"
                             }
                           },
-                          "required": [
-                            "nick",
-                            "gender",
-                            "phone"
-                          ]
+                          "required": ["nick", "gender", "phone"]
                         },
                         "maxItems": 20
                       }
                     }
                   }
                 },
-                "required": [
-                  "calendar_id",
-                  "type"
-                ]
+                "required": ["calendar_id", "type"]
               }
             }
           }
@@ -852,10 +754,7 @@
     "/user/reserve_request/:id/cancel": {
       "put": {
         "operationId": "user.cancelReserveRequest",
-        "tags": [
-          "user",
-          "toC"
-        ],
+        "tags": ["user", "toC"],
         "summary": "取消预约",
         "requestBody": {
           "content": {
@@ -867,9 +766,7 @@
                     "type": "integer"
                   }
                 },
-                "required": [
-                  "id"
-                ]
+                "required": ["id"]
               }
             }
           }
