@@ -1,6 +1,6 @@
 {
   "name": "ah-api-generator",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "ah-api-generator",
   "files": [
     "dist"
