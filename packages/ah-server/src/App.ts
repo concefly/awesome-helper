@@ -48,7 +48,10 @@ export abstract class App extends Koa {
 
     // 全局错误
     this.on('error', err => {
-      this.logger.error(err.message || err);
+      let msg = err.message || err;
+      if (err.stack) msg += '\n' + err.stack;
+
+      this.logger.error(msg);
     });
   }
 
