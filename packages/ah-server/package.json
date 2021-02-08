@@ -1,6 +1,6 @@
 {
   "name": "ah-server",
-  "version": "2.0.12",
+  "version": "2.1.0",
   "main": "dist/index.js",
   "files": [
     "dist"
