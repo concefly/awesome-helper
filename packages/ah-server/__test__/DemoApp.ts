@@ -12,14 +12,18 @@ class EchoController extends Controller {
       path: '/echo',
       method: ['GET', 'POST'],
       handler: this.echo,
+      query: {
+        schema: {
+          type: 'object',
+          properties: { text: { type: 'string' } },
+        },
+      },
     },
   ];
 
-  echo(ctx: IContext) {
-    const input: string = ctx.request.body.text || ctx.request.query.text;
-    const output = (this.service as any).echo.echo(input);
-
-    ctx.body = output;
+  async echo(_ctx: IContext, q: { text?: string }) {
+    const output = (this.service as any).echo.echo(q.text);
+    return output;
   }
 }
 

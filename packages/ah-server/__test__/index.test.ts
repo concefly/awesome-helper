@@ -1,28 +1,37 @@
-import { Config } from '../src';
+import { HttpClientResponse } from 'urllib';
+import { Config, pick } from '../src';
 import { TestApp } from './DemoApp';
 
-const config = new Config();
+function inspectResp(resp: HttpClientResponse<any>) {
+  return pick(resp, ['data', 'status']);
+}
 
 describe('App', () => {
-  it('整体测试', async () => {
-    const app = new TestApp(config);
-    await app.start();
+  const config = new Config();
+  const app = new TestApp(config);
 
-    // curl test
-    const r1 = await app.curl<any>('http://localhost:10001/echo?text=hi', { dataType: 'text' });
-    expect(r1.data).toEqual('hi');
+  beforeAll(() => app.start());
+  afterAll(() => app.stop());
 
-    // post body test
+  it('curl', async () => {
+    const r1 = await app.curl<any>('http://localhost:10001/echo?text=hi', { dataType: 'json' });
+    expect(inspectResp(r1)).toMatchSnapshot();
+  });
+
+  it('post body', async () => {
     const r2 = await app.curl<any>('http://localhost:10001/echo', {
       method: 'POST',
       contentType: 'json',
-      dataType: 'text',
+      dataType: 'json',
       data: {
         text: 'hi',
       },
     });
-    expect(r2.data).toEqual('hi');
+    expect(inspectResp(r2)).toMatchSnapshot();
+  });
 
-    await app.stop();
+  it('validate 400', async () => {
+    const r3 = await app.curl<any>('http://localhost:10001/echo?text=100', { dataType: 'json' });
+    expect(inspectResp(r3)).toMatchSnapshot();
   });
 });

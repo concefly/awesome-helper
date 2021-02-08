@@ -7,7 +7,8 @@ import { Logger } from './Logger';
 import { Scheduler } from './Scheduler';
 import { Service } from './Service';
 import { IConfig, IContext, IService } from '.';
-import { validate } from './util';
+import { ErrorTypeEnum } from './error';
+import { pick, tryParseIntProperty, validate } from './util';
 import { Controller } from './Controller';
 import { Server } from 'http';
 
@@ -63,13 +64,43 @@ export abstract class App extends Koa {
 
     // 构造 router
     const router = new Router<any, IContext>();
-    this.controllerList.forEach(c => {
-      c.mapper.forEach(m => {
+    this.controllerList.forEach(ctrlIns => {
+      ctrlIns.mapper.forEach(m => {
         this.logger.info(
-          `register controller: ${m.method} ${m.path} -> ${c.name}.${m.handler.name}`
+          `register controller: ${m.method} ${m.path} -> ${ctrlIns.name}.${m.handler.name}`
         );
 
-        router.register(m.path, Array.isArray(m.method) ? m.method : [m.method], m.handler.bind(c));
+        router.register(m.path, Array.isArray(m.method) ? m.method : [m.method], async ctx => {
+          try {
+            const q = m.query
+              ? ctx.validate<any>(
+                  {
+                    ...tryParseIntProperty(ctx.params),
+                    ...tryParseIntProperty(ctx.request.query),
+                    ...ctx.request.body,
+                  },
+                  m.query.schema
+                )
+              : undefined;
+
+            const data = await m.handler.call(ctrlIns, ctx, q);
+
+            if (data) {
+              ctx.set('content-type', 'application/json');
+              ctx.body = { ...ctx.body, data };
+            }
+          } catch (err) {
+            // 自定义异常
+            if (Object.values(ErrorTypeEnum).includes(err.type)) {
+              ctx.status = err.status;
+              ctx.body = pick(err, ['message', 'type', 'code', 'status']);
+              return;
+            }
+
+            // 其他异常外抛
+            throw err;
+          }
+        });
       });
     });
 
