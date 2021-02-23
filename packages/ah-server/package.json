@@ -12,6 +12,7 @@
     "prepublishOnly": "npm run ci && npm run build"
   },
   "dependencies": {
+    "@types/koa": "^2.11.6",
     "cron": "^1.8.2",
     "dayjs": "^1.9.4",
     "jsonschema": "^1.4.0",
