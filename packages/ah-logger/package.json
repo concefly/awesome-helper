@@ -1,6 +1,11 @@
 {
   "name": "ah-logger",
   "version": "0.1.0",
+  "scripts": {
+    "ci": "ah-workflow ci",
+    "build": "ah-workflow build",
+    "prepublishOnly": "npm run ci && npm run build"
+  },
   "devDependencies": {
     "ah-workflow": "^1.0.6",
     "typescript": "^4.0.3"
