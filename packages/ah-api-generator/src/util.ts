@@ -187,6 +187,7 @@ export function data2Schema(data: any): Schema {
     return {
       type: 'object',
       properties: _.mapValues(data, data2Schema),
+      required: Object.keys(data),
     };
   }
 
