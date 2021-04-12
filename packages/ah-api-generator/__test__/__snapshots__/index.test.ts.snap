@@ -514,5 +514,19 @@ export function replaceUrlParams(url: string, data?: any) {
 
   return url;
 }
+
+export const createAllService = (tap?: (s: BaseService) => void) => {
+  const result = {
+    Page: new Page(),
+    Reserve: new Reserve(),
+    System: new System(),
+    User: new User(),
+  };
+
+  // tap
+  Object.values(result).forEach(s => tap?.(s));
+
+  return result;
+};
 "
 `;
