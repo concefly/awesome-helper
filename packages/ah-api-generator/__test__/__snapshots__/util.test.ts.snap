@@ -71,10 +71,10 @@ Object {
 
 exports[`util renderService 1`] = `
 Object {
-  "page": Object {
+  "Page": Object {
     "createOne": Object {
       "description": undefined,
-      "method": "post",
+      "method": "POST",
       "pathName": "/page",
       "query": Object {
         "schema": Object {
@@ -106,7 +106,7 @@ Object {
     },
     "getList": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/page",
       "query": Object {
         "schema": Object {
@@ -191,7 +191,7 @@ Object {
     },
     "removeOne": Object {
       "description": undefined,
-      "method": "delete",
+      "method": "DELETE",
       "pathName": "/page/:name",
       "query": Object {
         "schema": Object {
@@ -208,7 +208,7 @@ Object {
     },
     "updateOne": Object {
       "description": undefined,
-      "method": "put",
+      "method": "PUT",
       "pathName": "/page/:name",
       "query": Object {
         "schema": Object {
@@ -239,10 +239,10 @@ Object {
       "response": undefined,
     },
   },
-  "reserve": Object {
+  "Reserve": Object {
     "confirmUserRequest": Object {
       "description": undefined,
-      "method": "put",
+      "method": "PUT",
       "pathName": "/reserve_request/:id/confirm",
       "query": Object {
         "schema": Object {
@@ -266,7 +266,7 @@ Object {
     },
     "createActivity": Object {
       "description": undefined,
-      "method": "post",
+      "method": "POST",
       "pathName": "/reserve_activity",
       "query": Object {
         "schema": Object {
@@ -298,7 +298,7 @@ Object {
     },
     "createCalender": Object {
       "description": undefined,
-      "method": "post",
+      "method": "POST",
       "pathName": "/reserve_calendar",
       "query": Object {
         "schema": Object {
@@ -359,7 +359,7 @@ Object {
     },
     "getActivityList": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/reserve_activity",
       "query": Object {
         "schema": Object {
@@ -376,7 +376,7 @@ Object {
     },
     "getCalenderList": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/reserve_calendar",
       "query": Object {
         "schema": Object {
@@ -402,7 +402,7 @@ Object {
     },
     "getUserRequestList": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/reserve_request",
       "query": Object {
         "schema": Object {
@@ -419,7 +419,7 @@ Object {
     },
     "removeActivity": Object {
       "description": undefined,
-      "method": "delete",
+      "method": "DELETE",
       "pathName": "/reserve_activity/:id",
       "query": Object {
         "schema": Object {
@@ -436,7 +436,7 @@ Object {
     },
     "updateActivity": Object {
       "description": undefined,
-      "method": "put",
+      "method": "PUT",
       "pathName": "/reserve_activity/:id",
       "query": Object {
         "schema": Object {
@@ -470,7 +470,7 @@ Object {
     },
     "updateCalender": Object {
       "description": undefined,
-      "method": "put",
+      "method": "PUT",
       "pathName": "/reserve_calendar/:id",
       "query": Object {
         "schema": Object {
@@ -516,33 +516,33 @@ Object {
       "response": undefined,
     },
   },
-  "system": Object {
+  "System": Object {
     "getApiDoc": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/system/apiDoc",
       "query": undefined,
       "response": undefined,
     },
     "getList": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/system",
       "query": undefined,
       "response": undefined,
     },
     "updateOne": Object {
       "description": undefined,
-      "method": "put",
+      "method": "PUT",
       "pathName": "/system/:name",
       "query": undefined,
       "response": undefined,
     },
   },
-  "user": Object {
+  "User": Object {
     "addReserveRequest": Object {
       "description": undefined,
-      "method": "post",
+      "method": "POST",
       "pathName": "/user/reserve_request",
       "query": Object {
         "schema": Object {
@@ -602,7 +602,7 @@ Object {
     },
     "assignShiluRoles": Object {
       "description": undefined,
-      "method": "post",
+      "method": "POST",
       "pathName": "/user/shiluRoles",
       "query": Object {
         "schema": Object {
@@ -622,7 +622,7 @@ Object {
     },
     "cancelReserveRequest": Object {
       "description": undefined,
-      "method": "put",
+      "method": "PUT",
       "pathName": "/user/reserve_request/:id/cancel",
       "query": Object {
         "schema": Object {
@@ -642,7 +642,7 @@ Object {
     },
     "getEnterCode": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/user/enterCode",
       "query": Object {
         "schema": Object {
@@ -659,7 +659,7 @@ Object {
     },
     "getLeaveInfo": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/user/leaveInfo",
       "query": Object {
         "schema": Object {
@@ -676,21 +676,21 @@ Object {
     },
     "getShiluRoles": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/user/shiluRoles",
       "query": undefined,
       "response": undefined,
     },
     "getUserInfo": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/user",
       "query": undefined,
       "response": undefined,
     },
     "removeShiluRoles": Object {
       "description": undefined,
-      "method": "delete",
+      "method": "DELETE",
       "pathName": "/user/shiluRoles",
       "query": Object {
         "schema": Object {
@@ -707,7 +707,7 @@ Object {
     },
     "updateSession": Object {
       "description": undefined,
-      "method": "get",
+      "method": "GET",
       "pathName": "/user/updateSession",
       "query": undefined,
       "response": undefined,

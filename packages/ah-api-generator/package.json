@@ -1,6 +1,6 @@
 {
   "name": "ah-api-generator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "ah-api-generator",
   "files": [
     "dist"
@@ -24,9 +24,10 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "ejs": "^3.1.5",
+    "ejs": "^3.1.6",
     "jsonschema": "^1.4.0",
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.20",
+    "yargs": "^16.2.0"
   },
   "gitHead": "ff8be1d13858c44620c90c54b2815ae7e8dd002a"
 }

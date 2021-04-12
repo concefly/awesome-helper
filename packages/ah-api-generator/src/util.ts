@@ -96,16 +96,19 @@ export function renderService(apiDoc: API.Document) {
     if (!pi) return;
 
     Object.entries({
-      get: pi.get,
-      put: pi.put,
-      post: pi.post,
-      delete: pi.delete,
+      GET: pi.get,
+      PUT: pi.put,
+      POST: pi.post,
+      DELETE: pi.delete,
     }).forEach(([method, commonPiData]) => {
       if (!commonPiData) return;
 
-      const [serviceName, requestName] = (
+      let [serviceName, requestName] = (
         commonPiData.operationId || `default.${_.camelCase(pathName)}`
       ).split('.');
+
+      serviceName = _.startCase(serviceName);
+      requestName = _.camelCase(requestName);
 
       const requestSchema = parseRequestSchema(commonPiData);
       const respSchema = parseResponseSchema(commonPiData);
