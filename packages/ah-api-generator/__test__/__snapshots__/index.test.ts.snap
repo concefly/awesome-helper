@@ -1,53 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApiGenerator normal 1`] = `
-"
+exports[`generateAPIService normal 1`] = `
+"//banner
 import { BaseService } from './BaseService';
 
+export type IPageService_getList_Query = { name?: string; title?: string; summary?: string };
+export type IPageService_getList_Resp = {
+  pageSize: number;
+  pageNum: number;
+  total: number;
+  list: Array<{
+    id: number;
+    created_at: string;
+    updated_at: string;
+    level: number;
+    a: string;
+    b: any;
+    c: any;
+    e: any;
+  }>;
+};
 
-
-export type IPageService_getList_Query = { name?: string,title?: string,summary?: string };
-export type IPageService_getList_Resp = { pageSize: number,pageNum: number,total: number,list: Array<{ id: number,created_at: string,updated_at: string,level: number,a: string,b: any,c: any,e: any }> };
-
-export type IPageService_createOne_Query = { title: string,summary: string,content: string,meta: object };
+export type IPageService_createOne_Query = {
+  title: string;
+  summary: string;
+  content: string;
+  meta: object;
+};
 export type IPageService_createOne_Resp = any;
 
-export type IPageService_updateOne_Query = { name: string,title?: string,summary?: string,content?: string,meta?: object };
+export type IPageService_updateOne_Query = {
+  name: string;
+  title?: string;
+  summary?: string;
+  content?: string;
+  meta?: object;
+};
 export type IPageService_updateOne_Resp = any;
 
 export type IPageService_removeOne_Query = { name?: string };
 export type IPageService_removeOne_Resp = any;
 
-
-
 export type IReserveService_getActivityList_Query = { id?: number };
 export type IReserveService_getActivityList_Resp = any;
 
-export type IReserveService_createActivity_Query = { title: string,detail?: string,meta?: { richDetailMeta?: object } };
+export type IReserveService_createActivity_Query = {
+  title: string;
+  detail?: string;
+  meta?: { richDetailMeta?: object };
+};
 export type IReserveService_createActivity_Resp = any;
 
-export type IReserveService_updateActivity_Query = { id: number,title?: string,detail?: string,meta?: { richDetailMeta?: object } };
+export type IReserveService_updateActivity_Query = {
+  id: number;
+  title?: string;
+  detail?: string;
+  meta?: { richDetailMeta?: object };
+};
 export type IReserveService_updateActivity_Resp = any;
 
 export type IReserveService_removeActivity_Query = { id?: number };
 export type IReserveService_removeActivity_Resp = any;
 
-export type IReserveService_getCalenderList_Query = { id?: number,activity_id?: number,startTime?: string,endTime?: string };
+export type IReserveService_getCalenderList_Query = {
+  id?: number;
+  activity_id?: number;
+  startTime?: string;
+  endTime?: string;
+};
 export type IReserveService_getCalenderList_Resp = any;
 
-export type IReserveService_createCalender_Query = { activity_id: number,list: Array<{ start_time: string,end_time: string,location?: string,detail?: string,status?: string,meta?: { richDetailMeta?: object } }> };
+export type IReserveService_createCalender_Query = {
+  activity_id: number;
+  list: Array<{
+    start_time: string;
+    end_time: string;
+    location?: string;
+    detail?: string;
+    status?: string;
+    meta?: { richDetailMeta?: object };
+  }>;
+};
 export type IReserveService_createCalender_Resp = any;
 
-export type IReserveService_updateCalender_Query = { id: number,start_time?: string,end_time?: string,location?: string,detail?: string,status?: string,meta?: { richDetailMeta?: object } };
+export type IReserveService_updateCalender_Query = {
+  id: number;
+  start_time?: string;
+  end_time?: string;
+  location?: string;
+  detail?: string;
+  status?: string;
+  meta?: { richDetailMeta?: object };
+};
 export type IReserveService_updateCalender_Resp = any;
 
 export type IReserveService_getUserRequestList_Query = { calendar_id?: number };
 export type IReserveService_getUserRequestList_Resp = any;
 
-export type IReserveService_confirmUserRequest_Query = { id: number,username: string };
+export type IReserveService_confirmUserRequest_Query = { id: number; username: string };
 export type IReserveService_confirmUserRequest_Resp = any;
-
-
 
 export type ISystemService_getApiDoc_Query = any;
 export type ISystemService_getApiDoc_Resp = any;
@@ -57,8 +108,6 @@ export type ISystemService_getList_Resp = any;
 
 export type ISystemService_updateOne_Query = any;
 export type ISystemService_updateOne_Resp = any;
-
-
 
 export type IUserService_getUserInfo_Query = any;
 export type IUserService_getUserInfo_Resp = any;
@@ -81,419 +130,389 @@ export type IUserService_getEnterCode_Resp = any;
 export type IUserService_getLeaveInfo_Query = { pavilionId?: number };
 export type IUserService_getLeaveInfo_Resp = any;
 
-export type IUserService_addReserveRequest_Query = { calendar_id: number,type: string,meta?: { members?: Array<{ nick: string,gender: string,phone: string }> } };
+export type IUserService_addReserveRequest_Query = {
+  calendar_id: number;
+  type: string;
+  meta?: { members?: Array<{ nick: string; gender: string; phone: string }> };
+};
 export type IUserService_addReserveRequest_Resp = any;
 
 export type IUserService_cancelReserveRequest_Query = { id: number };
 export type IUserService_cancelReserveRequest_Resp = any;
 
-
-
-
 export class PageService extends BaseService {
-  
   /**
    * PageService.getList
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /page
    * - method: GET
    */
-  public getList = async (query: IPageService_getList_Query ) => {
-    return this.request<IPageService_getList_Resp>(
-      replaceUrlParams('/page', query,),
-      'GET',
-      query,
-    )
-  }
-  
+  public getList = async (query: IPageService_getList_Query) => {
+    return this.request<IPageService_getList_Resp>(replaceUrlParams('/page', query), 'GET', query);
+  };
+
   /**
    * PageService.createOne
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /page
    * - method: POST
    */
-  public createOne = async (query: IPageService_createOne_Query ) => {
+  public createOne = async (query: IPageService_createOne_Query) => {
     return this.request<IPageService_createOne_Resp>(
-      replaceUrlParams('/page', query,),
+      replaceUrlParams('/page', query),
       'POST',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * PageService.updateOne
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /page/:name
    * - method: PUT
    */
-  public updateOne = async (query: IPageService_updateOne_Query ) => {
+  public updateOne = async (query: IPageService_updateOne_Query) => {
     return this.request<IPageService_updateOne_Resp>(
-      replaceUrlParams('/page/:name', query,),
+      replaceUrlParams('/page/:name', query),
       'PUT',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * PageService.removeOne
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /page/:name
    * - method: DELETE
    */
-  public removeOne = async (query: IPageService_removeOne_Query ) => {
+  public removeOne = async (query: IPageService_removeOne_Query) => {
     return this.request<IPageService_removeOne_Resp>(
-      replaceUrlParams('/page/:name', query,),
+      replaceUrlParams('/page/:name', query),
       'DELETE',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
 }
 
 export class ReserveService extends BaseService {
-  
   /**
    * ReserveService.getActivityList
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /reserve_activity
    * - method: GET
    */
-  public getActivityList = async (query: IReserveService_getActivityList_Query ) => {
+  public getActivityList = async (query: IReserveService_getActivityList_Query) => {
     return this.request<IReserveService_getActivityList_Resp>(
-      replaceUrlParams('/reserve_activity', query,),
+      replaceUrlParams('/reserve_activity', query),
       'GET',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * ReserveService.createActivity
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /reserve_activity
    * - method: POST
    */
-  public createActivity = async (query: IReserveService_createActivity_Query ) => {
+  public createActivity = async (query: IReserveService_createActivity_Query) => {
     return this.request<IReserveService_createActivity_Resp>(
-      replaceUrlParams('/reserve_activity', query,),
+      replaceUrlParams('/reserve_activity', query),
       'POST',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * ReserveService.updateActivity
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /reserve_activity/:id
    * - method: PUT
    */
-  public updateActivity = async (query: IReserveService_updateActivity_Query ) => {
+  public updateActivity = async (query: IReserveService_updateActivity_Query) => {
     return this.request<IReserveService_updateActivity_Resp>(
-      replaceUrlParams('/reserve_activity/:id', query,),
+      replaceUrlParams('/reserve_activity/:id', query),
       'PUT',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * ReserveService.removeActivity
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /reserve_activity/:id
    * - method: DELETE
    */
-  public removeActivity = async (query: IReserveService_removeActivity_Query ) => {
+  public removeActivity = async (query: IReserveService_removeActivity_Query) => {
     return this.request<IReserveService_removeActivity_Resp>(
-      replaceUrlParams('/reserve_activity/:id', query,),
+      replaceUrlParams('/reserve_activity/:id', query),
       'DELETE',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * ReserveService.getCalenderList
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /reserve_calendar
    * - method: GET
    */
-  public getCalenderList = async (query: IReserveService_getCalenderList_Query ) => {
+  public getCalenderList = async (query: IReserveService_getCalenderList_Query) => {
     return this.request<IReserveService_getCalenderList_Resp>(
-      replaceUrlParams('/reserve_calendar', query,),
+      replaceUrlParams('/reserve_calendar', query),
       'GET',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * ReserveService.createCalender
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /reserve_calendar
    * - method: POST
    */
-  public createCalender = async (query: IReserveService_createCalender_Query ) => {
+  public createCalender = async (query: IReserveService_createCalender_Query) => {
     return this.request<IReserveService_createCalender_Resp>(
-      replaceUrlParams('/reserve_calendar', query,),
+      replaceUrlParams('/reserve_calendar', query),
       'POST',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * ReserveService.updateCalender
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /reserve_calendar/:id
    * - method: PUT
    */
-  public updateCalender = async (query: IReserveService_updateCalender_Query ) => {
+  public updateCalender = async (query: IReserveService_updateCalender_Query) => {
     return this.request<IReserveService_updateCalender_Resp>(
-      replaceUrlParams('/reserve_calendar/:id', query,),
+      replaceUrlParams('/reserve_calendar/:id', query),
       'PUT',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * ReserveService.getUserRequestList
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /reserve_request
    * - method: GET
    */
-  public getUserRequestList = async (query: IReserveService_getUserRequestList_Query ) => {
+  public getUserRequestList = async (query: IReserveService_getUserRequestList_Query) => {
     return this.request<IReserveService_getUserRequestList_Resp>(
-      replaceUrlParams('/reserve_request', query,),
+      replaceUrlParams('/reserve_request', query),
       'GET',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * ReserveService.confirmUserRequest
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /reserve_request/:id/confirm
    * - method: PUT
    */
-  public confirmUserRequest = async (query: IReserveService_confirmUserRequest_Query ) => {
+  public confirmUserRequest = async (query: IReserveService_confirmUserRequest_Query) => {
     return this.request<IReserveService_confirmUserRequest_Resp>(
-      replaceUrlParams('/reserve_request/:id/confirm', query,),
+      replaceUrlParams('/reserve_request/:id/confirm', query),
       'PUT',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
 }
 
 export class SystemService extends BaseService {
-  
   /**
    * SystemService.getApiDoc
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /system/apiDoc
    * - method: GET
    */
   public getApiDoc = async () => {
-    return this.request<ISystemService_getApiDoc_Resp>(
-      replaceUrlParams('/system/apiDoc', ),
-      'GET',
-      
-    )
-  }
-  
+    return this.request<ISystemService_getApiDoc_Resp>(replaceUrlParams('/system/apiDoc'), 'GET');
+  };
+
   /**
    * SystemService.getList
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /system
    * - method: GET
    */
   public getList = async () => {
-    return this.request<ISystemService_getList_Resp>(
-      replaceUrlParams('/system', ),
-      'GET',
-      
-    )
-  }
-  
+    return this.request<ISystemService_getList_Resp>(replaceUrlParams('/system'), 'GET');
+  };
+
   /**
    * SystemService.updateOne
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /system/:name
    * - method: PUT
    */
   public updateOne = async () => {
-    return this.request<ISystemService_updateOne_Resp>(
-      replaceUrlParams('/system/:name', ),
-      'PUT',
-      
-    )
-  }
-  
+    return this.request<ISystemService_updateOne_Resp>(replaceUrlParams('/system/:name'), 'PUT');
+  };
 }
 
 export class UserService extends BaseService {
-  
   /**
    * UserService.getUserInfo
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /user
    * - method: GET
    */
   public getUserInfo = async () => {
-    return this.request<IUserService_getUserInfo_Resp>(
-      replaceUrlParams('/user', ),
-      'GET',
-      
-    )
-  }
-  
+    return this.request<IUserService_getUserInfo_Resp>(replaceUrlParams('/user'), 'GET');
+  };
+
   /**
    * UserService.updateSession
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /user/updateSession
    * - method: GET
    */
   public updateSession = async () => {
     return this.request<IUserService_updateSession_Resp>(
-      replaceUrlParams('/user/updateSession', ),
-      'GET',
-      
-    )
-  }
-  
+      replaceUrlParams('/user/updateSession'),
+      'GET'
+    );
+  };
+
   /**
    * UserService.getShiluRoles
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /user/shiluRoles
    * - method: GET
    */
   public getShiluRoles = async () => {
     return this.request<IUserService_getShiluRoles_Resp>(
-      replaceUrlParams('/user/shiluRoles', ),
-      'GET',
-      
-    )
-  }
-  
+      replaceUrlParams('/user/shiluRoles'),
+      'GET'
+    );
+  };
+
   /**
    * UserService.assignShiluRoles
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /user/shiluRoles
    * - method: POST
    */
-  public assignShiluRoles = async (query: IUserService_assignShiluRoles_Query ) => {
+  public assignShiluRoles = async (query: IUserService_assignShiluRoles_Query) => {
     return this.request<IUserService_assignShiluRoles_Resp>(
-      replaceUrlParams('/user/shiluRoles', query,),
+      replaceUrlParams('/user/shiluRoles', query),
       'POST',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * UserService.removeShiluRoles
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /user/shiluRoles
    * - method: DELETE
    */
-  public removeShiluRoles = async (query: IUserService_removeShiluRoles_Query ) => {
+  public removeShiluRoles = async (query: IUserService_removeShiluRoles_Query) => {
     return this.request<IUserService_removeShiluRoles_Resp>(
-      replaceUrlParams('/user/shiluRoles', query,),
+      replaceUrlParams('/user/shiluRoles', query),
       'DELETE',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * UserService.getEnterCode
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /user/enterCode
    * - method: GET
    */
-  public getEnterCode = async (query: IUserService_getEnterCode_Query ) => {
+  public getEnterCode = async (query: IUserService_getEnterCode_Query) => {
     return this.request<IUserService_getEnterCode_Resp>(
-      replaceUrlParams('/user/enterCode', query,),
+      replaceUrlParams('/user/enterCode', query),
       'GET',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * UserService.getLeaveInfo
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /user/leaveInfo
    * - method: GET
    */
-  public getLeaveInfo = async (query: IUserService_getLeaveInfo_Query ) => {
+  public getLeaveInfo = async (query: IUserService_getLeaveInfo_Query) => {
     return this.request<IUserService_getLeaveInfo_Resp>(
-      replaceUrlParams('/user/leaveInfo', query,),
+      replaceUrlParams('/user/leaveInfo', query),
       'GET',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * UserService.addReserveRequest
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /user/reserve_request
    * - method: POST
    */
-  public addReserveRequest = async (query: IUserService_addReserveRequest_Query ) => {
+  public addReserveRequest = async (query: IUserService_addReserveRequest_Query) => {
     return this.request<IUserService_addReserveRequest_Resp>(
-      replaceUrlParams('/user/reserve_request', query,),
+      replaceUrlParams('/user/reserve_request', query),
       'POST',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
+
   /**
    * UserService.cancelReserveRequest
-   * 
-   * - description: 
+   *
+   * - description:
    * - pathName: /user/reserve_request/:id/cancel
    * - method: PUT
    */
-  public cancelReserveRequest = async (query: IUserService_cancelReserveRequest_Query ) => {
+  public cancelReserveRequest = async (query: IUserService_cancelReserveRequest_Query) => {
     return this.request<IUserService_cancelReserveRequest_Resp>(
-      replaceUrlParams('/user/reserve_request/:id/cancel', query,),
+      replaceUrlParams('/user/reserve_request/:id/cancel', query),
       'PUT',
-      query,
-    )
-  }
-  
+      query
+    );
+  };
 }
-
 
 export function replaceUrlParams(url: string, data?: any) {
   if (!data) return url;
 
-  const match = url.match(/\\\\:\\\\w+/g);
+  const match = url.match(/\\\\\\\\:\\\\\\\\w+/g);
   if (match) {
-    const pnSet = new Set(match.map(p => p.replace(/^\\\\:/, '')));
+    const pnSet = new Set(match.map(p => p.replace(/^\\\\\\\\:/, '')));
     pnSet.forEach(p => {
-      url = url.replace(new RegExp(\`\\\\\\\\:\${p}\`, 'g'), data[p]);
+      url = url.replace(new RegExp(\`\\\\:\${p}\`, 'g'), data[p]);
     });
   }
-  
+
   return url;
 }
-  "
+"
 `;
