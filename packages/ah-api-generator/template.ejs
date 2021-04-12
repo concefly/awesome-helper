@@ -44,7 +44,7 @@ export function replaceUrlParams(url: string, data?: any) {
 
 export const createAllService = (tap?: (s: BaseService) => void) => {
   const result = {
-    <% for (const sName of Object.keys(serviceMap)) { %> <%= sName %>: new <%= sName %>(), <% } %>
+    <% for (const sName of Object.keys(serviceMap)) { %> <%= sName %>: new <%= sName %>Service(), <% } %>
   };
 
   // tap
