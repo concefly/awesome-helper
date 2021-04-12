@@ -1,4 +1,3 @@
-export const defaultTemplate = `
 import { BaseService } from './BaseService';
 
 <% for (const [sName, rMap] of Object.entries(serviceMap)) { %>
@@ -36,10 +35,9 @@ export function replaceUrlParams(url: string, data?: any) {
   if (match) {
     const pnSet = new Set(match.map(p => p.replace(/^\\:/, '')));
     pnSet.forEach(p => {
-      url = url.replace(new RegExp(\`\\\\:\${p}\`, 'g'), data[p]);
+      url = url.replace(new RegExp(`\:${p}`, 'g'), data[p]);
     });
   }
   
   return url;
 }
-  `;

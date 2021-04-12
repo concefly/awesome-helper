@@ -1,26 +1,36 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs';
-import { readFileSync, writeFileSync } from 'fs';
-import { ApiGenerator } from './ApiGenerator';
+import { generateAPIService } from './index';
 
-yargs
-  .command<{ input: string; template?: string; dist: string }>(
-    'emit',
-    '导出到文件',
-    _yargs => {},
-    argv => {
-      const { input, template, dist } = argv;
+const args = yargs
+  .option('input', { alias: 'i', describe: 'apiDoc', type: 'string', required: true })
+  .option('headers', { describe: 'fetch headers', type: 'array' })
+  .option('template', { alias: 't', describe: '模板', type: 'string' })
+  .option('banner', { alias: 'b', describe: 'banner', type: 'string' })
+  .option('dump', { alias: 'd', describe: '导出', type: 'string' }).argv;
 
-      const apiDocJson = JSON.parse(readFileSync(input, { encoding: 'utf-8' }));
-      const g = new ApiGenerator(apiDocJson);
-
-      const tplStr = template ? readFileSync(template, { encoding: 'utf-8' }) : undefined;
-      const tsContent = g.emit2Ts(tplStr);
-
-      writeFileSync(dist, tsContent, { encoding: 'utf-8' });
-    }
-  )
-  .option('input', { alias: 'i', describe: '输入 apiDoc 文件', default: 'api.json' })
-  .option('template', { alias: 't', describe: '模板文件' })
-  .option('dist', { alias: 'd', describe: '导出文件', default: 'service.ts' }).argv;
+generateAPIService({
+  input: args.input.match(/^(http|https)\:\/\//)
+    ? {
+        type: 'remote',
+        url: args.input,
+        headers: args.headers
+          ? args.headers.reduce((re, cu) => {
+              const [k, v] = (cu + '').split(':');
+              return { ...re, [k]: v };
+            }, {} as any)
+          : undefined,
+      }
+    : { type: 'local', filename: args.input },
+  template: args.template,
+  banner: args.banner,
+  dump: args.dump,
+})
+  .then(content => {
+    if (!args.dump) console.log(content);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });

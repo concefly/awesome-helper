@@ -107,8 +107,7 @@ export function renderService(apiDoc: API.Document) {
         commonPiData.operationId || `default.${_.camelCase(pathName)}`
       ).split('.');
 
-      serviceName = _.startCase(serviceName);
-      requestName = _.camelCase(requestName);
+      serviceName = _.capitalize(serviceName);
 
       const requestSchema = parseRequestSchema(commonPiData);
       const respSchema = parseResponseSchema(commonPiData);
