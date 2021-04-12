@@ -5,6 +5,7 @@
   "files": [
     "dist"
   ],
+  "bin": "dist/cli.js",
   "main": "dist/index.js",
   "scripts": {
     "ci": "ah-workflow ci",
