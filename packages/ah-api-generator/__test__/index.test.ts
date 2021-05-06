@@ -1,11 +1,16 @@
 import { generateAPIService } from '../src';
 
 describe('generateAPIService', () => {
-  it('normal', async () => {
-    const tsContent = await generateAPIService({
-      input: { type: 'local', filename: `${__dirname}/api.json` },
-      banner: '//banner',
-    });
-    expect(tsContent).toMatchSnapshot();
-  });
+  [{ name: 'api' }, { name: 'api2', operationIdSplitter: '_' }].forEach(
+    ({ name, operationIdSplitter }) => {
+      it(name, async () => {
+        const tsContent = await generateAPIService({
+          input: { type: 'local', filename: `${__dirname}/${name}.json` },
+          banner: '//banner',
+          operationIdSplitter,
+        });
+        expect(tsContent).toMatchSnapshot(name);
+      });
+    }
+  );
 });

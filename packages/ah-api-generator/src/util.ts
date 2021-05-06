@@ -89,8 +89,9 @@ export interface IServiceMap {
   };
 }
 
-export function renderService(apiDoc: API.Document) {
+export function renderService(apiDoc: API.Document, opt: { operationIdSplitter?: string } = {}) {
   const serviceMap: IServiceMap = {};
+  const { operationIdSplitter = '.' } = opt;
 
   Object.entries(apiDoc.paths).forEach(([pathName, pi]) => {
     if (!pi) return;
@@ -104,8 +105,8 @@ export function renderService(apiDoc: API.Document) {
       if (!commonPiData) return;
 
       let [serviceName, requestName] = (
-        commonPiData.operationId || `default.${_.camelCase(pathName)}`
-      ).split('.');
+        commonPiData.operationId || `default${operationIdSplitter}${_.camelCase(pathName)}`
+      ).split(operationIdSplitter);
 
       serviceName = _.capitalize(serviceName);
 

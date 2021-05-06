@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generateAPIService normal 1`] = `
+exports[`generateAPIService api: api 1`] = `
 "//banner
 import { BaseService } from './BaseService';
 
@@ -521,6 +521,174 @@ export const createAllService = (tap?: (s: BaseService) => void) => {
     Reserve: new ReserveService(),
     System: new SystemService(),
     User: new UserService(),
+  };
+
+  // tap
+  Object.values(result).forEach(s => tap?.(s));
+
+  return result;
+};
+"
+`;
+
+exports[`generateAPIService api2: api2 1`] = `
+"//banner
+import { BaseService } from './BaseService';
+
+export type ISnapshotcontrollerService_create_Query = { device: string; timestamp: string };
+export type ISnapshotcontrollerService_create_Resp = string;
+
+export type IFaceindexcontrollerService_getPage_Query = any;
+export type IFaceindexcontrollerService_getPage_Resp = {
+  pageSize: any;
+  pageNum: any;
+  total: any;
+  list: Array<{
+    id: any;
+    created_at: string;
+    updated_at: string;
+    age: any;
+    gender: any;
+    expression: any;
+    snapshot?: {
+      id: any;
+      created_at: string;
+      updated_at: string;
+      ossPath: string;
+      faceIndexStatus: string;
+      device?: { id: any; created_at: string; updated_at: string; name: string; title: string };
+    };
+  }>;
+};
+
+export type IAuthcontrollerService_login_Query = { name: string; password: string };
+export type IAuthcontrollerService_login_Resp = {
+  accessToken: string;
+  user: {
+    id: any;
+    created_at: string;
+    updated_at: string;
+    name: string;
+    nick: string;
+    role: string;
+  };
+};
+
+export type IUsercontrollerService_getUser_Query = any;
+export type IUsercontrollerService_getUser_Resp = {
+  id: any;
+  created_at: string;
+  updated_at: string;
+  name: string;
+  nick: string;
+  role: string;
+};
+
+export type IDevicecontrollerService_getPage_Query = any;
+export type IDevicecontrollerService_getPage_Resp = {
+  pageSize: any;
+  pageNum: any;
+  total: any;
+  list: Array<{ id: any; created_at: string; updated_at: string; name: string; title: string }>;
+};
+
+export class SnapshotcontrollerService extends BaseService {
+  /**
+   * SnapshotcontrollerService.create
+   *
+   * - description: 快照上传
+   * - pathName: /snapshot
+   * - method: POST
+   */
+  public create = async (query: ISnapshotcontrollerService_create_Query) => {
+    return this.request<ISnapshotcontrollerService_create_Resp>(
+      replaceUrlParams('/snapshot', query),
+      'POST',
+      query
+    );
+  };
+}
+
+export class FaceindexcontrollerService extends BaseService {
+  /**
+   * FaceindexcontrollerService.getPage
+   *
+   * - description:
+   * - pathName: /faceIndex
+   * - method: GET
+   */
+  public getPage = async () => {
+    return this.request<IFaceindexcontrollerService_getPage_Resp>(
+      replaceUrlParams('/faceIndex'),
+      'GET'
+    );
+  };
+}
+
+export class AuthcontrollerService extends BaseService {
+  /**
+   * AuthcontrollerService.login
+   *
+   * - description:
+   * - pathName: /auth/login
+   * - method: POST
+   */
+  public login = async (query: IAuthcontrollerService_login_Query) => {
+    return this.request<IAuthcontrollerService_login_Resp>(
+      replaceUrlParams('/auth/login', query),
+      'POST',
+      query
+    );
+  };
+}
+
+export class UsercontrollerService extends BaseService {
+  /**
+   * UsercontrollerService.getUser
+   *
+   * - description: 获取用户信息
+   * - pathName: /user
+   * - method: GET
+   */
+  public getUser = async () => {
+    return this.request<IUsercontrollerService_getUser_Resp>(replaceUrlParams('/user'), 'GET');
+  };
+}
+
+export class DevicecontrollerService extends BaseService {
+  /**
+   * DevicecontrollerService.getPage
+   *
+   * - description:
+   * - pathName: /device
+   * - method: GET
+   */
+  public getPage = async () => {
+    return this.request<IDevicecontrollerService_getPage_Resp>(replaceUrlParams('/device'), 'GET');
+  };
+}
+
+export function replaceUrlParams(url: string, data?: any) {
+  if (!data) return url;
+
+  const match = url.match(/\\\\\\\\:\\\\\\\\w+/g);
+  if (match) {
+    const pnSet = new Set(match.map(p => p.replace(/^\\\\\\\\:/, '')));
+    pnSet.forEach(p => {
+      url = url.replace(new RegExp(\`\\\\:\${p}\`, 'g'), data[p]);
+    });
+  }
+
+  return url;
+}
+
+export const createAllService = (tap?: (s: BaseService) => void) => {
+  const result = {
+    Snapshotcontroller: new SnapshotcontrollerService(),
+    Faceindexcontroller: new FaceindexcontrollerService(),
+    Authcontroller: new AuthcontrollerService(),
+    Usercontroller: new UsercontrollerService(),
+    Devicecontroller: new DevicecontrollerService(),
   };
 
   // tap

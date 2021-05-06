@@ -5,9 +5,11 @@ import { renderService } from './util';
 import ejs from 'ejs';
 import { OpenAPIV3 as API } from 'openapi-types';
 import prettier from 'prettier';
+import RefParser from '@apidevtools/json-schema-ref-parser';
 
 export interface IConfig {
   input?: { type: 'local'; filename: string } | { type: 'remote'; url: string; headers?: any };
+  operationIdSplitter?: string;
   template?: string;
   banner?: string;
   dump?: string;
@@ -16,7 +18,7 @@ export interface IConfig {
 export const loadApiDoc = async (input: IConfig['input']): Promise<API.Document> => {
   if (!input) throw new Error('input 不存');
 
-  const result =
+  let result =
     input.type === 'local'
       ? JSON.parse(fs.readFileSync(input.filename, { encoding: 'utf-8' }))
       : input.type === 'remote'
@@ -24,6 +26,9 @@ export const loadApiDoc = async (input: IConfig['input']): Promise<API.Document>
       : null;
 
   if (!result) throw new Error(`inputSource 不存在: ${JSON.stringify(input)}`);
+
+  // 解 $ref
+  result = await RefParser.dereference(result);
 
   return result;
 };
@@ -37,7 +42,7 @@ export const generateAPIService = async (cfg: IConfig) => {
   } = cfg;
 
   const apiDoc = await loadApiDoc(input);
-  const serviceMap = renderService(apiDoc);
+  const serviceMap = renderService(apiDoc, { operationIdSplitter: cfg.operationIdSplitter });
 
   // render template
   let content = ejs.render(fs.readFileSync(template, { encoding: 'utf-8' }), { serviceMap });
